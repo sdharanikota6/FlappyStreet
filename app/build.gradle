@@ -1,7 +1,12 @@
 plugins {
     id 'com.android.application'
 }
+task wrapper(type: Wrapper){
+    gradleVersion = '7.2'
+}
+task prepareKotlinBuildScriptModel {
 
+}
 android {
     namespace 'com.example.flappy_street'
     compileSdk 33
