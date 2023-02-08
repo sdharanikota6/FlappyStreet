@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Flappy-Street</string>
+    <string name="go">Go!</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="name">name</string>
+    <string name="choose_name">Choose your difficulty:</string>
+    <string name="choose_sprite">Choose your sprite:</string>
+    <string name="choose_difficulty">Choose your difficulty:</string>
 </resources>
