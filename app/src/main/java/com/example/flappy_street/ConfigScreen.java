@@ -1,6 +1,6 @@
 package com.example.flappy_street;
 
-import android.media.Image;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +30,7 @@ public class ConfigScreen extends AppCompatActivity {
         difficulty = DifficultyLevel.MEDIUM;
         chosenSprite = SpriteChoice.SPRITE_1;
         goButton = findViewById(R.id.goButton);
+        goButton.setOnClickListener(this::gameScreen);
 
         difficultyButtons = new Button[3];
         difficultyButtons[0] = findViewById(R.id.easyButton);
@@ -78,5 +79,9 @@ public class ConfigScreen extends AppCompatActivity {
         }
         String spriteString = "Sprite chosen: " + chosenSprite;
         Toast.makeText(getApplicationContext(), spriteString, Toast.LENGTH_SHORT).show();
+    }
+    public void gameScreen(View v) {
+        Intent gameScreen = new Intent(this, gameScreen.class);
+        startActivity(gameScreen);
     }
 }
