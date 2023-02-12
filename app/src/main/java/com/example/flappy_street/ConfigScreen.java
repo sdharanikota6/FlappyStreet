@@ -37,6 +37,7 @@ public class ConfigScreen extends AppCompatActivity {
 
         //Player player = new Player(username, difficulty, chosenSprite);
         goButton = findViewById(R.id.goButton);
+
         /*
 
         */
@@ -65,6 +66,9 @@ public class ConfigScreen extends AppCompatActivity {
             }
         });
 
+
+
+        goButton.setOnClickListener(this::gameScreen);
 
 
         difficultyButtons = new Button[3];
@@ -118,5 +122,12 @@ public class ConfigScreen extends AppCompatActivity {
         spriteChosen = true;
     }
 
+
+
+
+    public void gameScreen(View v) {
+        Intent gameScreen = new Intent(this, gameScreen.class);
+        startActivity(gameScreen);
+    }
 
 }
