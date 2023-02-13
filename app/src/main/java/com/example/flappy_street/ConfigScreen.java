@@ -89,7 +89,7 @@ public class ConfigScreen extends AppCompatActivity {
     public void startGameScreen() {
         EditText textField = findViewById(R.id.editTextTextPersonName);
         String name = textField.getText().toString();
-        Intent gameScreen = new Intent(this, gameScreen.class);
+        Intent gameScreen = new Intent(this, GameScreen.class);
         gameScreen.putExtra(CHOSEN_DIFFICULTY, difficulty);
         gameScreen.putExtra(CHOSEN_SPRITE, chosenSprite);
         gameScreen.putExtra(CHOSEN_NAME, name);

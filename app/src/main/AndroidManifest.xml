@@ -17,17 +17,7 @@
 
 
         <activity
-            android:name=".gameScreen"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-
-        <activity android:name=".ConfigScreen" />
-        <activity
-            android:name=".Activity2"
+            android:name=".GameScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
