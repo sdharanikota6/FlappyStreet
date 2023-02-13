@@ -19,18 +19,35 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edit_text"
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="139dp"
-        android:hint="enter username"
-        android:inputType="textPersonName|textCapWords"
-        android:minHeight="48dp"
-        android:textColorHint="#808080" />
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="163dp"
+        android:layout_marginEnd="173dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="261dp"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="213dp"
+        app:srcCompat="@drawable/sprite1" />
 
 </RelativeLayout>
