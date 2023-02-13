@@ -2,14 +2,16 @@ package com.example.flappy_street.game;
 
 import android.media.Image;
 
-public abstract class Player {
+public class Player {
 
-    private String name;
+    private final String name;
     private Image sprite;
     private int lives;
 
-    public void setName(String name) {
+    public Player(String name, DifficultyLevel difficulty, SpriteChoice spriteChoice) {
         this.name = name;
+        lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
+        //something about sprite choice.
     }
 
     public String getName() {
@@ -24,8 +26,12 @@ public abstract class Player {
         return this.sprite;
     }
 
-    public void setLives(int lives) {
-        this.lives = lives;
+    /**
+     * Removes one life from the player. Returns the player's new amount of lives.
+     * @return lives remaining after death
+     */
+    public int die() {
+        return --lives;
     }
 
     public int getLives() {

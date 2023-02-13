@@ -7,21 +7,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.SpriteChoice;
 
 public class ConfigScreen extends AppCompatActivity {
 
-    private Button goButton;
     private DifficultyLevel difficulty;
     private SpriteChoice chosenSprite;
     private Button[] difficultyButtons;
     private ImageButton[] spriteButtons;
     private EditText textField;
+    private boolean difficultyChosen = false;
+    private boolean spriteChosen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +27,11 @@ public class ConfigScreen extends AppCompatActivity {
         setContentView(R.layout.screen_config);
         difficulty = DifficultyLevel.MEDIUM;
         chosenSprite = SpriteChoice.SPRITE_1;
-        goButton = findViewById(R.id.goButton);
-        goButton.setOnClickListener(this::gameScreen);
+
+        //Player player = new Player(username, difficulty, chosenSprite);
+        Button goButton = findViewById(R.id.goButton);
+
+        goButton.setOnClickListener(this::goButton);
 
         difficultyButtons = new Button[3];
         difficultyButtons[0] = findViewById(R.id.easyButton);
@@ -65,6 +66,7 @@ public class ConfigScreen extends AppCompatActivity {
         }
         String difficultyString = "difficulty: " + difficulty;
         Toast.makeText(getApplicationContext(), difficultyString, Toast.LENGTH_SHORT).show();
+        difficultyChosen = true;
     }
 
     private void chooseSprite(View v) {
@@ -79,9 +81,35 @@ public class ConfigScreen extends AppCompatActivity {
         }
         String spriteString = "Sprite chosen: " + chosenSprite;
         Toast.makeText(getApplicationContext(), spriteString, Toast.LENGTH_SHORT).show();
+        spriteChosen = true;
     }
+
     public void gameScreen(View v) {
         Intent gameScreen = new Intent(this, gameScreen.class);
         startActivity(gameScreen);
+    }
+
+    private void goButton(View view) {
+        boolean inValid;
+        String message;
+        EditText username = (EditText) findViewById(R.id.editTextTextPersonName);
+        String usernameText = username.getText().toString();
+        usernameText = usernameText.strip();
+        inValid = usernameText.isEmpty();
+        if (inValid) {
+            message = "Invalid username, please try again";
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        } else if (!difficultyChosen) {
+            message = "Please select a difficulty level!";
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        } else if (!spriteChosen) {
+            message = "Please select a sprite!";
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        } else {
+            message = "Welcome " + usernameText + "!";
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            Intent gameScreen = new Intent(ConfigScreen.this, gameScreen.class);
+            startActivity(gameScreen);
+        }
     }
 }
