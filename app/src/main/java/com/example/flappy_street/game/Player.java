@@ -10,7 +10,6 @@ public class Player {
 
     public Player(String name, DifficultyLevel difficulty, SpriteChoice spriteChoice) {
         this.name = name;
-        //TODO: Decide on difficulty differences (meeting today!)
         lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
         //something about sprite choice.
     }
@@ -29,7 +28,6 @@ public class Player {
 
     /**
      * Removes one life from the player. Returns the player's new amount of lives.
-     * TODO: game over conditions
      * @return lives remaining after death
      */
     public int die() {
