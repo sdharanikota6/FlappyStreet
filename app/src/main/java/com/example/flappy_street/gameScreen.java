@@ -12,7 +12,7 @@ public class gameScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_game);
 
-        setContentView(R.layout.activity_game_screen);
+
 
     }
 }

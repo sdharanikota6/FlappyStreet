@@ -39,7 +39,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="25dp"
         android:text="@string/choose_sprite"
         app:layout_constraintBottom_toTopOf="@+id/spriteChoice2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,21 +56,23 @@
         app:layout_constraintEnd_toStartOf="@+id/spriteChoice3"
         app:layout_constraintStart_toEndOf="@+id/spriteChoice1"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:background="@null"
+        android:src="@drawable/sprite2" />
 
     <ImageButton
         android:id="@+id/spriteChoice1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="93dp"
+        android:layout_height="93dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="338dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toTopOf="@+id/easyButton"
         app:layout_constraintEnd_toStartOf="@+id/spriteChoice2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:background="@null"
+        android:src="@drawable/sprite1" />
 
     <ImageButton
         android:id="@+id/spriteChoice3"
@@ -82,7 +84,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spriteChoice2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:background="@null"
+        android:src="@drawable/sprite3" />
 
     <Button
         android:id="@+id/goButton"

@@ -38,9 +38,6 @@ public class ConfigScreen extends AppCompatActivity {
         //Player player = new Player(username, difficulty, chosenSprite);
         goButton = findViewById(R.id.goButton);
 
-        /*
-
-        */
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,8 +64,6 @@ public class ConfigScreen extends AppCompatActivity {
         });
 
 
-
-        goButton.setOnClickListener(this::gameScreen);
 
 
         difficultyButtons = new Button[3];
