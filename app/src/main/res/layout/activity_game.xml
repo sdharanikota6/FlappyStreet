@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF000000"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,25 +13,117 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="70dp"
         android:text="Game Screen"
         android:textColor="#50C878"
-        android:textSize="20dp"
+        android:textSize="30dp"
+        android:fontFamily="monospace"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edit_text"
+
+    <TextView
+        android:id="@+id/displayPlayerName"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Welcome"
+        android:textColor="#8b0000"
+        android:textColorHint="#808080"
+        android:fontFamily="monospace"
+        />
+
+    <TextView
+        android:id="@+id/displayStartingPoints"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Starting Points:"
+        android:textColor="#FFBB86FC"
+        android:textColorHint="#808080"
+        android:fontFamily="monospace"
+        />
+    <TextView
+        android:id="@+id/displayStartingLives"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="283dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Starting Lives:"
+        android:textColor="#FFBB86FC"
+        android:textColorHint="#808080"
+        android:fontFamily="monospace"
+        />
+    <TextView
+        android:id="@+id/displayDifficulty"
+        android:layout_width="200dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="245dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Difficulty:"
+        android:textColor="#FFBB86FC"
+        android:textColorHint="#808080"
+        android:fontFamily="monospace"
+        />
+
+    <ImageView
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src=""
+
+        />
+
+
+    =======
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="139dp"
-        android:hint="enter username"
-        android:inputType="textPersonName|textCapWords"
-        android:minHeight="48dp"
-        android:textColorHint="#808080" />
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="163dp"
+        android:layout_marginEnd="173dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="261dp"
+        android:text="TextView" />
+
+
+
 
 </RelativeLayout>

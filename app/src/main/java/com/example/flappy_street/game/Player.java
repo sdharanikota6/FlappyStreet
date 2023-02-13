@@ -5,10 +5,9 @@ import android.media.Image;
 public class Player {
 
     private final String name;
-    private Image sprite;
     private int lives;
 
-    public Player(String name, DifficultyLevel difficulty, SpriteChoice spriteChoice) {
+    public Player(String name, DifficultyLevel difficulty) {
         this.name = name;
         lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
         //something about sprite choice.
@@ -16,14 +15,6 @@ public class Player {
 
     public String getName() {
         return this.name;
-    }
-
-    public void setSprite(Image sprite) {
-        this.sprite = sprite;
-    }
-
-    public Image getSprite() {
-        return this.sprite;
     }
 
     /**
