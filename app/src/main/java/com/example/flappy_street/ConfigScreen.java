@@ -7,17 +7,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.SpriteChoice;
 
 public class ConfigScreen extends AppCompatActivity {
 
+    public static final String chosenDifficulty = "com.example.flappy_street.chosenDifficultyFinal";
+    public static final String chosenSpriteFinal = "com.example.flappy_street.chosenSpriteFinal";
+    public static final String chosenName = "com.example.flappy_street.chosenNameFinal";
     private DifficultyLevel difficulty;
     private SpriteChoice chosenSprite;
     private Button[] difficultyButtons;
     private ImageButton[] spriteButtons;
-    private EditText textField;
     private boolean difficultyChosen = false;
     private boolean spriteChosen = false;
 
@@ -27,10 +31,7 @@ public class ConfigScreen extends AppCompatActivity {
         setContentView(R.layout.screen_config);
         difficulty = DifficultyLevel.MEDIUM;
         chosenSprite = SpriteChoice.SPRITE_1;
-
-        //Player player = new Player(username, difficulty, chosenSprite);
         Button goButton = findViewById(R.id.goButton);
-
         goButton.setOnClickListener(this::goButton);
 
         difficultyButtons = new Button[3];
@@ -84,8 +85,13 @@ public class ConfigScreen extends AppCompatActivity {
         spriteChosen = true;
     }
 
-    public void gameScreen(View v) {
+    public void startGameScreen() {
+        EditText textField = findViewById(R.id.editTextTextPersonName);
+        String name = textField.getText().toString();
         Intent gameScreen = new Intent(this, gameScreen.class);
+        gameScreen.putExtra(chosenDifficulty, difficulty);
+        gameScreen.putExtra(chosenSpriteFinal, chosenSprite);
+        gameScreen.putExtra(chosenName, name);
         startActivity(gameScreen);
     }
 
@@ -108,8 +114,7 @@ public class ConfigScreen extends AppCompatActivity {
         } else {
             message = "Welcome " + usernameText + "!";
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-            Intent gameScreen = new Intent(ConfigScreen.this, gameScreen.class);
-            startActivity(gameScreen);
+            startGameScreen();
         }
     }
 }
