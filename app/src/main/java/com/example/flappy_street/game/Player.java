@@ -6,10 +6,12 @@ public class Player {
 
     private final String name;
     private int lives;
+    private int score;
 
     public Player(String name, DifficultyLevel difficulty) {
         this.name = name;
         lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
+        score = 0;
         //something about sprite choice.
     }
 
@@ -27,6 +29,14 @@ public class Player {
 
     public int getLives() {
         return lives;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int newScore) {
+        this.score = newScore;
     }
 
 }
