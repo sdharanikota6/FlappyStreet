@@ -1,7 +1,5 @@
 package com.example.flappy_street.game;
 
-import android.media.Image;
-
 public class Player {
 
     private final String name;
