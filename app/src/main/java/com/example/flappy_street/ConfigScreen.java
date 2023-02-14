@@ -90,8 +90,8 @@ public class ConfigScreen extends AppCompatActivity {
         EditText textField = findViewById(R.id.editTextTextPersonName);
         String name = textField.getText().toString();
         Intent gameScreen = new Intent(this, GameScreen.class);
-        gameScreen.putExtra(CHOSEN_DIFFICULTY, difficulty);
-        gameScreen.putExtra(CHOSEN_SPRITE, chosenSprite);
+        gameScreen.putExtra(CHOSEN_DIFFICULTY, difficulty.toString());
+        gameScreen.putExtra(CHOSEN_SPRITE, chosenSprite.toString());
         gameScreen.putExtra(CHOSEN_NAME, name);
         startActivity(gameScreen);
     }
@@ -100,7 +100,7 @@ public class ConfigScreen extends AppCompatActivity {
         boolean inValid;
         String message;
         EditText username = (EditText) findViewById(R.id.editTextTextPersonName);
-        String usernameText = username.getText().toString();
+        String usernameText = username.getText() == null ? "" : username.getText().toString();
         usernameText = usernameText.strip();
         inValid = usernameText.isEmpty();
         if (inValid) {
