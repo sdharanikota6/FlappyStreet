@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.flappy_street.game.DifficultyLevel;
@@ -35,9 +36,16 @@ public class GameScreen extends AppCompatActivity {
         display = "Points: " + player.getScore();
         startingPoints.setText(display);
 
+        TextView displayLives = findViewById(R.id.displayStartingLives);
+        display = "Lives: " + player.getLives();
+        displayLives.setText(display);
+
         TextView playerName = findViewById(R.id.displayPlayerName);
         display = "Welcome " + player.getName();
         playerName.setText(display);
+
+        ImageView chosenSprite = findViewById(R.id.spriteView);
+        chosenSprite.setImageResource(sprite);
 
     }
 
