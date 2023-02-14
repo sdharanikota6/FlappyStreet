@@ -1,7 +1,10 @@
 package com.example.flappy_street.game;
 
+import com.example.flappy_street.tiles.Interactable;
+
 public class Player {
 
+    private Interactable currentTile;
     private final String name;
     private int lives;
     private int score;
@@ -35,6 +38,14 @@ public class Player {
 
     public void setScore(int newScore) {
         this.score = newScore;
+    }
+
+    public Interactable getCurrentTile() {
+        return this.currentTile;
+    }
+
+    public void setCurrentTile(Interactable tile) {
+        this.currentTile = tile;
     }
 
 }
