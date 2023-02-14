@@ -8,4 +8,9 @@
     <string name="choose_name">Choose your name:</string>
     <string name="choose_sprite">Choose your sprite:</string>
     <string name="choose_difficulty">Choose your difficulty:</string>
+    <string name="game_screen">Game Screen</string>
+    <string name="welcome">Welcome </string>
+    <string name="starting_points">Points: </string>
+    <string name="lives">Lives: </string>
+    <string name="difficulty">Difficulty: </string>
 </resources>
