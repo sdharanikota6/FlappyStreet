@@ -50,6 +50,9 @@ public class ConfigScreen extends AppCompatActivity {
         for (ImageButton button : spriteButtons) {
             button.setOnClickListener(this::chooseSprite);
         }
+
+        Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(this::goBack);
     }
 
     /**
@@ -117,5 +120,13 @@ public class ConfigScreen extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             startGameScreen();
         }
+    }
+
+    /**
+     * Exits the config screen activity.
+     * @param v the view that called this function
+     */
+    private void goBack(View v) {
+        this.finish();
     }
 }
