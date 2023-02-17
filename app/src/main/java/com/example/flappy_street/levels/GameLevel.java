@@ -13,4 +13,16 @@ public class GameLevel {
         this.player = player;
         this.name = name;
     }
+
+    public GameTile[][] getTileArray() {
+        return tileArray;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }
