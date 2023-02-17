@@ -50,6 +50,9 @@ public class ConfigScreen extends AppCompatActivity {
         for (ImageButton button : spriteButtons) {
             button.setOnClickListener(this::chooseSprite);
         }
+
+        Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(this::goBack);
     }
 
     /**
@@ -90,8 +93,8 @@ public class ConfigScreen extends AppCompatActivity {
         EditText textField = findViewById(R.id.editTextTextPersonName);
         String name = textField.getText().toString();
         Intent gameScreen = new Intent(this, GameScreen.class);
-        gameScreen.putExtra(CHOSEN_DIFFICULTY, difficulty.toString());
-        gameScreen.putExtra(CHOSEN_SPRITE, chosenSprite.toString());
+        gameScreen.putExtra(CHOSEN_DIFFICULTY, difficulty);
+        gameScreen.putExtra(CHOSEN_SPRITE, chosenSprite);
         gameScreen.putExtra(CHOSEN_NAME, name);
         startActivity(gameScreen);
     }
@@ -117,5 +120,13 @@ public class ConfigScreen extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             startGameScreen();
         }
+    }
+
+    /**
+     * Exits the config screen activity.
+     * @param v the view that called this function
+     */
+    private void goBack(View v) {
+        this.finish();
     }
 }

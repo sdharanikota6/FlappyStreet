@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF000000"
+    android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
     <TextView
@@ -82,15 +83,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/spriteView"
+
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/spriteView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|center"
+            android:contentDescription="@string/choose_sprite"
+            app:srcCompat="@drawable/sprite1" />
+
+
+
+    </FrameLayout>
+
+    <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="33dp"
-        app:srcCompat="@drawable/sprite1"
-        android:contentDescription="@string/choose_sprite"/>
+        android:columnCount="3"
+        android:rowCount="3">
 
+        <Button
+            android:id="@+id/moveUP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:text="Up" />
+
+        <Button
+            android:id="@+id/moveDOWN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:text="Down" />
+
+        <Button
+            android:id="@+id/moveLEFT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="Left" />
+
+        <Button
+            android:id="@+id/moveRIGHT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:text="Right" />
+    </GridLayout>
 
 </RelativeLayout>
