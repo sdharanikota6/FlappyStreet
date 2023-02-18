@@ -9,12 +9,14 @@ import android.widget.TextView;
 
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
+import com.example.flappy_street.levels.GameLevel;
 
 public class GameScreen extends AppCompatActivity {
 
     private DifficultyLevel difficulty;
     private int sprite;
     private Player player;
+    private GameLevel level;
 
 
     @Override
