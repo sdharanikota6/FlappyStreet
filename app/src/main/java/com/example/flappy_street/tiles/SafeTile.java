@@ -23,6 +23,7 @@ public class SafeTile extends GameTile {
      * When a player steps on a safe tile, nothing happens. <p>
      * {@inheritDoc}
      */
+    @Override
     public GameTile step(Player stepped) {
         return this;
     }

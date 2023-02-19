@@ -26,6 +26,7 @@ public class RiverTile extends GameTile {
      * kill the player. Stepping on a river tile is worth 5 points. <p>
      * {@inheritDoc}
      */
+    @Override
     public GameTile step(Player stepped) {
         this.stepped = true;
         if (!covered) {
