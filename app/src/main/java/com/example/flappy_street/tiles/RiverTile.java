@@ -23,7 +23,7 @@ public class RiverTile extends GameTile {
 
     /**
      * On step, if the tile is not covered (by a log or whatever equivalent we're using),
-     * kill the player. Stepping on a river tile is worth 5 points. 
+     * kill the player. Stepping on a river tile is worth 5 points.
      * @param stepped the player object that stepped on this tile
      * @return this tile
      */
@@ -36,5 +36,17 @@ public class RiverTile extends GameTile {
         return this;
         //at the moment, I'm not sure if returning game tile is actually useful.
         //TODO: Once more progress on sprint made, reevaluate.
+    }
+
+    public void cover() {
+        this.covered = true;
+    }
+
+    public void uncover() {
+        this.covered = false;
+    }
+
+    public boolean isCovered() {
+        return covered;
     }
 }
