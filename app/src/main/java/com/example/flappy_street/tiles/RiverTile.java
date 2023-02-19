@@ -23,9 +23,8 @@ public class RiverTile extends GameTile {
 
     /**
      * On step, if the tile is not covered (by a log or whatever equivalent we're using),
-     * kill the player. Stepping on a river tile is worth 5 points.
-     * @param stepped the player object that stepped on this tile
-     * @return this tile
+     * kill the player. Stepping on a river tile is worth 5 points. <p>
+     * {@inheritDoc}
      */
     public GameTile step(Player stepped) {
         this.stepped = true;
