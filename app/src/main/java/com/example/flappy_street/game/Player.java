@@ -70,4 +70,23 @@ public class Player {
         return --lives;
     }
 
+    public void moveUp() {
+        this.yPos++;
+        currentLevel.getTile(xPos, yPos).step(this);
+    }
+
+    public void moveDown() {
+        this.yPos--;
+        currentLevel.getTile(xPos, yPos).step(this);
+    }
+
+    public void moveLeft() {
+        this.xPos--;
+        currentLevel.getTile(xPos, yPos).step(this);
+    }
+
+    public void moveRight() {
+        this.xPos++;
+        currentLevel.getTile(xPos, yPos).step(this);
+    }
 }
