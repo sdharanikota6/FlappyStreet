@@ -46,6 +46,13 @@ public class GameScreen extends AppCompatActivity {
         display = "Welcome " + player.getName();
         playerName.setText(display);
 
+        TextView highScore = findViewById(R.id.displayHighScore);
+        if (player.getScore() > player.getHighScore()) {
+            player.setHighScore(player.getScore());
+        }
+        display = "High Score: " + player.getHighScore();
+        highScore.setText(display);
+
         ImageView chosenSprite = findViewById(R.id.spriteView);
         chosenSprite.setImageResource(sprite);
 

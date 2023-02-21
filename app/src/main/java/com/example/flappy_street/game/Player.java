@@ -9,10 +9,13 @@ public class Player {
     private int lives;
     private int score;
 
+    private int highScore;
+
     public Player(String name, DifficultyLevel difficulty) {
         this.name = name;
         lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
-        score = 0;
+        score =  0;
+        highScore = 0;
         //something about sprite choice.
     }
 
@@ -39,6 +42,15 @@ public class Player {
     public void setScore(int newScore) {
         this.score = newScore;
     }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int newHighScore) {
+        this.highScore = newHighScore;
+    }
+
 
     public GameTile getCurrentTile() {
         return this.currentTile;
