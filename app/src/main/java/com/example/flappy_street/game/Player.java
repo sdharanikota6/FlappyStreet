@@ -10,6 +10,8 @@ public class Player {
     private int score;
 
     private int highScore;
+    private int xPos;
+    private int yPos;
 
     public Player(String name, DifficultyLevel difficulty) {
         this.name = name;
@@ -19,16 +21,24 @@ public class Player {
         //something about sprite choice.
     }
 
-    public String getName() {
-        return this.name;
+    public int getxPos() {
+        return xPos;
     }
 
-    /**
-     * Removes one life from the player. Returns the player's new amount of lives.
-     * @return lives remaining after death
-     */
-    public int die() {
-        return --lives;
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public int getLives() {
@@ -50,7 +60,14 @@ public class Player {
     public void setHighScore(int newHighScore) {
         this.highScore = newHighScore;
     }
-
+    
+    /**
+     * Removes one life from the player. Returns the player's new amount of lives.
+     * @return lives remaining after death
+     */
+    public int die() {
+        return --lives;
+    }
 
     public GameTile getCurrentTile() {
         return this.currentTile;
