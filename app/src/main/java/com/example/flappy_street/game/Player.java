@@ -1,10 +1,11 @@
 package com.example.flappy_street.game;
 
+import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.tiles.GameTile;
 
 public class Player {
 
-    private GameTile currentTile;
+    private GameLevel currentLevel;
     private final String name;
     private int lives;
     private int score;
@@ -60,21 +61,13 @@ public class Player {
     public void setHighScore(int newHighScore) {
         this.highScore = newHighScore;
     }
-    
+
     /**
      * Removes one life from the player. Returns the player's new amount of lives.
      * @return lives remaining after death
      */
     public int die() {
         return --lives;
-    }
-
-    public GameTile getCurrentTile() {
-        return this.currentTile;
-    }
-
-    public void setCurrentTile(GameTile tile) {
-        this.currentTile = tile;
     }
 
 }
