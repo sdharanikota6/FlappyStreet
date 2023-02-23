@@ -65,6 +65,16 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         playerName.setText(display);
 
         chosenSprite = findViewById(R.id.spriteView);
+
+        TextView highScore = findViewById(R.id.displayHighScore);
+        if (player.getScore() > player.getHighScore()) {
+            player.setHighScore(player.getScore());
+        }
+        display = "High Score: " + player.getHighScore();
+        highScore.setText(display);
+
+        ImageView chosenSprite = findViewById(R.id.spriteView);
+
         chosenSprite.setImageResource(sprite);
 
 
