@@ -10,6 +10,9 @@ import com.example.flappy_street.game.Player;
 import com.example.flappy_street.tiles.GameTile;
 
 public class GameLevel extends GridLayout {
+    private static final int NUM_ROWS = 10;
+    private static final int NUM_COLUMNS = 7;
+
     private GameTile[][] tileArray;
     private String name;
 
