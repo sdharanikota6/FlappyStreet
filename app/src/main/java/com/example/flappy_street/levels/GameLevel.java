@@ -12,7 +12,7 @@ public class GameLevel extends ConstraintLayout {
     private GameTile[][] tileArray;
     private String name;
 
-    public GameLevel(Context context, AttributeSet attributeSet){
+    public GameLevel(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 
@@ -22,8 +22,14 @@ public class GameLevel extends ConstraintLayout {
         return this;
     }
 
-    public GameTile[][] getTileArray() {
-        return tileArray;
+    /**
+     * Returns a specific tile from the array.
+     * @param x the x position in the array
+     * @param y the y position in the array
+     * @return the tile located at the provided position
+     */
+    public GameTile getTile(int x, int y) {
+        return tileArray[x][y];
     }
 
     public String getName() {
