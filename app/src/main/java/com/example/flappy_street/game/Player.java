@@ -1,5 +1,8 @@
 package com.example.flappy_street.game;
 
+import android.os.Debug;
+import android.util.Log;
+
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.tiles.GameTile;
 
@@ -70,6 +73,11 @@ public class Player {
         return --lives;
     }
 
+    public void win() {
+        score += 100;
+        Log.i("VICTORY", "Player wins!");
+    }
+
     public void moveUp() {
         this.yPos++;
         currentLevel.getTile(xPos, yPos).step(this);
@@ -89,4 +97,5 @@ public class Player {
         this.xPos++;
         currentLevel.getTile(xPos, yPos).step(this);
     }
+
 }

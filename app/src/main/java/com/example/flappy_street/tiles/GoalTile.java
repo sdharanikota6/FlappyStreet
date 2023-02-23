@@ -13,7 +13,7 @@ public class GoalTile extends GameTile {
 
     @Override
     public GameTile step(Player player) {
-        //player.win();
+        player.win();
         return this;
     }
 }
