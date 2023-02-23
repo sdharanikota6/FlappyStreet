@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
+import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.game.SpriteChoice;
 
 import java.util.Timer;
@@ -23,6 +24,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
     private DifficultyLevel difficulty;
     private int sprite;
     private Player player;
+    private GameLevel level;
 
     private FrameLayout frame;
     private ImageView chosenSprite;
