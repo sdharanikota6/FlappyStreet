@@ -5,6 +5,10 @@ import com.example.flappy_street.game.Player;
 
 import org.junit.Test;
 
+/**
+ * Tests the input for a valid username.
+ */
+
 public class WhiteSpaceTestUsernameTest {
     @Test (expected = IllegalArgumentException.class)
     public void inputEmpty() {

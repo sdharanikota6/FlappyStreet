@@ -8,6 +8,9 @@ import com.example.flappy_street.tiles.SafeTile;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests whether or not the player loses lives from stepping on a safe tile.
+ */
 
 public class SafeTileTest {
 
@@ -15,8 +18,9 @@ public class SafeTileTest {
     public void stepOnSafeTile() {
         SafeTile safeTile = new SafeTile();
         Player testPlayer = new Player("Robert", DifficultyLevel.EASY);
+        int before = testPlayer.getLives();
         if (safeTile.step(testPlayer) == safeTile) {
-            assertEquals(5, testPlayer.getLives());
+            assertEquals(before, testPlayer.getLives());
         }
     }
 
