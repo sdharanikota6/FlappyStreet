@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.flappy_street.R;
 import com.example.flappy_street.game.Player;
 
 public class RoadTile extends GameTile {
@@ -16,6 +17,7 @@ public class RoadTile extends GameTile {
      */
     public RoadTile(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.setImageResource(R.drawable.road);
         stepped = false;
     }
 

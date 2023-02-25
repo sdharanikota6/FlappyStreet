@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.flappy_street.R;
 import com.example.flappy_street.game.Player;
 
 public class SafeTile extends GameTile {
@@ -16,6 +17,7 @@ public class SafeTile extends GameTile {
      */
     public SafeTile(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.setImageResource(R.drawable.safe);
         stepped = false;
     }
 

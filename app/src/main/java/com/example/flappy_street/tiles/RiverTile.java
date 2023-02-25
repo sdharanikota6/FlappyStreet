@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.flappy_street.R;
 import com.example.flappy_street.game.Player;
 
 public class RiverTile extends GameTile {
@@ -17,6 +18,7 @@ public class RiverTile extends GameTile {
      */
     public RiverTile(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.setImageResource(R.drawable.river);
         stepped = false;
         covered = false;
     }
