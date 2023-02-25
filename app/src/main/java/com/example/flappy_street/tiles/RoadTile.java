@@ -13,10 +13,9 @@ public class RoadTile extends GameTile {
     /**
      * @see AppCompatImageView#AppCompatImageView(Context, AttributeSet)
      * @param context The context this tile was created in
-     * @param attrs The attribute set used to create this (XML)
      */
-    public RoadTile(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public RoadTile(Context context) {
+        super(context);
         this.setImageResource(R.drawable.road);
         stepped = false;
     }

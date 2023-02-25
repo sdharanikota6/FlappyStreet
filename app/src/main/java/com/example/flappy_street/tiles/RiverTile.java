@@ -14,10 +14,9 @@ public class RiverTile extends GameTile {
     /**
      * @see AppCompatImageView#AppCompatImageView(Context, AttributeSet)
      * @param context The context this tile was created in
-     * @param attrs The attribute set used to create this (XML)
      */
-    public RiverTile(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public RiverTile(Context context) {
+        super(context);
         this.setImageResource(R.drawable.river);
         stepped = false;
         covered = false;
