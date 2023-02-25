@@ -1,9 +1,5 @@
 package com.example.flappy_street;
 
-import static org.junit.Assert.*;
-
-import android.content.Intent;
-
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 
