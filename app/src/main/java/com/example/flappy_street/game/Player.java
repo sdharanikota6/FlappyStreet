@@ -18,7 +18,11 @@ public class Player {
     private int yPos;
 
     public Player(String name, DifficultyLevel difficulty) {
-        this.name = name;
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Error: name invalid with no text.");
+        } else {
+            this.name = name.strip();
+        }
         lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
         score =  0;
         highScore = 0;
