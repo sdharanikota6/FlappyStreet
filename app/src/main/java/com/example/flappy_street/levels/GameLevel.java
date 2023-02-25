@@ -2,14 +2,18 @@ package com.example.flappy_street.levels;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.Adapter;
 import android.widget.GridLayout;
+import android.widget.GridView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.tiles.GameTile;
+import com.example.flappy_street.tiles.RoadTile;
+import com.example.flappy_street.tiles.TileAdapter;
 
-public class GameLevel extends GridLayout {
+public class GameLevel extends GridView {
     private static final int NUM_ROWS = 10;
     private static final int NUM_COLUMNS = 7;
 
@@ -18,9 +22,11 @@ public class GameLevel extends GridLayout {
 
     public GameLevel(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+        generateTileArray();
+        this.setAdapter(new TileAdapter(context, tileArray));
     }
 
-    public GameLevel init(GameTile[][] tileArray, Player player, String name) {
+    public GameLevel init(GameTile[][] tileArray, String name) {
         this.tileArray = tileArray;
         this.name = name;
         return this;
@@ -38,5 +44,18 @@ public class GameLevel extends GridLayout {
 
     public String getName() {
         return name;
+    }
+
+    /**
+     * USED FOR TESTING: generate a tile array of all roads. using this just to try to
+     * make sure things are displaying right
+     */
+    private void generateTileArray() {
+        tileArray = new GameTile[10][7];
+        for (GameTile[] row : tileArray) {
+            for (int i = 0; i < row.length; i++) {
+                row[i] = new RoadTile(getContext());
+            }
+        }
     }
 }
