@@ -11,11 +11,11 @@ import android.widget.ImageView;
 
 public class TileAdapter extends BaseAdapter {
 
-    ViewGroup.LayoutParams params;
-    GameTile[][] tileArray;
+    private ViewGroup.LayoutParams params;
+    private GameTile[][] tileArray;
 
     public TileAdapter(Context context, GameTile[][] tileArray) {
-        Point size = new Point(0,0);
+        Point size = new Point(0, 0);
         Display display = ((DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE)).
                 getDisplays()[0];
         display.getSize(size);

@@ -1,11 +1,8 @@
 package com.example.flappy_street.levels;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.GridView;
-
-import androidx.annotation.RequiresApi;
 
 import com.example.flappy_street.tiles.GameTile;
 import com.example.flappy_street.tiles.RoadTile;

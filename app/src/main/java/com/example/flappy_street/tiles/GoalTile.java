@@ -1,7 +1,6 @@
 package com.example.flappy_street.tiles;
 
 import android.content.Context;
-import android.util.AttributeSet;
 
 import com.example.flappy_street.R;
 import com.example.flappy_street.game.Player;
