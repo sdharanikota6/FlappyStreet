@@ -1,14 +1,12 @@
 package com.example.flappy_street.levels;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
-import android.widget.Adapter;
-import android.widget.GridLayout;
 import android.widget.GridView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.annotation.RequiresApi;
 
-import com.example.flappy_street.game.Player;
 import com.example.flappy_street.tiles.GameTile;
 import com.example.flappy_street.tiles.RoadTile;
 import com.example.flappy_street.tiles.TileAdapter;
@@ -20,9 +18,15 @@ public class GameLevel extends GridView {
     private GameTile[][] tileArray;
     private String name;
 
+
+
     public GameLevel(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         generateTileArray();
+        this.setNumColumns(NUM_COLUMNS);
+        this.setStretchMode(STRETCH_COLUMN_WIDTH);
+        this.setHorizontalSpacing(0);
+        this.setVerticalSpacing(0);
         this.setAdapter(new TileAdapter(context, tileArray));
     }
 
@@ -51,7 +55,7 @@ public class GameLevel extends GridView {
      * make sure things are displaying right
      */
     private void generateTileArray() {
-        tileArray = new GameTile[10][7];
+        tileArray = new GameTile[NUM_ROWS][NUM_COLUMNS];
         for (GameTile[] row : tileArray) {
             for (int i = 0; i < row.length; i++) {
                 row[i] = new RoadTile(getContext());

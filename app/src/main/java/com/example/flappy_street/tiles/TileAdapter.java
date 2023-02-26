@@ -1,15 +1,22 @@
 package com.example.flappy_street.tiles;
 
 import android.content.Context;
+import android.graphics.Point;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+
+import androidx.annotation.RequiresApi;
 
 public class TileAdapter extends BaseAdapter {
 
+    ViewGroup.LayoutParams params;
     GameTile[][] tileArray;
 
     public TileAdapter(Context context, GameTile[][] tileArray) {
+        params = new ViewGroup.LayoutParams(10, 10);
         this.tileArray = tileArray;
     }
 
@@ -36,6 +43,9 @@ public class TileAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return (View) getItem(i);
+        GameTile tile = tileArray[i / 7][i % 7];
+        tile.setLayoutParams(params);
+        tile.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        return tile;
     }
 }
