@@ -20,7 +20,7 @@ public class SafeTileTest {
     public void stepOnSafeTile() {
         Player testPlayer = new Player("Robert", DifficultyLevel.EASY);
         int before = testPlayer.getLives();
-        SafeTile safeTile = new SafeTile(ApplicationProvider.getApplicationContext(), null);
+        SafeTile safeTile = new SafeTile(ApplicationProvider.getApplicationContext());
         if (safeTile.step(testPlayer) == safeTile) {
             assertEquals(before, testPlayer.getLives());
         }
