@@ -16,9 +16,9 @@ public class SafeTileTest {
 
     @Test
     public void stepOnSafeTile() {
-        SafeTile safeTile = new SafeTile(null);
         Player testPlayer = new Player("Robert", DifficultyLevel.EASY);
         int before = testPlayer.getLives();
+        SafeTile safeTile = new SafeTile(null, null);
         if (safeTile.step(testPlayer) == safeTile) {
             assertEquals(before, testPlayer.getLives());
         }
