@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.flappy_street.R;
 import com.example.flappy_street.game.Player;
 
 public class SafeTile extends GameTile {
@@ -12,10 +13,10 @@ public class SafeTile extends GameTile {
     /**
      * @see AppCompatImageView#AppCompatImageView(Context, AttributeSet)
      * @param context The context this tile was created in
-     * @param attrs The attribute set used to create this (XML)
      */
-    public SafeTile(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public SafeTile(Context context) {
+        super(context);
+        this.setImageResource(R.drawable.safe);
         stepped = false;
     }
 
