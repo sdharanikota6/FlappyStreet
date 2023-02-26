@@ -2,13 +2,12 @@ package com.example.flappy_street.tiles;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.os.Build;
+import android.hardware.display.DisplayManager;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-
-import androidx.annotation.RequiresApi;
 
 public class TileAdapter extends BaseAdapter {
 
@@ -16,7 +15,12 @@ public class TileAdapter extends BaseAdapter {
     GameTile[][] tileArray;
 
     public TileAdapter(Context context, GameTile[][] tileArray) {
-        params = new ViewGroup.LayoutParams(10, 10);
+        Point size = new Point(0,0);
+        Display display = ((DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE)).
+                getDisplays()[0];
+        display.getSize(size);
+        int length = size.x / 7;
+        params = new ViewGroup.LayoutParams(length, length);
         this.tileArray = tileArray;
     }
 
