@@ -1,6 +1,8 @@
 package com.example.flappy_street;
 import static org.junit.Assert.assertEquals;
 
+import androidx.test.core.app.ApplicationProvider;
+
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.tiles.SafeTile;
@@ -18,7 +20,7 @@ public class SafeTileTest {
     public void stepOnSafeTile() {
         Player testPlayer = new Player("Robert", DifficultyLevel.EASY);
         int before = testPlayer.getLives();
-        SafeTile safeTile = new SafeTile(null, null);
+        SafeTile safeTile = new SafeTile(ApplicationProvider.getApplicationContext(), null);
         if (safeTile.step(testPlayer) == safeTile) {
             assertEquals(before, testPlayer.getLives());
         }
