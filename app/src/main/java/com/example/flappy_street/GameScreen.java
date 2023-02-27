@@ -28,10 +28,6 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
 
     private FrameLayout frame;
     private ImageView chosenSprite;
-    private boolean actionUp;
-    private boolean actionDown;
-    private boolean actionLeft;
-    private boolean actionRight;
     private Timer timer = new Timer();
     private Handler handler = new Handler();
 
@@ -83,20 +79,6 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         findViewById(R.id.moveDOWN).setOnClickListener(this);
         findViewById(R.id.moveLEFT).setOnClickListener(this);
         findViewById(R.id.moveRIGHT).setOnClickListener(this);
-
-
-
-//        timer.schedule((new TimerTask() {
-//            @Override
-//            public void run() {
-//                handler.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        changePos(actionUp, actionLeft, actionDown, actionRight);
-//                    }
-//                });
-//            }
-//        }), 25, 10);
     }
 
     private void findSprite(SpriteChoice spriteString) {
@@ -132,7 +114,6 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
             spriteX += frame.getWidth() / GameLevel.NUM_COLUMNS;
 
         }
-
 
         if (spriteY < 0) {
             spriteY = 0;
