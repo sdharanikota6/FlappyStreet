@@ -35,8 +35,6 @@ public class RiverTile extends GameTile {
         }
         stepped.setScore(stepped.getScore() + 5);
         return this;
-        //at the moment, I'm not sure if returning game tile is actually useful.
-        //TODO: Once more progress on sprint made, reevaluate.
     }
 
     public void cover() {

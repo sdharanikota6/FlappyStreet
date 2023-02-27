@@ -2,15 +2,13 @@ package com.example.flappy_street.levels;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Adapter;
-import android.widget.GridLayout;
 import android.widget.GridView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.example.flappy_street.game.Player;
 import com.example.flappy_street.tiles.GameTile;
+import com.example.flappy_street.tiles.GoalTile;
+import com.example.flappy_street.tiles.RiverTile;
 import com.example.flappy_street.tiles.RoadTile;
+import com.example.flappy_street.tiles.SafeTile;
 import com.example.flappy_street.tiles.TileAdapter;
 
 public class GameLevel extends GridView {
@@ -20,9 +18,15 @@ public class GameLevel extends GridView {
     private GameTile[][] tileArray;
     private String name;
 
+
+
     public GameLevel(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         generateTileArray();
+        this.setNumColumns(NUM_COLUMNS);
+        this.setStretchMode(STRETCH_COLUMN_WIDTH);
+        this.setHorizontalSpacing(0);
+        this.setVerticalSpacing(0);
         this.setAdapter(new TileAdapter(context, tileArray));
     }
 
@@ -47,15 +51,34 @@ public class GameLevel extends GridView {
     }
 
     /**
-     * USED FOR TESTING: generate a tile array of all roads. using this just to try to
-     * make sure things are displaying right
+     * Creates the tile array used to play the game.
      */
     private void generateTileArray() {
-        tileArray = new GameTile[10][7];
-        for (GameTile[] row : tileArray) {
-            for (int i = 0; i < row.length; i++) {
-                row[i] = new RoadTile(getContext());
+        tileArray = new GameTile[NUM_ROWS][NUM_COLUMNS];
+        Context ctx = getContext();
+        //goal row
+        for (int i = 0; i < tileArray[0].length; i++) {
+            tileArray[0][i] = new GoalTile(ctx);
+        }
+        //river rows
+        for (int j = 1; j < 5; j++) {
+            for (int i = 0; i < tileArray[j].length; i++) {
+                tileArray[j][i] = new RiverTile(ctx);
             }
+        }
+        //safe row
+        for (int i = 0; i < tileArray[0].length; i++) {
+            tileArray[5][i] = new SafeTile(ctx);
+        }
+        //road rows
+        for (int j = 6; j < 9; j++) {
+            for (int i = 0; i < tileArray[j].length; i++) {
+                tileArray[j][i] = new RoadTile(ctx);
+            }
+        }
+        //spawn row
+        for (int i = 0; i < tileArray[0].length; i++) {
+            tileArray[9][i] = new SafeTile(ctx);
         }
     }
 }
