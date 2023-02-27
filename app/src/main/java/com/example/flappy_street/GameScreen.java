@@ -76,6 +76,10 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         findViewById(R.id.moveDOWN).setOnClickListener(this);
         findViewById(R.id.moveLEFT).setOnClickListener(this);
         findViewById(R.id.moveRIGHT).setOnClickListener(this);
+
+        //Setting GameLevel, hopefully this will fix crashes
+        level = new GameLevel(getApplicationContext());
+        player.setGameLevel(level);
     }
 
     private void findSprite(SpriteChoice spriteString) {
@@ -104,7 +108,8 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         if (actionUp) {
             spriteY -= frame.getHeight() / GameLevel.NUM_ROWS;
             if (player.getyPos() > 0) {
-                player.setyPos(player.getyPos() - 1);
+                //player.setyPos(player.getyPos() - 1);
+                player.moveUp();
             }
             if (spriteY < 0) {
                 spriteY = 0;
