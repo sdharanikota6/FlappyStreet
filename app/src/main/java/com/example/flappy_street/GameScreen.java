@@ -124,7 +124,6 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
 
         if (actionUp) {
             spriteY -= frame.getHeight() / 10.00;
-            actionUp = false;
         } else if (actionDown) {
             spriteY += frame.getHeight() / 10.00;
         } else if (actionLeft) {
@@ -162,7 +161,7 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         }
 
         if (view.getId() == R.id.moveDOWN) {
-            actionDown = true;
+            changePos(false, false, true, false);
         }
 
         if (view.getId() == R.id.moveLEFT) {
