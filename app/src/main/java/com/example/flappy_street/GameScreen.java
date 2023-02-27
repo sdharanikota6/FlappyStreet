@@ -3,12 +3,10 @@ package com.example.flappy_street;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -97,7 +95,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
                     }
                 });
             }
-        }), 0, 20);
+        }), 10, 20);
     }
 
     private void findSprite(SpriteChoice spriteString) {
@@ -124,13 +122,13 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         float spriteY = chosenSprite.getY();
 
         if (actionUp) {
-            spriteY -= frame.getHeight() / 130;
+            spriteY -= frame.getHeight() / 100.00;
         } else if (actionDown) {
-            spriteY += frame.getHeight() / 130;
+            spriteY += frame.getHeight() / 100.00;
         } else if (actionLeft) {
-            spriteX -= frame.getWidth() / 150;
+            spriteX -= frame.getWidth() / 70.00;
         } else if (actionRight) {
-            spriteX += frame.getWidth() / 150;
+            spriteX += frame.getWidth() / 70.00;
         }
 
         if (spriteY < 0) {
