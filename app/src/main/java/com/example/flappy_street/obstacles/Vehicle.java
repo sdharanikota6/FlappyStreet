@@ -19,6 +19,18 @@ public abstract class Vehicle extends AppCompatImageView {
         super(context);
     }
 
+    public int getxPos() {
+        return xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     /**
      * Move the vehicle in a direction. Implementation should handle backend movement,
      * specify the direction, and collision detection.
