@@ -106,29 +106,25 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
 
         if (actionUp) {
             spriteY -= frame.getHeight() / GameLevel.NUM_ROWS;
+            if (spriteY < 0) {
+                spriteY = 0;
+            }
         } else if (actionDown) {
             spriteY += frame.getHeight() / GameLevel.NUM_ROWS;
+            if (spriteY > frame.getHeight() - chosenSprite.getHeight()) {
+                spriteY = frame.getHeight() - chosenSprite.getHeight();
+            }
         } else if (actionLeft) {
             spriteX -= frame.getWidth() / GameLevel.NUM_COLUMNS;
+            if (spriteX < 0) {
+                spriteX = 0;
+            }
         } else if (actionRight) {
             spriteX += frame.getWidth() / GameLevel.NUM_COLUMNS;
-
+            if (spriteX > frame.getWidth() - chosenSprite.getWidth()) {
+                spriteX = frame.getWidth() - chosenSprite.getWidth();
+            }
         }
-
-        if (spriteY < 0) {
-            spriteY = 0;
-        }
-        if (spriteY > frame.getHeight() - chosenSprite.getHeight()) {
-            spriteY = frame.getHeight() - chosenSprite.getHeight();
-        }
-
-        if (spriteX < 0) {
-            spriteX = 0;
-        }
-        if (spriteX > frame.getWidth() - chosenSprite.getWidth()) {
-            spriteX = frame.getWidth() - chosenSprite.getWidth();
-        }
-
         chosenSprite.setX(spriteX);
         chosenSprite.setY(spriteY);
     }
