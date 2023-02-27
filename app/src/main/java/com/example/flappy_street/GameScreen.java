@@ -127,9 +127,9 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         } else if (actionDown) {
             spriteY += frame.getHeight() / 10.00;
         } else if (actionLeft) {
-            spriteX -= frame.getWidth() / 70.00;
+            spriteX -= frame.getWidth() / 7.00;
         } else if (actionRight) {
-            spriteX += frame.getWidth() / 70.00;
+            spriteX += frame.getWidth() / 7.00;
 
         }
 
@@ -165,11 +165,11 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         }
 
         if (view.getId() == R.id.moveLEFT) {
-            actionLeft = true;
+            changePos(false, true, false, false);
         }
 
         if (view.getId() == R.id.moveRIGHT) {
-            actionRight = true;
+            changePos(false, false, false, true);
         }
     }
 
@@ -180,9 +180,4 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
     public float getPosY() {
         return chosenSprite.getY();
     }
-
-//    @Override
-//    public void onClick(View view, ) {
-//
-//    }
 }
