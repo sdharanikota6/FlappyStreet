@@ -100,4 +100,12 @@ public class Player {
         currentLevel.getTile(xPos, yPos).step(this);
     }
 
+    /**
+     * Currently for testing purposes, might be needed in implementation.
+     *
+     * @param gameLevel the GameLevel to set
+     */
+    public void setGameLevel(GameLevel gameLevel) {
+        this.currentLevel = gameLevel;
+    }
 }

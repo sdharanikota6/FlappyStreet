@@ -20,10 +20,9 @@ public abstract class GameTile extends AppCompatImageView {
     /**
      * @see AppCompatImageView#AppCompatImageView(Context, AttributeSet)
      * @param context The context this tile was created in
-     * @param attrs The attribute set used to create this (XML)
      */
-    public GameTile(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public GameTile(Context context) {
+        super(context);
         stepped = false;
     }
 
