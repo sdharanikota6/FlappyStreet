@@ -36,6 +36,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
     private Handler handler = new Handler();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +48,8 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_SPRITE);
         findSprite(spriteString);
         player = new Player(name, difficultyString);
-        setContentView(R.layout.activity_game);
-        TextView difficultyDisplay = findViewById(R.id.displayDifficulty);
+        setContentView(R.layout.test);
         String display = "Difficulty: " + difficultyString;
-        difficultyDisplay.setText(display);
 
         TextView startingPoints = findViewById(R.id.displayStartingPoints);
         display = "Points: " + player.getScore();
@@ -85,6 +84,8 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         findViewById(R.id.moveLEFT).setOnTouchListener(this);
         findViewById(R.id.moveRIGHT).setOnTouchListener(this);
 
+
+
         timer.schedule((new TimerTask() {
             @Override
             public void run() {
@@ -95,7 +96,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
                     }
                 });
             }
-        }), 0, 20);
+        }), 25, 10);
     }
 
     private void findSprite(SpriteChoice spriteString) {
@@ -122,14 +123,16 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         float spriteY = chosenSprite.getY();
 
         if (actionUp) {
-            spriteY -= frame.getHeight() / 8.0;
+            spriteY -= frame.getHeight() / 100.00;
         } else if (actionDown) {
-            spriteY += frame.getHeight() / 8.0;
+            spriteY += frame.getHeight() / 100.00;
         } else if (actionLeft) {
-            spriteX -= 20;
+            spriteX -= frame.getWidth() / 70.00;
         } else if (actionRight) {
-            spriteX += 20;
+            spriteX += frame.getWidth() / 70.00;
+
         }
+
 
         if (spriteY < 0) {
             spriteY = 0;
