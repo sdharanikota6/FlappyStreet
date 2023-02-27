@@ -19,10 +19,12 @@ public class Player {
 
     public Player(String name, DifficultyLevel difficulty) {
         this.name = name;
-        lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
-        score =  0;
-        highScore = 0;
-        //something about sprite choice.
+        if (difficulty != null) {
+            lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
+            score =  0;
+            highScore = 0;
+            //something about sprite choice.
+        }
     }
 
     public int getxPos() {
