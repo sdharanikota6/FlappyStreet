@@ -12,9 +12,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
-        //Button startButton = findViewById(R.id.button);
-        //startButton.setOnClickListener(this::openConfig);
+        setContentView(R.layout.activity_main);
+        Button startButton = findViewById(R.id.button);
+        startButton.setOnClickListener(this::openConfig);
     }
     public void openConfig(View v) {
         Intent config = new Intent(this, ConfigScreen.class);

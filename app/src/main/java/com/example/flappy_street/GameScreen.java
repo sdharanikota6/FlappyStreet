@@ -3,10 +3,12 @@ package com.example.flappy_street;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,10 +49,8 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_SPRITE);
         findSprite(spriteString);
         player = new Player(name, difficultyString);
-        setContentView(R.layout.activity_game);
-        TextView difficultyDisplay = findViewById(R.id.displayDifficulty);
+        setContentView(R.layout.test);
         String display = "Difficulty: " + difficultyString;
-        difficultyDisplay.setText(display);
 
         TextView startingPoints = findViewById(R.id.displayStartingPoints);
         display = "Points: " + player.getScore();
@@ -85,13 +85,15 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         findViewById(R.id.moveLEFT).setOnTouchListener(this);
         findViewById(R.id.moveRIGHT).setOnTouchListener(this);
 
+
+
         timer.schedule((new TimerTask() {
             @Override
             public void run() {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        changePos();
+                        changePos(actionUp, actionLeft, actionDown, actionRight);
                     }
                 });
             }
@@ -111,22 +113,24 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
 
     /**
      * Sets boundaries and allows the sprite imageview to move around the screen.
+     * @param actionUp checks if the upButton was activated and moves the player sprite up.
+     * @param actionLeft checks if the LeftButton was activated and moves the player sprite Left.
+     * @param actionDown checks if the DownButton was activated and moves the player sprite Down.
+     * @param actionRight checks if the RightButton was activated and moves the player sprite Right.
      */
-    public void changePos() {
+    public void changePos(boolean actionUp, boolean actionLeft, boolean actionDown,
+                          boolean actionRight) {
         float spriteX = chosenSprite.getX();
         float spriteY = chosenSprite.getY();
 
         if (actionUp) {
-            spriteY -= frame.getHeight() / 8.0;
-        }
-        if (actionDown) {
-            spriteY += frame.getHeight() / 8.0;
-        }
-        if (actionLeft) {
-            spriteX -= 20;
-        }
-        if (actionRight) {
-            spriteX += 20;
+            spriteY -= frame.getHeight() / 130;
+        } else if (actionDown) {
+            spriteY += frame.getHeight() / 130;
+        } else if (actionLeft) {
+            spriteX -= frame.getWidth() / 150;
+        } else if (actionRight) {
+            spriteX += frame.getWidth() / 150;
         }
 
         if (spriteY < 0) {
@@ -175,6 +179,12 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         return true;
     }
 
+    public float getPosX() {
+        return chosenSprite.getX();
+    }
 
+    public float getPosY() {
+        return chosenSprite.getY();
+    }
 
 }
