@@ -36,6 +36,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
     private Handler handler = new Handler();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +96,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
                     }
                 });
             }
-        }), 10, 20);
+        }), 25, 10);
     }
 
     private void findSprite(SpriteChoice spriteString) {
@@ -130,6 +131,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         } else if (actionRight) {
             spriteX += frame.getWidth() / 70.00;
         }
+
 
         if (spriteY < 0) {
             spriteY = 0;
