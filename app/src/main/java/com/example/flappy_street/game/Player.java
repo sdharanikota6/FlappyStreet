@@ -1,10 +1,8 @@
 package com.example.flappy_street.game;
 
-import android.os.Debug;
 import android.util.Log;
 
 import com.example.flappy_street.levels.GameLevel;
-import com.example.flappy_street.tiles.GameTile;
 
 public class Player {
 
