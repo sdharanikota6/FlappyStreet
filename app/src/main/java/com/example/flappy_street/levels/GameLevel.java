@@ -12,8 +12,8 @@ import com.example.flappy_street.tiles.SafeTile;
 import com.example.flappy_street.tiles.TileAdapter;
 
 public class GameLevel extends GridView {
-    private static final int NUM_ROWS = 10;
-    private static final int NUM_COLUMNS = 7;
+    public static final int NUM_ROWS = 10;
+    public static final int NUM_COLUMNS = 7;
 
     private GameTile[][] tileArray;
     private String name;

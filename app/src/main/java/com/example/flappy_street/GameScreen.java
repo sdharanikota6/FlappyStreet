@@ -123,13 +123,13 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         float spriteY = chosenSprite.getY();
 
         if (actionUp) {
-            spriteY -= frame.getHeight() / 10.00;
+            spriteY -= frame.getHeight() / GameLevel.NUM_ROWS;
         } else if (actionDown) {
-            spriteY += frame.getHeight() / 10.00;
+            spriteY += frame.getHeight() / GameLevel.NUM_ROWS;
         } else if (actionLeft) {
-            spriteX -= frame.getWidth() / 7.00;
+            spriteX -= frame.getWidth() / GameLevel.NUM_COLUMNS;
         } else if (actionRight) {
-            spriteX += frame.getWidth() / 7.00;
+            spriteX += frame.getWidth() / GameLevel.NUM_COLUMNS;
 
         }
 
