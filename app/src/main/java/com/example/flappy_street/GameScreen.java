@@ -130,6 +130,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
             spriteX -= frame.getWidth() / 70.00;
         } else if (actionRight) {
             spriteX += frame.getWidth() / 70.00;
+
         }
 
 

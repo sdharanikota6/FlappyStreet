@@ -17,10 +17,12 @@ public class Player {
 
     public Player(String name, DifficultyLevel difficulty) {
         this.name = name;
-        lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
-        score =  0;
-        highScore = 0;
-        //something about sprite choice.
+        if (difficulty != null) {
+            lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
+            score =  0;
+            highScore = 0;
+            //something about sprite choice.
+        }
     }
 
     public int getxPos() {
@@ -96,4 +98,12 @@ public class Player {
         currentLevel.getTile(xPos, yPos).step(this);
     }
 
+    /**
+     * Currently for testing purposes, might be needed in implementation.
+     *
+     * @param gameLevel the GameLevel to set
+     */
+    public void setGameLevel(GameLevel gameLevel) {
+        this.currentLevel = gameLevel;
+    }
 }

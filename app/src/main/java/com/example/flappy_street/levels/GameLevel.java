@@ -18,7 +18,19 @@ public class GameLevel extends GridView {
     private GameTile[][] tileArray;
     private String name;
 
-
+    /**
+     * Constructor used for unit testing
+     * @param context the context this view was created in
+     */
+    public GameLevel(Context context) {
+        super(context);
+        generateTileArray();
+        this.setNumColumns(NUM_COLUMNS);
+        this.setStretchMode(STRETCH_COLUMN_WIDTH);
+        this.setHorizontalSpacing(0);
+        this.setVerticalSpacing(0);
+        this.setAdapter(new TileAdapter(context, tileArray));
+    }
 
     public GameLevel(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
