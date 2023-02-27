@@ -91,7 +91,7 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        changePos();
+                        changePos(actionUp, actionLeft, actionDown, actionRight);
                     }
                 });
             }
@@ -111,21 +111,23 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
 
     /**
      * Sets boundaries and allows the sprite imageview to move around the screen.
+     * @param actionUp checks if the upButton was activated and moves the player sprite up.
+     * @param actionLeft checks if the LeftButton was activated and moves the player sprite Left.
+     * @param actionDown checks if the DownButton was activated and moves the player sprite Down.
+     * @param actionRight checks if the RightButton was activated and moves the player sprite Right.
      */
-    public void changePos() {
+    public void changePos(boolean actionUp, boolean actionLeft, boolean actionDown,
+                          boolean actionRight) {
         float spriteX = chosenSprite.getX();
         float spriteY = chosenSprite.getY();
 
         if (actionUp) {
             spriteY -= frame.getHeight() / 8.0;
-        }
-        if (actionDown) {
+        } else if (actionDown) {
             spriteY += frame.getHeight() / 8.0;
-        }
-        if (actionLeft) {
+        } else if (actionLeft) {
             spriteX -= 20;
-        }
-        if (actionRight) {
+        } else if (actionRight) {
             spriteX += 20;
         }
 
@@ -175,6 +177,12 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         return true;
     }
 
+    public float getPosX() {
+        return chosenSprite.getX();
+    }
 
+    public float getPosY() {
+        return chosenSprite.getY();
+    }
 
 }
