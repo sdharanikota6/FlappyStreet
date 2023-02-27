@@ -23,6 +23,8 @@ public class Player {
             highScore = 0;
             //something about sprite choice.
         }
+        this.setxPos(GameLevel.NUM_COLUMNS / 2);
+        this.setyPos(GameLevel.NUM_ROWS - 1);
     }
 
     public int getxPos() {
