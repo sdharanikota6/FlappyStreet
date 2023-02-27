@@ -108,7 +108,6 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         if (actionUp) {
             spriteY -= frame.getHeight() / GameLevel.NUM_ROWS;
             if (player.getyPos() > 0) {
-                //player.setyPos(player.getyPos() - 1);
                 player.moveUp();
             }
             if (spriteY < 0) {
@@ -117,7 +116,7 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         } else if (actionDown) {
             spriteY += frame.getHeight() / GameLevel.NUM_ROWS;
             if (player.getyPos() < GameLevel.NUM_ROWS - 1) {
-                player.setyPos(player.getyPos() + 1);
+                player.moveDown();
             }
             if (spriteY > frame.getHeight() - chosenSprite.getHeight()) {
                 spriteY = frame.getHeight() - chosenSprite.getHeight();
@@ -125,7 +124,7 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         } else if (actionLeft) {
             spriteX -= frame.getWidth() / GameLevel.NUM_COLUMNS;
             if (player.getxPos() > 0) {
-                player.setxPos(player.getxPos() - 1);
+                player.moveLeft();
             }
             if (spriteX < 0) {
                 spriteX = 0;
@@ -133,7 +132,7 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         } else if (actionRight) {
             spriteX += frame.getWidth() / GameLevel.NUM_COLUMNS;
             if (player.getxPos() < GameLevel.NUM_COLUMNS - 1) {
-                player.setxPos(player.getxPos() + 1);
+                player.moveRight();
             }
             if (spriteX > frame.getWidth() - chosenSprite.getWidth()) {
                 spriteX = frame.getWidth() - chosenSprite.getWidth();
