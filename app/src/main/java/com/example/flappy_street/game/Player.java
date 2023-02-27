@@ -81,12 +81,12 @@ public class Player {
     }
 
     public void moveUp() {
-        this.yPos++;
+        this.yPos--;
         currentLevel.getTile(xPos, yPos).step(this);
     }
 
     public void moveDown() {
-        this.yPos--;
+        this.yPos++;
         currentLevel.getTile(xPos, yPos).step(this);
     }
 
