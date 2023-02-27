@@ -31,8 +31,6 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
     private Timer timer = new Timer();
     private Handler handler = new Handler();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +69,6 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         ImageView chosenSprite = findViewById(R.id.spriteView);
 
         chosenSprite.setImageResource(sprite);
-
 
         frame = findViewById(R.id.frame);
 
@@ -141,9 +138,8 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
         chosenSprite.setY(spriteY);
     }
 
-
     @Override
-    public void onClick(View view/*, MotionEvent motionEvent*/) {
+    public void onClick(View view) {
         if (view.getId() ==  R.id.moveUP) {
 //            actionUp = true;
             changePos(true, false, false, false);
