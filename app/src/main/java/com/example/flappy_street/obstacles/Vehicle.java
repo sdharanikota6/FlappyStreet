@@ -19,11 +19,15 @@ public abstract class Vehicle extends AppCompatImageView {
         super(context);
     }
 
-    public int getxPos() {
+    public int getXPos() {
         return xPos;
     }
 
-    public int getyPos() {
+    public void setXPos(int newPos) {
+        this.xPos = newPos;
+    }
+
+    public int getYPos() {
         return yPos;
     }
 
