@@ -19,7 +19,7 @@ import com.example.flappy_street.game.SpriteChoice;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameScreen extends AppCompatActivity implements View.OnClickListener {
+public class GameScreen extends AppCompatActivity {
 
     private DifficultyLevel difficulty;
     private int sprite;
@@ -72,10 +72,10 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
 
         frame = findViewById(R.id.frame);
 
-        findViewById(R.id.moveUP).setOnClickListener(this);
-        findViewById(R.id.moveDOWN).setOnClickListener(this);
-        findViewById(R.id.moveLEFT).setOnClickListener(this);
-        findViewById(R.id.moveRIGHT).setOnClickListener(this);
+        findViewById(R.id.moveUP).setOnClickListener(this::moveUp);
+        findViewById(R.id.moveDOWN).setOnClickListener(this::moveDown);
+        findViewById(R.id.moveLEFT).setOnClickListener(this::moveLeft);
+        findViewById(R.id.moveRIGHT).setOnClickListener(this::moveRight);
 
         //Setting GameLevel, hopefully this will fix crashes
         level = new GameLevel(getApplicationContext());
@@ -93,73 +93,68 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    /**
-     * Sets boundaries and allows the sprite imageview to move around the screen.
-     * @param actionUp checks if the upButton was activated and moves the player sprite up.
-     * @param actionLeft checks if the LeftButton was activated and moves the player sprite Left.
-     * @param actionDown checks if the DownButton was activated and moves the player sprite Down.
-     * @param actionRight checks if the RightButton was activated and moves the player sprite Right.
-     */
-    public void changePos(boolean actionUp, boolean actionLeft, boolean actionDown,
-                          boolean actionRight) {
+    public void moveUp(View view) {
         float spriteX = chosenSprite.getX();
         float spriteY = chosenSprite.getY();
 
-        if (actionUp) {
-            spriteY -= frame.getHeight() / GameLevel.NUM_ROWS;
-            if (player.getyPos() > 0) {
-                player.moveUp();
-            }
-            if (spriteY < 0) {
-                spriteY = 0;
-            }
-        } else if (actionDown) {
-            spriteY += frame.getHeight() / GameLevel.NUM_ROWS;
-            if (player.getyPos() < GameLevel.NUM_ROWS - 1) {
-                player.moveDown();
-            }
-            if (spriteY > frame.getHeight() - chosenSprite.getHeight()) {
-                spriteY = frame.getHeight() - chosenSprite.getHeight();
-            }
-        } else if (actionLeft) {
-            spriteX -= frame.getWidth() / GameLevel.NUM_COLUMNS;
-            if (player.getxPos() > 0) {
-                player.moveLeft();
-            }
-            if (spriteX < 0) {
-                spriteX = 0;
-            }
-        } else if (actionRight) {
-            spriteX += frame.getWidth() / GameLevel.NUM_COLUMNS;
-            if (player.getxPos() < GameLevel.NUM_COLUMNS - 1) {
-                player.moveRight();
-            }
-            if (spriteX > frame.getWidth() - chosenSprite.getWidth()) {
-                spriteX = frame.getWidth() - chosenSprite.getWidth();
-            }
+        spriteY -= frame.getHeight() / (double) GameLevel.NUM_ROWS;
+        if (player.getyPos() > 0) {
+            player.moveUp();
         }
+        if (spriteY < 0) {
+            spriteY = 0;
+        }
+
         chosenSprite.setX(spriteX);
         chosenSprite.setY(spriteY);
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() ==  R.id.moveUP) {
-//            actionUp = true;
-            changePos(true, false, false, false);
+    public void moveLeft(View view) {
+        float spriteX = chosenSprite.getX();
+        float spriteY = chosenSprite.getY();
+
+        spriteX -= frame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+        if (player.getxPos() > 0) {
+            player.moveLeft();
+        }
+        if (spriteX < 0) {
+            spriteX = 0;
         }
 
-        if (view.getId() == R.id.moveDOWN) {
-            changePos(false, false, true, false);
+        chosenSprite.setX(spriteX);
+        chosenSprite.setY(spriteY);
+    }
+
+    public void moveDown(View view) {
+        float spriteX = chosenSprite.getX();
+        float spriteY = chosenSprite.getY();
+
+        spriteY += frame.getHeight() / (double) GameLevel.NUM_ROWS;
+        if (player.getyPos() < GameLevel.NUM_ROWS - 1) {
+            player.moveDown();
+        }
+        if (spriteY > frame.getHeight() - chosenSprite.getHeight()) {
+            spriteY = frame.getHeight() - chosenSprite.getHeight();
         }
 
-        if (view.getId() == R.id.moveLEFT) {
-            changePos(false, true, false, false);
+        chosenSprite.setX(spriteX);
+        chosenSprite.setY(spriteY);
+    }
+
+    public void moveRight(View view) {
+        float spriteX = chosenSprite.getX();
+        float spriteY = chosenSprite.getY();
+
+        spriteX += frame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+        if (player.getxPos() < GameLevel.NUM_COLUMNS - 1) {
+            player.moveRight();
+        }
+        if (spriteX > frame.getWidth() - chosenSprite.getWidth()) {
+            spriteX = frame.getWidth() - chosenSprite.getWidth();
         }
 
-        if (view.getId() == R.id.moveRIGHT) {
-            changePos(false, false, false, true);
-        }
+        chosenSprite.setX(spriteX);
+        chosenSprite.setY(spriteY);
     }
 
     public float getPosX() {
