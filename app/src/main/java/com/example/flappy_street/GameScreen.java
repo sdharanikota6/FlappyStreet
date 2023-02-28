@@ -19,7 +19,7 @@ import com.example.flappy_street.game.SpriteChoice;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameScreen extends AppCompatActivity implements View.OnTouchListener {
+public class GameScreen extends AppCompatActivity implements View.OnClickListener {
 
     private DifficultyLevel difficulty;
     private int sprite;
@@ -28,10 +28,6 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
 
     private FrameLayout frame;
     private ImageView chosenSprite;
-    private boolean actionUp;
-    private boolean actionDown;
-    private boolean actionLeft;
-    private boolean actionRight;
     private Timer timer = new Timer();
     private Handler handler = new Handler();
 
@@ -79,24 +75,10 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
 
         frame = findViewById(R.id.frame);
 
-        findViewById(R.id.moveUP).setOnTouchListener(this);
-        findViewById(R.id.moveDOWN).setOnTouchListener(this);
-        findViewById(R.id.moveLEFT).setOnTouchListener(this);
-        findViewById(R.id.moveRIGHT).setOnTouchListener(this);
-
-
-
-        timer.schedule((new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        changePos(actionUp, actionLeft, actionDown, actionRight);
-                    }
-                });
-            }
-        }), 25, 10);
+        findViewById(R.id.moveUP).setOnClickListener(this);
+        findViewById(R.id.moveDOWN).setOnClickListener(this);
+        findViewById(R.id.moveLEFT).setOnClickListener(this);
+        findViewById(R.id.moveRIGHT).setOnClickListener(this);
     }
 
     private void findSprite(SpriteChoice spriteString) {
@@ -123,16 +105,15 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         float spriteY = chosenSprite.getY();
 
         if (actionUp) {
-            spriteY -= frame.getHeight() / 100.00;
+            spriteY -= frame.getHeight() / GameLevel.NUM_ROWS;
         } else if (actionDown) {
-            spriteY += frame.getHeight() / 100.00;
+            spriteY += frame.getHeight() / GameLevel.NUM_ROWS;
         } else if (actionLeft) {
-            spriteX -= frame.getWidth() / 70.00;
+            spriteX -= frame.getWidth() / GameLevel.NUM_COLUMNS;
         } else if (actionRight) {
-            spriteX += frame.getWidth() / 70.00;
+            spriteX += frame.getWidth() / GameLevel.NUM_COLUMNS;
 
         }
-
 
         if (spriteY < 0) {
             spriteY = 0;
@@ -153,31 +134,24 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
     }
 
 
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == motionEvent.ACTION_DOWN) {
-            if (view.getId() ==  R.id.moveUP) {
-                actionUp = true;
-            }
-
-            if (view.getId() == R.id.moveDOWN) {
-                actionDown = true;
-            }
-
-            if (view.getId() == R.id.moveLEFT) {
-                actionLeft = true;
-            }
-
-            if (view.getId() == R.id.moveRIGHT) {
-                actionRight = true;
-            }
-
-        } else {
-            actionUp = false;
-            actionDown = false;
-            actionLeft = false;
-            actionRight = false;
+    @Override
+    public void onClick(View view/*, MotionEvent motionEvent*/) {
+        if (view.getId() ==  R.id.moveUP) {
+//            actionUp = true;
+            changePos(true, false, false, false);
         }
-        return true;
+
+        if (view.getId() == R.id.moveDOWN) {
+            changePos(false, false, true, false);
+        }
+
+        if (view.getId() == R.id.moveLEFT) {
+            changePos(false, true, false, false);
+        }
+
+        if (view.getId() == R.id.moveRIGHT) {
+            changePos(false, false, false, true);
+        }
     }
 
     public float getPosX() {
@@ -187,5 +161,4 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
     public float getPosY() {
         return chosenSprite.getY();
     }
-
 }
