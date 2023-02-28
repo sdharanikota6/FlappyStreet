@@ -37,6 +37,8 @@ proguard/
 captures/
 
 # IntelliJ
+.idea/androidTestResultsUserPreferences.xml
+.idea/checkstyleidea-libs
 *.iml
 .idea/.name.name
 .idea/checkstyleideas-libs
