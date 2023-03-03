@@ -26,6 +26,8 @@ public class Player {
             highScore = 0;
             //something about sprite choice.
         }
+        this.setxPos(GameLevel.NUM_COLUMNS / 2);
+        this.setyPos(GameLevel.NUM_ROWS - 1);
     }
 
     public int getxPos() {
@@ -82,23 +84,23 @@ public class Player {
     }
 
     public void moveUp() {
-        this.yPos++;
-        currentLevel.getTile(xPos, yPos).step(this);
+        this.yPos--;
+        currentLevel.getTile(yPos, xPos).step(this);
     }
 
     public void moveDown() {
-        this.yPos--;
-        currentLevel.getTile(xPos, yPos).step(this);
+        this.yPos++;
+        currentLevel.getTile(yPos, xPos).step(this);
     }
 
     public void moveLeft() {
         this.xPos--;
-        currentLevel.getTile(xPos, yPos).step(this);
+        currentLevel.getTile(yPos, xPos).step(this);
     }
 
     public void moveRight() {
         this.xPos++;
-        currentLevel.getTile(xPos, yPos).step(this);
+        currentLevel.getTile(yPos, xPos).step(this);
     }
 
     /**

@@ -19,7 +19,7 @@ import com.example.flappy_street.game.SpriteChoice;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameScreen extends AppCompatActivity implements View.OnTouchListener {
+public class GameScreen extends AppCompatActivity implements View.OnClickListener {
 
     private DifficultyLevel difficulty;
     private int sprite;
@@ -28,14 +28,8 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
 
     private FrameLayout frame;
     private ImageView chosenSprite;
-    private boolean actionUp;
-    private boolean actionDown;
-    private boolean actionLeft;
-    private boolean actionRight;
     private Timer timer = new Timer();
     private Handler handler = new Handler();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,27 +70,16 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
 
         chosenSprite.setImageResource(sprite);
 
-
         frame = findViewById(R.id.frame);
 
-        findViewById(R.id.moveUP).setOnTouchListener(this);
-        findViewById(R.id.moveDOWN).setOnTouchListener(this);
-        findViewById(R.id.moveLEFT).setOnTouchListener(this);
-        findViewById(R.id.moveRIGHT).setOnTouchListener(this);
+        findViewById(R.id.moveUP).setOnClickListener(this);
+        findViewById(R.id.moveDOWN).setOnClickListener(this);
+        findViewById(R.id.moveLEFT).setOnClickListener(this);
+        findViewById(R.id.moveRIGHT).setOnClickListener(this);
 
-
-
-        timer.schedule((new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        changePos(actionUp, actionLeft, actionDown, actionRight);
-                    }
-                });
-            }
-        }), 25, 10);
+        //Setting GameLevel, hopefully this will fix crashes
+        level = new GameLevel(getApplicationContext());
+        player.setGameLevel(level);
     }
 
     private void findSprite(SpriteChoice spriteString) {
@@ -123,61 +106,60 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
         float spriteY = chosenSprite.getY();
 
         if (actionUp) {
-            spriteY -= frame.getHeight() / 100.00;
+            spriteY -= frame.getHeight() / GameLevel.NUM_ROWS;
+            if (player.getyPos() > 0) {
+                player.moveUp();
+            }
+            if (spriteY < 0) {
+                spriteY = 0;
+            }
         } else if (actionDown) {
-            spriteY += frame.getHeight() / 100.00;
+            spriteY += frame.getHeight() / GameLevel.NUM_ROWS;
+            if (player.getyPos() < GameLevel.NUM_ROWS - 1) {
+                player.moveDown();
+            }
+            if (spriteY > frame.getHeight() - chosenSprite.getHeight()) {
+                spriteY = frame.getHeight() - chosenSprite.getHeight();
+            }
         } else if (actionLeft) {
-            spriteX -= frame.getWidth() / 70.00;
+            spriteX -= frame.getWidth() / GameLevel.NUM_COLUMNS;
+            if (player.getxPos() > 0) {
+                player.moveLeft();
+            }
+            if (spriteX < 0) {
+                spriteX = 0;
+            }
         } else if (actionRight) {
-            spriteX += frame.getWidth() / 70.00;
-
+            spriteX += frame.getWidth() / GameLevel.NUM_COLUMNS;
+            if (player.getxPos() < GameLevel.NUM_COLUMNS - 1) {
+                player.moveRight();
+            }
+            if (spriteX > frame.getWidth() - chosenSprite.getWidth()) {
+                spriteX = frame.getWidth() - chosenSprite.getWidth();
+            }
         }
-
-
-        if (spriteY < 0) {
-            spriteY = 0;
-        }
-        if (spriteY > frame.getHeight() - chosenSprite.getHeight()) {
-            spriteY = frame.getHeight() - chosenSprite.getHeight();
-        }
-
-        if (spriteX < 0) {
-            spriteX = 0;
-        }
-        if (spriteX > frame.getWidth() - chosenSprite.getWidth()) {
-            spriteX = frame.getWidth() - chosenSprite.getWidth();
-        }
-
         chosenSprite.setX(spriteX);
         chosenSprite.setY(spriteY);
     }
 
-
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == motionEvent.ACTION_DOWN) {
-            if (view.getId() ==  R.id.moveUP) {
-                actionUp = true;
-            }
-
-            if (view.getId() == R.id.moveDOWN) {
-                actionDown = true;
-            }
-
-            if (view.getId() == R.id.moveLEFT) {
-                actionLeft = true;
-            }
-
-            if (view.getId() == R.id.moveRIGHT) {
-                actionRight = true;
-            }
-
-        } else {
-            actionUp = false;
-            actionDown = false;
-            actionLeft = false;
-            actionRight = false;
+    @Override
+    public void onClick(View view) {
+        if (view.getId() ==  R.id.moveUP) {
+//            actionUp = true;
+            changePos(true, false, false, false);
         }
-        return true;
+
+        if (view.getId() == R.id.moveDOWN) {
+            changePos(false, false, true, false);
+        }
+
+        if (view.getId() == R.id.moveLEFT) {
+            changePos(false, true, false, false);
+        }
+
+        if (view.getId() == R.id.moveRIGHT) {
+            changePos(false, false, false, true);
+        }
     }
 
     public float getPosX() {
@@ -187,5 +169,4 @@ public class GameScreen extends AppCompatActivity implements View.OnTouchListene
     public float getPosY() {
         return chosenSprite.getY();
     }
-
 }
