@@ -25,8 +25,8 @@
             app:layout_constraintRight_toRightOf="@id/gameLevel"
             app:layout_constraintLeft_toLeftOf="@id/gameLevel">
 
-            <ImageView
-                android:id="@+id/spriteView"
+            <com.example.flappy_street.game.Player
+                android:id="@+id/player"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="bottom|center"

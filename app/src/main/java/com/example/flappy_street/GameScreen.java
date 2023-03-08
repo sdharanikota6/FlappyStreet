@@ -1,11 +1,11 @@
 package com.example.flappy_street;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -17,7 +17,6 @@ import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.game.SpriteChoice;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameScreen extends AppCompatActivity {
 
@@ -27,7 +26,6 @@ public class GameScreen extends AppCompatActivity {
     private GameLevel level;
 
     private FrameLayout frame;
-    private ImageView chosenSprite;
     private Timer timer = new Timer();
     private Handler handler = new Handler();
 
@@ -36,14 +34,14 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         String name = intent.getStringExtra(ConfigScreen.CHOSEN_NAME);
-        DifficultyLevel difficultyString = (DifficultyLevel)
+        DifficultyLevel difficulty = (DifficultyLevel)
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_DIFFICULTY);
         SpriteChoice spriteString = (SpriteChoice)
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_SPRITE);
         findSprite(spriteString);
-        player = new Player(name, difficultyString);
         setContentView(R.layout.test);
-        String display = "Difficulty: " + difficultyString;
+        player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
+        String display = "Difficulty: " + difficulty;
 
         TextView startingPoints = findViewById(R.id.displayStartingPoints);
         display = "Points: " + player.getScore();
@@ -57,18 +55,12 @@ public class GameScreen extends AppCompatActivity {
         display = "Welcome " + player.getName();
         playerName.setText(display);
 
-        chosenSprite = findViewById(R.id.spriteView);
-
         TextView highScore = findViewById(R.id.displayHighScore);
         if (player.getScore() > player.getHighScore()) {
             player.setHighScore(player.getScore());
         }
         display = "High Score: " + player.getHighScore();
         highScore.setText(display);
-
-        ImageView chosenSprite = findViewById(R.id.spriteView);
-
-        chosenSprite.setImageResource(sprite);
 
         frame = findViewById(R.id.frame);
 
@@ -94,8 +86,8 @@ public class GameScreen extends AppCompatActivity {
     }
 
     public void moveUp(View view) {
-        float spriteX = chosenSprite.getX();
-        float spriteY = chosenSprite.getY();
+        float spriteX = player.getX();
+        float spriteY = player.getY();
 
         spriteY -= frame.getHeight() / (double) GameLevel.NUM_ROWS;
         if (player.getyPos() > 0) {
@@ -105,13 +97,13 @@ public class GameScreen extends AppCompatActivity {
             spriteY = 0;
         }
 
-        chosenSprite.setX(spriteX);
-        chosenSprite.setY(spriteY);
+        player.setX(spriteX);
+        player.setY(spriteY);
     }
 
     public void moveLeft(View view) {
-        float spriteX = chosenSprite.getX();
-        float spriteY = chosenSprite.getY();
+        float spriteX = player.getX();
+        float spriteY = player.getY();
 
         spriteX -= frame.getWidth() / (double) GameLevel.NUM_COLUMNS;
         if (player.getxPos() > 0) {
@@ -121,47 +113,47 @@ public class GameScreen extends AppCompatActivity {
             spriteX = 0;
         }
 
-        chosenSprite.setX(spriteX);
-        chosenSprite.setY(spriteY);
+        player.setX(spriteX);
+        player.setY(spriteY);
     }
 
     public void moveDown(View view) {
-        float spriteX = chosenSprite.getX();
-        float spriteY = chosenSprite.getY();
+        float spriteX = player.getX();
+        float spriteY = player.getY();
 
         spriteY += frame.getHeight() / (double) GameLevel.NUM_ROWS;
         if (player.getyPos() < GameLevel.NUM_ROWS - 1) {
             player.moveDown();
         }
-        if (spriteY > frame.getHeight() - chosenSprite.getHeight()) {
-            spriteY = frame.getHeight() - chosenSprite.getHeight();
+        if (spriteY > frame.getHeight() - player.getHeight()) {
+            spriteY = frame.getHeight() - player.getHeight();
         }
 
-        chosenSprite.setX(spriteX);
-        chosenSprite.setY(spriteY);
+        player.setX(spriteX);
+        player.setY(spriteY);
     }
 
     public void moveRight(View view) {
-        float spriteX = chosenSprite.getX();
-        float spriteY = chosenSprite.getY();
+        float spriteX = player.getX();
+        float spriteY = player.getY();
 
         spriteX += frame.getWidth() / (double) GameLevel.NUM_COLUMNS;
         if (player.getxPos() < GameLevel.NUM_COLUMNS - 1) {
             player.moveRight();
         }
-        if (spriteX > frame.getWidth() - chosenSprite.getWidth()) {
-            spriteX = frame.getWidth() - chosenSprite.getWidth();
+        if (spriteX > frame.getWidth() - player.getWidth()) {
+            spriteX = frame.getWidth() - player.getWidth();
         }
 
-        chosenSprite.setX(spriteX);
-        chosenSprite.setY(spriteY);
+        player.setX(spriteX);
+        player.setY(spriteY);
     }
 
     public float getPosX() {
-        return chosenSprite.getX();
+        return player.getX();
     }
 
     public float getPosY() {
-        return chosenSprite.getY();
+        return player.getY();
     }
 }

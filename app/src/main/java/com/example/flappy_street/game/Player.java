@@ -1,21 +1,29 @@
 package com.example.flappy_street.game;
 
+import android.content.Context;
+import android.util.AttributeSet;
 import android.util.Log;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.flappy_street.levels.GameLevel;
 
-public class Player {
+public class Player extends AppCompatImageView {
 
     private GameLevel currentLevel;
-    private final String name;
+    private String name;
     private int lives;
     private int score;
-
     private int highScore;
     private int xPos;
     private int yPos;
 
-    public Player(String name, DifficultyLevel difficulty) {
+    public Player(Context ctx, AttributeSet attrs) {
+        super(ctx, attrs);
+    }
+
+    public Player init(int sprite, String name, DifficultyLevel difficulty) {
+        this.setImageResource(sprite);
         this.name = name;
         if (difficulty != null) {
             lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
@@ -25,6 +33,7 @@ public class Player {
         }
         this.setxPos(GameLevel.NUM_COLUMNS / 2);
         this.setyPos(GameLevel.NUM_ROWS - 1);
+        return this;
     }
 
     public int getxPos() {
