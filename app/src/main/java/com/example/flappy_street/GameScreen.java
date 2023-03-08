@@ -6,9 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.flappy_street.game.DifficultyLevel;
@@ -20,12 +17,8 @@ import java.util.Timer;
 
 public class GameScreen extends AppCompatActivity {
 
-    private DifficultyLevel difficulty;
     private int sprite;
     private Player player;
-    private GameLevel level;
-
-    private FrameLayout frame;
     private Timer timer = new Timer();
     private Handler handler = new Handler();
 
@@ -62,15 +55,13 @@ public class GameScreen extends AppCompatActivity {
         display = "High Score: " + player.getHighScore();
         highScore.setText(display);
 
-        frame = findViewById(R.id.frame);
-
         findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
         findViewById(R.id.moveDOWN).setOnClickListener(player::moveDown);
         findViewById(R.id.moveLEFT).setOnClickListener(player::moveLeft);
         findViewById(R.id.moveRIGHT).setOnClickListener(player::moveRight);
 
         //Setting GameLevel, hopefully this will fix crashes
-        level = new GameLevel(getApplicationContext());
+        GameLevel level = new GameLevel(getApplicationContext());
         player.setGameLevel(level);
     }
 
