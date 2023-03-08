@@ -27,8 +27,12 @@ public class Player extends AppCompatImageView {
         super(ctx, attrs);
     }
 
+
     public Player init(int sprite, String name, DifficultyLevel difficulty) {
         this.setImageResource(sprite);
+        if (name == null || name.trim().length() == 0) {
+            throw new IllegalArgumentException("Name cannot be only whitespace or null");
+        }
         this.name = name;
         if (difficulty != null) {
             lives = 5 - (2 * difficulty.ordinal()); //easy: 5 lives, medium: 3 lives, hard: 1.
