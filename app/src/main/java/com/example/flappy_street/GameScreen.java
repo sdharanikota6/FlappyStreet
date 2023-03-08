@@ -64,10 +64,10 @@ public class GameScreen extends AppCompatActivity {
 
         frame = findViewById(R.id.frame);
 
-        findViewById(R.id.moveUP).setOnClickListener(this::moveUp);
-        findViewById(R.id.moveDOWN).setOnClickListener(this::moveDown);
-        findViewById(R.id.moveLEFT).setOnClickListener(this::moveLeft);
-        findViewById(R.id.moveRIGHT).setOnClickListener(this::moveRight);
+        findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
+        findViewById(R.id.moveDOWN).setOnClickListener(player::moveDown);
+        findViewById(R.id.moveLEFT).setOnClickListener(player::moveLeft);
+        findViewById(R.id.moveRIGHT).setOnClickListener(player::moveRight);
 
         //Setting GameLevel, hopefully this will fix crashes
         level = new GameLevel(getApplicationContext());
@@ -83,70 +83,6 @@ public class GameScreen extends AppCompatActivity {
             sprite = R.drawable.sprite3;
         }
 
-    }
-
-    public void moveUp(View view) {
-        float spriteX = player.getX();
-        float spriteY = player.getY();
-
-        spriteY -= frame.getHeight() / (double) GameLevel.NUM_ROWS;
-        if (player.getyPos() > 0) {
-            player.moveUp();
-        }
-        if (spriteY < 0) {
-            spriteY = 0;
-        }
-
-        player.setX(spriteX);
-        player.setY(spriteY);
-    }
-
-    public void moveLeft(View view) {
-        float spriteX = player.getX();
-        float spriteY = player.getY();
-
-        spriteX -= frame.getWidth() / (double) GameLevel.NUM_COLUMNS;
-        if (player.getxPos() > 0) {
-            player.moveLeft();
-        }
-        if (spriteX < 0) {
-            spriteX = 0;
-        }
-
-        player.setX(spriteX);
-        player.setY(spriteY);
-    }
-
-    public void moveDown(View view) {
-        float spriteX = player.getX();
-        float spriteY = player.getY();
-
-        spriteY += frame.getHeight() / (double) GameLevel.NUM_ROWS;
-        if (player.getyPos() < GameLevel.NUM_ROWS - 1) {
-            player.moveDown();
-        }
-        if (spriteY > frame.getHeight() - player.getHeight()) {
-            spriteY = frame.getHeight() - player.getHeight();
-        }
-
-        player.setX(spriteX);
-        player.setY(spriteY);
-    }
-
-    public void moveRight(View view) {
-        float spriteX = player.getX();
-        float spriteY = player.getY();
-
-        spriteX += frame.getWidth() / (double) GameLevel.NUM_COLUMNS;
-        if (player.getxPos() < GameLevel.NUM_COLUMNS - 1) {
-            player.moveRight();
-        }
-        if (spriteX > frame.getWidth() - player.getWidth()) {
-            spriteX = frame.getWidth() - player.getWidth();
-        }
-
-        player.setX(spriteX);
-        player.setY(spriteY);
     }
 
     public float getPosX() {

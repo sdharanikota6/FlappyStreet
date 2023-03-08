@@ -3,6 +3,8 @@ package com.example.flappy_street.game;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -12,11 +14,14 @@ public class Player extends AppCompatImageView {
 
     private GameLevel currentLevel;
     private String name;
+    private FrameLayout parentFrame;
     private int lives;
     private int score;
     private int highScore;
     private int xPos;
     private int yPos;
+    private double yStep;
+    private double xStep;
 
     public Player(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
@@ -31,25 +36,13 @@ public class Player extends AppCompatImageView {
             highScore = 0;
             //something about sprite choice.
         }
-        this.setxPos(GameLevel.NUM_COLUMNS / 2);
-        this.setyPos(GameLevel.NUM_ROWS - 1);
+        xPos = GameLevel.NUM_COLUMNS / 2;
+        yPos = GameLevel.NUM_ROWS - 1;
+
+        parentFrame = (FrameLayout) this.getParent();
+        Log.i("INIT", parentFrame.toString());
+
         return this;
-    }
-
-    public int getxPos() {
-        return xPos;
-    }
-
-    public void setxPos(int xPos) {
-        this.xPos = xPos;
-    }
-
-    public int getyPos() {
-        return yPos;
-    }
-
-    public void setyPos(int yPos) {
-        this.yPos = yPos;
     }
 
     public String getName() {
@@ -89,24 +82,59 @@ public class Player extends AppCompatImageView {
         Log.i("VICTORY", "Player wins!");
     }
 
-    public void moveUp() {
-        this.yPos--;
-        currentLevel.getTile(yPos, xPos).step(this);
+    public void moveUp(View v) {
+        if (yStep == 0) {
+            yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
+            Log.i("INIT", "Step Height: " + yStep);
+        }
+        if (yPos > 0) {
+            yPos--;
+            float newY =  (float) (getY() - yStep);
+            setY(newY);
+            currentLevel.getTile(yPos, xPos).step(this);
+        }
+
     }
 
-    public void moveDown() {
-        this.yPos++;
-        currentLevel.getTile(yPos, xPos).step(this);
+    public void moveDown(View v) {
+        if (yStep == 0) {
+            yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
+            Log.i("INIT", "Step Height: " + yStep);
+        }
+        if (yPos < GameLevel.NUM_ROWS - 1) {
+            yPos++;
+            float newY =  (float) (getY() + yStep);
+            setY(newY);
+            currentLevel.getTile(yPos, xPos).step(this);
+        }
+
     }
 
-    public void moveLeft() {
-        this.xPos--;
-        currentLevel.getTile(yPos, xPos).step(this);
+    public void moveLeft(View v) {
+        if (xStep == 0) {
+            xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+            Log.i("INIT", "Step Width: " + xStep);
+        }
+        if (xPos > 0) {
+            xPos--;
+            float newX =  (float) (getX() - xStep);
+            setX(newX);
+            currentLevel.getTile(yPos, xPos).step(this);
+        }
+
     }
 
-    public void moveRight() {
-        this.xPos++;
-        currentLevel.getTile(yPos, xPos).step(this);
+    public void moveRight(View v) {
+        if (xStep == 0) {
+            xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+            Log.i("INIT", "Step Width: " + xStep);
+        }
+        if (xPos < GameLevel.NUM_COLUMNS - 1) {
+            xPos++;
+            float newX =  (float) (getX() + xStep);
+            setX(newX);
+            currentLevel.getTile(yPos, xPos).step(this);
+        }
     }
 
     /**
