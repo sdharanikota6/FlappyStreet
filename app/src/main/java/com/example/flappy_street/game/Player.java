@@ -96,6 +96,7 @@ public class Player extends AppCompatImageView {
             float newY =  (float) (getY() - yStep);
             setY(newY);
             currentLevel.getTile(yPos, xPos).step(this);
+            currentLevel.setRowStepped(yPos);
         }
 
     }
