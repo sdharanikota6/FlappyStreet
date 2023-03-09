@@ -84,6 +84,11 @@ public class GameScreen extends AppCompatActivity {
         points.setText(display);
     }
 
+    private void updateHighScoreText(TextView highscore) {
+        String display = "High Score: " + player.getHighScore();
+        highscore.setText(display);
+    }
+
     public float getPosX() {
         return player.getX();
     }
