@@ -27,6 +27,10 @@ public class Player extends AppCompatImageView {
         super(ctx, attrs);
     }
 
+    public Player(Context ctx) {
+        super(ctx);
+    }
+
 
     public Player init(int sprite, String name, DifficultyLevel difficulty) {
         this.setImageResource(sprite);
