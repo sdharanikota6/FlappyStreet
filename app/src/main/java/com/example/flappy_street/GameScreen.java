@@ -55,7 +55,11 @@ public class GameScreen extends AppCompatActivity {
         display = "High Score: " + player.getHighScore();
         highScore.setText(display);
 
-        findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
+        //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
+        findViewById(R.id.moveUP).setOnClickListener((v) -> {
+            player.moveUp(v);
+            updateScoreText(startingPoints);
+        });
         findViewById(R.id.moveDOWN).setOnClickListener(player::moveDown);
         findViewById(R.id.moveLEFT).setOnClickListener(player::moveLeft);
         findViewById(R.id.moveRIGHT).setOnClickListener(player::moveRight);
