@@ -73,7 +73,11 @@ public class GameScreen extends AppCompatActivity {
         } else {
             sprite = R.drawable.sprite3;
         }
+    }
 
+    private void updateScoreText(TextView points) {
+        String display = "Points: " + player.getScore();
+        points.setText(display);
     }
 
     public float getPosX() {
