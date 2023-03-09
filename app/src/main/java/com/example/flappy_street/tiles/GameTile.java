@@ -35,4 +35,13 @@ public abstract class GameTile extends AppCompatImageView {
      */
     public abstract GameTile step(Player player);
 
+    /**
+     * Used for score keeping when having to count an entire row
+     * as stepped to prevent unwanted score increase.
+     *
+     * @param stepped if the tile should be counted as stepped
+     */
+    public void setStepped(boolean stepped) {
+        this.stepped = stepped;
+    }
 }
