@@ -6,9 +6,9 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 public abstract class Vehicle extends AppCompatImageView {
 
-    private int xPos;
-    private int yPos;
-    private int size;
+    protected int xPos;
+    protected int yPos;
+    protected int size;
 
     /**
      * Create a new vehicle.
@@ -40,4 +40,14 @@ public abstract class Vehicle extends AppCompatImageView {
      * specify the direction, and collision detection.
      */
     public abstract void move();
+
+    /**
+     * Check if the car collides with a given position.
+     * @param collisionPos the position to check collision with
+     * @return true if the object collides, false otherwise
+     */
+    public boolean collidesWith(int collisionPos) {
+        return collisionPos >= xPos && collisionPos < xPos + size;
+    }
+
 }
