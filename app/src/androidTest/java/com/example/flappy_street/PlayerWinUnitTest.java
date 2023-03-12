@@ -2,6 +2,8 @@ package com.example.flappy_street;
 
 import static org.junit.Assert.assertEquals;
 
+import androidx.test.core.app.ApplicationProvider;
+
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 
@@ -15,7 +17,8 @@ public class PlayerWinUnitTest {
     public void winIncreasesScore() {
         DifficultyLevel easy = DifficultyLevel.EASY;
         String name = "Test";
-        Player player = new Player(name, easy);
+        Player player = new Player(ApplicationProvider.getApplicationContext());
+        player.init(1, name, easy);
         player.setScore(0);
         player.win();
         assertEquals(100, player.getScore());
