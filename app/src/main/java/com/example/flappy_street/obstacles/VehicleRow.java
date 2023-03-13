@@ -21,7 +21,7 @@ public class VehicleRow extends GridView {
     public VehicleRow(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
         this.ctx = ctx;
-        this.init(Car.class, 3, 2);
+        this.init(Car.class, 3, 8);
         this.setNumColumns(3);
     }
 
@@ -49,7 +49,7 @@ public class VehicleRow extends GridView {
         Point size = TileAdapter.getSize();
         int width = size.x / GameLevel.NUM_COLUMNS;
         this.setHorizontalSpacing(backSpacing * width);
-        int height = size.y * yPos / GameLevel.NUM_ROWS;
+        int height = width * yPos;
         this.setY(height);
         return this;
     }
