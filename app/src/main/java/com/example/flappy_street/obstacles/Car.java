@@ -15,6 +15,6 @@ public class Car extends Vehicle {
     @Override
     public void move() {
         this.setXPos(this.getXPos() + 1);
-        this.setX(this.getX() + STEP_SIZE);
+        this.setX((this.getX() + STEP_SIZE) % RIGHT_BOUND);
     }
 }
