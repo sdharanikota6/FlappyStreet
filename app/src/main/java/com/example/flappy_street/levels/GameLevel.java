@@ -12,13 +12,25 @@ import com.example.flappy_street.tiles.SafeTile;
 import com.example.flappy_street.tiles.TileAdapter;
 
 public class GameLevel extends GridView {
-    private static final int NUM_ROWS = 10;
-    private static final int NUM_COLUMNS = 7;
+    public static final int NUM_ROWS = 10;
+    public static final int NUM_COLUMNS = 7;
 
     private GameTile[][] tileArray;
     private String name;
 
-
+    /**
+     * Constructor used for unit testing
+     * @param context the context this view was created in
+     */
+    public GameLevel(Context context) {
+        super(context);
+        generateTileArray();
+        this.setNumColumns(NUM_COLUMNS);
+        this.setStretchMode(STRETCH_COLUMN_WIDTH);
+        this.setHorizontalSpacing(0);
+        this.setVerticalSpacing(0);
+        this.setAdapter(new TileAdapter(context, tileArray));
+    }
 
     public GameLevel(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
