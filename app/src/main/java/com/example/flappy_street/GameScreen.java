@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.flappy_street.databinding.TestBinding;
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
@@ -28,6 +29,8 @@ public class GameScreen extends AppCompatActivity {
     private TextView displayLives;
     private TextView playerName;
 
+    TestBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,10 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void initialize() {
-        setContentView(R.layout.test);
+//        setContentView(R.layout.test);
+        binding = binding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         Intent intent = getIntent();
         String name = intent.getStringExtra(ConfigScreen.CHOSEN_NAME);
         difficulty = (DifficultyLevel)

@@ -37,6 +37,9 @@ android {
             includeAndroidResources = true
         }
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
