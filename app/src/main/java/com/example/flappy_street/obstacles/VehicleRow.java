@@ -44,7 +44,7 @@ public class VehicleRow extends GridView {
                 throw new UnsupportedOperationException("Initialization failed");
             }
         }
-        this.setAdapter(new RowAdapter(ctx, numVehicles, vehicles));
+        this.setAdapter(new RowAdapter(ctx, numVehicles, vehicles, vehicles[0].getSize()));
         int backSpacing = (GameLevel.NUM_COLUMNS - numVehicles) / numVehicles;
         Point size = TileAdapter.getSize();
         int width = size.x / GameLevel.NUM_COLUMNS;
@@ -52,5 +52,11 @@ public class VehicleRow extends GridView {
         int height = size.y * yPos / GameLevel.NUM_ROWS;
         this.setY(height);
         return this;
+    }
+
+    public void moveRow() {
+        for (Vehicle v: vehicles) {
+            v.move();
+        }
     }
 }

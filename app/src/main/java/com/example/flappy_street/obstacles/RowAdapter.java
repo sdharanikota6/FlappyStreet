@@ -14,14 +14,14 @@ public class RowAdapter extends BaseAdapter {
     Vehicle[] vehicles;
     ViewGroup.LayoutParams params;
 
-    public RowAdapter(Context context, int count, Vehicle[] vehicles) {
+    public RowAdapter(Context context, int count, Vehicle[] vehicles, int size) {
         this.count = count;
         this.vehicles = vehicles;
-        Point size = new Point(0,0);
+        Point screenSize = new Point(0,0);
         Display display = ((DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE)).
                 getDisplays()[0];
-        display.getSize(size);
-        int length = size.x / 7;
+        display.getSize(screenSize);
+        int length = screenSize.x * size / 7;
         params = new ViewGroup.LayoutParams( 9 * length / 10 , length);
         this.vehicles = vehicles;
     }
