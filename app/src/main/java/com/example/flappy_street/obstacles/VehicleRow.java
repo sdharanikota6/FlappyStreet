@@ -2,6 +2,7 @@ package com.example.flappy_street.obstacles;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.util.AttributeSet;
 import android.widget.GridView;
 
 import com.example.flappy_street.levels.GameLevel;
@@ -15,6 +16,13 @@ public class VehicleRow extends GridView {
     public VehicleRow(Context ctx) {
         super(ctx);
         this.ctx = ctx;
+    }
+
+    public VehicleRow(Context ctx, AttributeSet attrs) {
+        super(ctx, attrs);
+        this.ctx = ctx;
+        this.init(Car.class, 3, 2);
+        this.setNumColumns(3);
     }
 
     /**
@@ -36,7 +44,7 @@ public class VehicleRow extends GridView {
                 throw new UnsupportedOperationException("Initialization failed");
             }
         }
-        this.setAdapter(new RowAdapter(numVehicles, vehicles));
+        this.setAdapter(new RowAdapter(ctx, numVehicles, vehicles));
         int backSpacing = (GameLevel.NUM_COLUMNS - numVehicles) / numVehicles;
         Point size = TileAdapter.getSize();
         int width = size.x / GameLevel.NUM_COLUMNS;
