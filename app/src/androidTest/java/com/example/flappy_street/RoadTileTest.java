@@ -20,7 +20,7 @@ public class RoadTileTest {
     @Test
     public void stepOnRoadTile() {
         Player testPlayer = new Player(ApplicationProvider.getApplicationContext());
-        testPlayer.init(1, "Des", DifficultyLevel.EASY);
+        testPlayer.init(0, "Des", DifficultyLevel.EASY);
         int before = testPlayer.getLives();
         RoadTile roadTile = new RoadTile(ApplicationProvider.getApplicationContext());
         if (roadTile.step(testPlayer) == roadTile) {

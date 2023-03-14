@@ -17,7 +17,7 @@ public class RiverScoreTest {
     @Test
     public void crossRoadIncrementsScore() {
         Player player = new Player(ApplicationProvider.getApplicationContext());
-        player.init(1, "Holden", DifficultyLevel.EASY);
+        player.init(0, "Holden", DifficultyLevel.EASY);
         int oldScore = player.getScore();
         RiverTile riverTile = new RiverTile(ApplicationProvider.getApplicationContext());
         riverTile.step(player);

@@ -16,13 +16,13 @@ public class WhiteSpaceTestUsernameTest {
     public void inputEmpty() {
         String name = "";
         Player noNamePlayer = new Player(ApplicationProvider.getApplicationContext());
-        noNamePlayer.init(1, name, DifficultyLevel.EASY);
+        noNamePlayer.init(0, name, DifficultyLevel.EASY);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void inputSpace() {
         String name = "    ";
         Player noNamePlayer = new Player(ApplicationProvider.getApplicationContext());
-        noNamePlayer.init(1, name, DifficultyLevel.EASY);
+        noNamePlayer.init(0, name, DifficultyLevel.EASY);
     }
 }

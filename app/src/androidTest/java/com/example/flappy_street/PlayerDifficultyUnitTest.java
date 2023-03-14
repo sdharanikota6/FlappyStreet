@@ -18,7 +18,7 @@ public class PlayerDifficultyUnitTest {
         DifficultyLevel easy = DifficultyLevel.EASY;
         String name = "Test";
         Player easyPlayer = new Player(ApplicationProvider.getApplicationContext());
-        easyPlayer.init(1, name, easy);
+        easyPlayer.init(0, name, easy);
         assertEquals(5, easyPlayer.getLives());
     }
 
@@ -27,7 +27,7 @@ public class PlayerDifficultyUnitTest {
         DifficultyLevel medium = DifficultyLevel.MEDIUM;
         String name = "Test";
         Player mediumPlayer = new Player(ApplicationProvider.getApplicationContext());
-        mediumPlayer.init(1, name, medium);
+        mediumPlayer.init(0, name, medium);
         assertEquals(3, mediumPlayer.getLives());
     }
 
@@ -36,7 +36,7 @@ public class PlayerDifficultyUnitTest {
         DifficultyLevel hard = DifficultyLevel.HARD;
         String name = "Test";
         Player hardPlayer = new Player(ApplicationProvider.getApplicationContext());
-        hardPlayer.init(1, name, hard);
+        hardPlayer.init(0, name, hard);
         assertEquals(1, hardPlayer.getLives());
     }
 }

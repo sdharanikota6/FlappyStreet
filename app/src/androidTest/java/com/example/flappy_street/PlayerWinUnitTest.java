@@ -18,7 +18,7 @@ public class PlayerWinUnitTest {
         DifficultyLevel easy = DifficultyLevel.EASY;
         String name = "Test";
         Player player = new Player(ApplicationProvider.getApplicationContext());
-        player.init(1, name, easy);
+        player.init(0, name, easy);
         player.setScore(0);
         player.win();
         assertEquals(100, player.getScore());
