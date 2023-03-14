@@ -17,7 +17,6 @@ public abstract class Vehicle extends AppCompatImageView {
     protected final float tileSize;
     protected final float rightBound;
     protected static final float LEFT_BOUND = 0;
-    protected static final int STEPS_PER_TILE = 20;
 
     /**
      * Create a new vehicle.
