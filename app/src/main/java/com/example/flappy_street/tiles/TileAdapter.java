@@ -13,9 +13,10 @@ public class TileAdapter extends BaseAdapter {
 
     private ViewGroup.LayoutParams params;
     private GameTile[][] tileArray;
+    private static Point size;
 
     public TileAdapter(Context context, GameTile[][] tileArray) {
-        Point size = new Point(0, 0);
+        size = new Point(0, 0);
         Display display = ((DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE)).
                 getDisplays()[0];
         display.getSize(size);
@@ -51,5 +52,12 @@ public class TileAdapter extends BaseAdapter {
         tile.setLayoutParams(params);
         tile.setScaleType(ImageView.ScaleType.FIT_CENTER);
         return tile;
+    }
+
+    public static Point getSize() {
+        if (size == null) {
+            throw new NullPointerException("size has not been initialized");
+        }
+        return size;
     }
 }

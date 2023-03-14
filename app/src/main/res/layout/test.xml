@@ -34,6 +34,20 @@
                 app:srcCompat="@drawable/sprite1"/>
 
         </FrameLayout>
+        <com.example.flappy_street.obstacles.VehicleRow
+            android:id="@+id/carRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.flappy_street.obstacles.VehicleRow
+            android:id="@+id/truckRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.flappy_street.obstacles.VehicleRow
+            android:id="@+id/semiRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
