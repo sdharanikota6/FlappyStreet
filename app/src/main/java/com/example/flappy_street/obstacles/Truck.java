@@ -20,13 +20,12 @@ public class Truck extends Vehicle {
     public void move() {
         stepCount = (stepCount + 1) % STEPS_PER_TILE;
         if (stepCount == 0) {
-            this.setXPos((this.getXPos() - 1) % GameLevel.NUM_COLUMNS);
+            this.setXPos(this.getXPos() - 1);
         }
         float newPos = this.getX() - (tileSize / STEPS_PER_TILE);
         if (newPos < (-getWidth())) {
-            Log.i("POSITION", String.format("Reached position %f, looping", newPos));
             this.setX(rightBound);
-            Log.i("POSITION", "Looping! Position " + getXPos());
+            this.setXPos(6);
         } else {
             this.setX(newPos);
         }

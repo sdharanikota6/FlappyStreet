@@ -19,11 +19,12 @@ public class Car extends Vehicle {
     public void move() {
         stepCount = (stepCount + 1) % STEPS_PER_TILE;
         if (stepCount == 0) {
-            this.setXPos((this.getXPos() + 1) % GameLevel.NUM_COLUMNS);
+            this.setXPos(this.getXPos() + 1);
         }
         float newPos = this.getX() + (tileSize / STEPS_PER_TILE);
         if (newPos % rightBound < newPos) {
             this.setX(-this.getWidth());
+            this.setXPos(0);
         } else {
             this.setX(newPos);
         }
