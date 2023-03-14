@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.TextView;
+import android.view.View;
 
+import com.example.flappy_street.databinding.TestBinding;
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
@@ -18,18 +18,23 @@ import com.example.flappy_street.obstacles.Semi;
 import com.example.flappy_street.obstacles.Truck;
 import com.example.flappy_street.obstacles.VehicleRow;
 
-import java.util.Timer;
-
 public class GameScreen extends AppCompatActivity {
 
     private int sprite;
     private Player player;
-    private Timer timer = new Timer();
-    private Handler handler = new Handler();
+    private TestBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initialize();
+        game();
+    }
+
+    private void initialize() {
+        binding = binding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         Intent intent = getIntent();
         String name = intent.getStringExtra(ConfigScreen.CHOSEN_NAME);
         DifficultyLevel difficulty = (DifficultyLevel)
@@ -37,37 +42,56 @@ public class GameScreen extends AppCompatActivity {
         SpriteChoice spriteString = (SpriteChoice)
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_SPRITE);
         findSprite(spriteString);
-        setContentView(R.layout.test);
         player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
-        String display = "Difficulty: " + difficulty;
-
-        TextView startingPoints = findViewById(R.id.displayStartingPoints);
-        display = "Points: " + player.getScore();
-        startingPoints.setText(display);
-
-        TextView displayLives = findViewById(R.id.displayStartingLives);
-        display = "Lives: " + player.getLives();
-        displayLives.setText(display);
-
-        TextView playerName = findViewById(R.id.displayPlayerName);
-        display = "Welcome " + player.getName();
-        playerName.setText(display);
-
-        TextView highScore = findViewById(R.id.displayHighScore);
-        if (player.getScore() > player.getHighScore()) {
-            player.setHighScore(player.getScore());
-        }
-        display = "High Score: " + player.getHighScore();
-        highScore.setText(display);
-
-        findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
-        findViewById(R.id.moveDOWN).setOnClickListener(player::moveDown);
-        findViewById(R.id.moveLEFT).setOnClickListener(player::moveLeft);
-        findViewById(R.id.moveRIGHT).setOnClickListener(player::moveRight);
-
         //Setting GameLevel, hopefully this will fix crashes
         GameLevel level = new GameLevel(getApplicationContext());
         player.setGameLevel(level);
+    }
+
+    private void updateGame() {
+        if (player.getScore() > player.getHighScore()) {
+            player.setHighScore(player.getScore());
+        }
+
+        //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
+        findViewById(R.id.moveUP).setOnClickListener((v) -> {
+            player.moveUp(v);
+            drawGame();
+        });
+        findViewById(R.id.moveDOWN).setOnClickListener((v) -> {
+            player.moveDown(v);
+            drawGame();
+        });
+        findViewById(R.id.moveLEFT).setOnClickListener((v) -> {
+            player.moveLeft(v);
+            drawGame();
+        });
+        findViewById(R.id.moveRIGHT).setOnClickListener((v) -> {
+            player.moveRight(v);
+            drawGame();
+        });
+    }
+
+    private void drawGame() {
+        String display;
+
+        display = "Welcome " + player.getName();
+        binding.displayPlayerName.setText(display);
+
+        display = "Lives: " + player.getLives();
+        binding.displayStartingLives.setText(display);
+
+        display = "Points: " + player.getScore();
+        binding.displayStartingPoints.setText(display);
+
+        display = "High Score: " + player.getHighScore();
+        binding.displayHighScore.setText(display);
+    }
+
+
+    private void game() {
+        updateGame();
+        drawGame();
 
         VehicleRow[] vehicles = new VehicleRow[3];
         vehicles[0] = ((VehicleRow) findViewById(R.id.carRow)).init(Car.class, 3, 8);
@@ -85,8 +109,8 @@ public class GameScreen extends AppCompatActivity {
         } else {
             sprite = R.drawable.sprite3;
         }
-
     }
+
 
     public float getPosX() {
         return player.getX();

@@ -28,12 +28,14 @@ public class RiverTile extends GameTile {
      * {@inheritDoc}
      */
     @Override
-    public GameTile step(Player stepped) {
+    public GameTile step(Player player) {
+        if (!stepped) {
+            player.setScore(player.getScore() + 5);
+        }
         this.stepped = true;
         if (!covered) {
-            stepped.die();
+            player.die();
         }
-        stepped.setScore(stepped.getScore() + 5);
         return this;
     }
 

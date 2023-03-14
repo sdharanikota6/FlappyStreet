@@ -1,10 +1,8 @@
 package com.example.flappy_street.obstacles;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.flappy_street.R;
-import com.example.flappy_street.levels.GameLevel;
 
 public class Truck extends Vehicle {
 
