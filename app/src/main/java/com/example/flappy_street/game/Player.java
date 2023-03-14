@@ -90,7 +90,7 @@ public class Player extends AppCompatImageView {
         Log.i("VICTORY", "Player wins!");
     }
 
-    public void moveUp(View v) {
+    public void moveUp() {
         if (yStep == 0) {
             yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
             Log.i("INIT", "Step Height: " + yStep);
@@ -104,7 +104,7 @@ public class Player extends AppCompatImageView {
         }
     }
 
-    public void moveDown(View v) {
+    public void moveDown() {
         if (yStep == 0) {
             yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
             Log.i("INIT", "Step Height: " + yStep);
@@ -118,7 +118,7 @@ public class Player extends AppCompatImageView {
 
     }
 
-    public void moveLeft(View v) {
+    public void moveLeft() {
         if (xStep == 0) {
             xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
             Log.i("INIT", "Step Width: " + xStep);
@@ -131,7 +131,7 @@ public class Player extends AppCompatImageView {
         }
     }
 
-    public void moveRight(View v) {
+    public void moveRight() {
         if (xStep == 0) {
             xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
             Log.i("INIT", "Step Width: " + xStep);
