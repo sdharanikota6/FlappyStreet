@@ -23,7 +23,6 @@ public class VehicleRow extends GridView {
     public VehicleRow(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
         this.ctx = ctx;
-        this.init(Car.class, 3, 8);
         this.setNumColumns(7);
     }
 
@@ -33,7 +32,7 @@ public class VehicleRow extends GridView {
      * @param numVehicles the number of vehicles in this row
      * @param yPos the y position of this vehicle row (relative to the grid)
      */
-    public void init(Class<? extends Vehicle> vehicleType,
+    public VehicleRow init(Class<? extends Vehicle> vehicleType,
                            int numVehicles,
                            int yPos) {
         vehicles = new Vehicle[numVehicles];
@@ -47,11 +46,13 @@ public class VehicleRow extends GridView {
         }
         this.setAdapter(new RowAdapter(ctx, numVehicles, vehicles, vehicles[0].getSize()));
         backendSpacing = (GameLevel.NUM_COLUMNS - numVehicles) / numVehicles;
+        float spaceFloat = ((float) GameLevel.NUM_COLUMNS - numVehicles) / numVehicles;
         Point size = TileAdapter.getSize();
         int width = size.x / GameLevel.NUM_COLUMNS;
-        spacing = backendSpacing * width;
+        spacing = (int) (spaceFloat * width);
         int height = width * yPos;
         this.setY(height);
+        return this;
     }
 
     public void moveRow() {

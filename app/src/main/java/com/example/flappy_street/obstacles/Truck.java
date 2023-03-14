@@ -5,13 +5,13 @@ import android.content.Context;
 import com.example.flappy_street.R;
 import com.example.flappy_street.levels.GameLevel;
 
-public class Car extends Vehicle {
+public class Truck extends Vehicle {
 
-    private static final int STEPS_PER_TILE = 25;
+    private static final int STEPS_PER_TILE = 35;
 
-    public Car(Context context) {
+    public Truck(Context context) {
         super(context);
-        this.setImageResource(R.drawable.car);
+        this.setImageResource(R.drawable.truck);
         this.size = 1;
     }
 
@@ -19,11 +19,11 @@ public class Car extends Vehicle {
     public void move() {
         stepCount = (stepCount + 1) % STEPS_PER_TILE;
         if (stepCount == 0) {
-            this.setXPos((this.getXPos() + 1) % GameLevel.NUM_COLUMNS);
+            this.setXPos((this.getXPos() - 1) % GameLevel.NUM_COLUMNS);
         }
-        float newPos = this.getX() + (tileSize / STEPS_PER_TILE);
-        if (newPos % rightBound < newPos) {
-            this.setX(- this.getSize());
+        float newPos = this.getX() - (tileSize / STEPS_PER_TILE);
+        if (newPos % rightBound > newPos) {
+            this.setX(rightBound + this.getSize());
         } else {
             this.setX(newPos);
         }
