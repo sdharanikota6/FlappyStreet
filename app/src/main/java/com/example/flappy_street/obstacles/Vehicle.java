@@ -2,7 +2,6 @@ package com.example.flappy_street.obstacles;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.view.Display;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -14,8 +13,8 @@ public abstract class Vehicle extends AppCompatImageView {
     protected int xPos;
     protected int yPos;
     protected int size;
-    protected final float STEP_SIZE;
-    protected final float RIGHT_BOUND;
+    protected final float stepSize;
+    protected final float rightBound;
     protected static final float LEFT_BOUND = 0;
 
     /**
@@ -26,8 +25,8 @@ public abstract class Vehicle extends AppCompatImageView {
     public Vehicle(Context context) {
         super(context);
         Point size = TileAdapter.getSize();
-        STEP_SIZE = (float) size.x / GameLevel.NUM_COLUMNS;
-        RIGHT_BOUND = size.x;
+        stepSize = (float) size.x / GameLevel.NUM_COLUMNS;
+        rightBound = size.x;
     }
 
     public int getXPos() {

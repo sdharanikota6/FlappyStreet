@@ -2,13 +2,11 @@ package com.example.flappy_street.obstacles;
 
 import android.content.Context;
 
-import java.util.Timer;
-
 public class RoadThread extends Thread {
 
     private Context ctx;
     private VehicleRow[] rows;
-    boolean running;
+    private boolean running;
 
     public RoadThread(Context ctx, VehicleRow[] rows) {
         this.ctx = ctx;
