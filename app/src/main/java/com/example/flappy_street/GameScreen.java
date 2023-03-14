@@ -21,14 +21,6 @@ public class GameScreen extends AppCompatActivity {
 
     private int sprite;
     private Player player;
-    private Timer timer = new Timer();
-    private Handler handler = new Handler();
-    private DifficultyLevel difficulty;
-    private TextView highScore;
-    private TextView startingPoints;
-    private TextView displayLives;
-    private TextView playerName;
-
     TestBinding binding;
 
     @Override
@@ -45,16 +37,12 @@ public class GameScreen extends AppCompatActivity {
         setContentView(view);
         Intent intent = getIntent();
         String name = intent.getStringExtra(ConfigScreen.CHOSEN_NAME);
-        difficulty = (DifficultyLevel)
+        DifficultyLevel difficulty = (DifficultyLevel)
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_DIFFICULTY);
         SpriteChoice spriteString = (SpriteChoice)
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_SPRITE);
         findSprite(spriteString);
         player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
-        startingPoints = findViewById(R.id.displayStartingPoints);
-        displayLives = findViewById(R.id.displayStartingLives);
-        playerName = findViewById(R.id.displayPlayerName);
-        highScore = findViewById(R.id.displayHighScore);
         //Setting GameLevel, hopefully this will fix crashes
         GameLevel level = new GameLevel(getApplicationContext());
         player.setGameLevel(level);
@@ -71,19 +59,19 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void drawGame() {
-        String display = "Difficulty: " + difficulty;
+        String display;
 
         display = "Welcome " + player.getName();
-        playerName.setText(display);
+        binding.displayPlayerName.setText(display);
 
         display = "Lives: " + player.getLives();
-        displayLives.setText(display);
+        binding.displayStartingLives.setText(display);
 
         display = "Points: " + player.getScore();
-        startingPoints.setText(display);
+        binding.displayStartingPoints.setText(display);
 
         display = "High Score: " + player.getHighScore();
-        highScore.setText(display);
+        binding.displayHighScore.setText(display);
     }
 
     private void game() {

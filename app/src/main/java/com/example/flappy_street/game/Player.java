@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.flappy_street.databinding.TestBinding;
 import com.example.flappy_street.levels.GameLevel;
 
 public class Player extends AppCompatImageView {
@@ -22,6 +23,7 @@ public class Player extends AppCompatImageView {
     private int yPos;
     private double yStep;
     private double xStep;
+
 
     public Player(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
@@ -97,6 +99,7 @@ public class Player extends AppCompatImageView {
             setY(newY);
             currentLevel.getTile(yPos, xPos).step(this);
         }
+        highScore++;
 
     }
 
@@ -125,7 +128,6 @@ public class Player extends AppCompatImageView {
             setX(newX);
             currentLevel.getTile(yPos, xPos).step(this);
         }
-
     }
 
     public void moveRight(View v) {
