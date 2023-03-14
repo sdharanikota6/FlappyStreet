@@ -5,23 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.flappy_street.databinding.TestBinding;
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.game.SpriteChoice;
-
-import java.util.Timer;
+import com.example.flappy_street.obstacles.Car;
+import com.example.flappy_street.obstacles.RoadThread;
+import com.example.flappy_street.obstacles.Semi;
+import com.example.flappy_street.obstacles.Truck;
+import com.example.flappy_street.obstacles.VehicleRow;
 
 public class GameScreen extends AppCompatActivity {
 
     private int sprite;
     private Player player;
-    TestBinding binding;
+    private TestBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +88,17 @@ public class GameScreen extends AppCompatActivity {
         binding.displayHighScore.setText(display);
     }
 
+
     private void game() {
         updateGame();
         drawGame();
-        //set conditionals to move to other states underneath here.
+
+        VehicleRow[] vehicles = new VehicleRow[3];
+        vehicles[0] = ((VehicleRow) findViewById(R.id.carRow)).init(Car.class, 3, 8);
+        vehicles[1] = ((VehicleRow) findViewById(R.id.truckRow)).init(Truck.class, 2, 7);
+        vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow)).init(Semi.class, 1, 6);
+        RoadThread vehicleRun = new RoadThread(getApplicationContext(), vehicles);
+        new Thread(vehicleRun).start();
     }
 
     private void findSprite(SpriteChoice spriteString) {
