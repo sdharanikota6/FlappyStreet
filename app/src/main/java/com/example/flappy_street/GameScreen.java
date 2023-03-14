@@ -90,6 +90,7 @@ public class GameScreen extends AppCompatActivity {
 
         display = "High Score: " + player.getHighScore();
         binding.displayHighScore.setText(display);
+    }
 
 
     private void game() {
