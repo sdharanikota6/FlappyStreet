@@ -7,7 +7,6 @@ import android.widget.FrameLayout;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.example.flappy_street.databinding.TestBinding;
 import com.example.flappy_street.levels.GameLevel;
 
 public class Player extends AppCompatImageView {
