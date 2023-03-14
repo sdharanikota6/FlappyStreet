@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.flappy_street.databinding.TestBinding;
 import com.example.flappy_street.game.DifficultyLevel;
@@ -20,13 +18,11 @@ import com.example.flappy_street.obstacles.Semi;
 import com.example.flappy_street.obstacles.Truck;
 import com.example.flappy_street.obstacles.VehicleRow;
 
-import java.util.Timer;
-
 public class GameScreen extends AppCompatActivity {
 
     private int sprite;
     private Player player;
-    TestBinding binding;
+    private TestBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
