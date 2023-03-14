@@ -18,6 +18,7 @@ public class VehicleRow extends GridView {
     public VehicleRow(Context ctx) {
         super(ctx);
         this.ctx = ctx;
+        this.setNumColumns(7);
     }
 
     public VehicleRow(Context ctx, AttributeSet attrs) {

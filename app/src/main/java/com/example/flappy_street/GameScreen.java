@@ -12,6 +12,11 @@ import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.game.SpriteChoice;
+import com.example.flappy_street.obstacles.Car;
+import com.example.flappy_street.obstacles.RoadThread;
+import com.example.flappy_street.obstacles.Semi;
+import com.example.flappy_street.obstacles.Truck;
+import com.example.flappy_street.obstacles.VehicleRow;
 
 import java.util.Timer;
 
@@ -63,6 +68,13 @@ public class GameScreen extends AppCompatActivity {
         //Setting GameLevel, hopefully this will fix crashes
         GameLevel level = new GameLevel(getApplicationContext());
         player.setGameLevel(level);
+
+        VehicleRow[] vehicles = new VehicleRow[3];
+        vehicles[0] = ((VehicleRow) findViewById(R.id.carRow)).init(Car.class, 3, 8);
+        vehicles[1] = ((VehicleRow) findViewById(R.id.truckRow)).init(Truck.class, 2, 7);
+        vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow)).init(Semi.class, 1, 6);
+        RoadThread vehicleRun = new RoadThread(getApplicationContext(), vehicles);
+        new Thread(vehicleRun).start();
     }
 
     private void findSprite(SpriteChoice spriteString) {
