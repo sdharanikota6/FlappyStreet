@@ -12,7 +12,7 @@ public class Truck extends Vehicle {
     public Truck(Context context) {
         super(context);
         this.setImageResource(R.drawable.truck);
-        this.size = 1;
+        this.size = 2;
     }
 
     @Override

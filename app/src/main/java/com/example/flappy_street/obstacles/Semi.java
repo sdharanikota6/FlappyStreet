@@ -11,7 +11,7 @@ public class Semi extends Vehicle {
     public Semi(Context context) {
         super(context);
         this.setImageResource(R.drawable.truck);
-        this.size = 1;
+        this.size = 3;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class RowAdapter extends BaseAdapter {
                 .getDisplays()[0];
         display.getSize(screenSize);
         int length = screenSize.x * size / 7;
-        params = new ViewGroup.LayoutParams(9 * length / 10, length);
+        params = new ViewGroup.LayoutParams(9 * length / 10, length / size);
         this.vehicles = vehicles;
     }
 
