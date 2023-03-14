@@ -18,7 +18,7 @@ public class PlayerDifficultyUnitTest {
         DifficultyLevel easy = DifficultyLevel.EASY;
         String name = "Test";
         Player easyPlayer = new Player(ApplicationProvider.getApplicationContext());
-        easyPlayer.init(1, name, easy);
+        easyPlayer.init(0, name, easy);
         assertEquals(5, easyPlayer.getLives());
     }
 

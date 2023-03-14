@@ -20,7 +20,7 @@ public class GoalTileTest {
     @Test
     public void stepGoalTile() {
         Player player = new Player(ApplicationProvider.getApplicationContext());
-        player.init(1, "Sudeep", DifficultyLevel.EASY);
+        player.init(0, "Sudeep", DifficultyLevel.EASY);
         player.setScore(0);
         GoalTile goalTile = new GoalTile(ApplicationProvider.getApplicationContext());
         if (goalTile.step(player) == goalTile) {

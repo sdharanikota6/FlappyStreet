@@ -13,7 +13,7 @@ public class testHighScore {
 
     public void highScore() {
         Player player = new Player(ApplicationProvider.getApplicationContext());
-        player.init(1, "Sudeep", DifficultyLevel.EASY);
+        player.init(0, "Sudeep", DifficultyLevel.EASY);
         player.win();
         assertEquals(100, player.getHighScore());
     }

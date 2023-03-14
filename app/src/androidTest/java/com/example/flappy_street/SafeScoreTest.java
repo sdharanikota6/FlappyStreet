@@ -18,7 +18,7 @@ public class SafeScoreTest {
     @Test
     public void crossSafeIncrementsScore() {
         Player player = new Player(ApplicationProvider.getApplicationContext());
-        player.init(2, "gwu", DifficultyLevel.MEDIUM);
+        player.init(0, "gwu", DifficultyLevel.MEDIUM);
         int oldScore = player.getScore();
         RoadTile roadTile = new RoadTile(ApplicationProvider.getApplicationContext());
         roadTile.step(player);

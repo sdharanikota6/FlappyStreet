@@ -19,7 +19,7 @@ public class SafeTileTest {
     @Test
     public void stepOnSafeTile() {
         Player testPlayer = new Player(ApplicationProvider.getApplicationContext());
-        testPlayer.init(1, "Rober", DifficultyLevel.EASY);
+        testPlayer.init(0, "Rober", DifficultyLevel.EASY);
         int before = testPlayer.getLives();
         SafeTile safeTile = new SafeTile(ApplicationProvider.getApplicationContext());
         if (safeTile.step(testPlayer) == safeTile) {

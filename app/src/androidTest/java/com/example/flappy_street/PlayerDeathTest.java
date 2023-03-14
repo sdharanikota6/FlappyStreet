@@ -14,11 +14,11 @@ public class PlayerDeathTest {
     @Test
     public void deathDecreasesLives() {
         Player easy = new Player(ApplicationProvider.getApplicationContext());
-        easy.init(1, "a", DifficultyLevel.EASY);
+        easy.init(0, "a", DifficultyLevel.EASY);
         Player medium = new Player(ApplicationProvider.getApplicationContext());
-        medium.init(1, "b", DifficultyLevel.MEDIUM);
+        medium.init(0, "b", DifficultyLevel.MEDIUM);
         Player hard = new Player(ApplicationProvider.getApplicationContext());
-        hard.init(1, "c", DifficultyLevel.HARD);
+        hard.init(0, "c", DifficultyLevel.HARD);
 
         assertEquals(easy.getLives(), 5);
         assertEquals(medium.getLives(), 3);

@@ -48,7 +48,7 @@ public class Player extends AppCompatImageView {
         yPos = GameLevel.NUM_ROWS - 1;
 
         parentFrame = (FrameLayout) this.getParent();
-        Log.i("INIT", parentFrame.toString());
+        //Log.i("INIT", parentFrame.toString());
 
         return this;
     }
