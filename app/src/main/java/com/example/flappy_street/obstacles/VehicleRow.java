@@ -32,6 +32,7 @@ public class VehicleRow extends GridView {
      * @param vehicleType the class of the vehicle to generate
      * @param numVehicles the number of vehicles in this row
      * @param yPos the y position of this vehicle row (relative to the grid)
+     * @return a reference to this object
      */
     public VehicleRow init(Class<? extends Vehicle> vehicleType,
                            int numVehicles,

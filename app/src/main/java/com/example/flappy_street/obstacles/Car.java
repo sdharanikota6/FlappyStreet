@@ -23,7 +23,7 @@ public class Car extends Vehicle {
         }
         float newPos = this.getX() + (tileSize / STEPS_PER_TILE);
         if (newPos % rightBound < newPos) {
-            this.setX(- this.getSize());
+            this.setX(-this.getSize());
         } else {
             this.setX(newPos);
         }
