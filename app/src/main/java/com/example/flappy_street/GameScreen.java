@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.TextView;
 
+import com.example.flappy_street.databinding.TestBinding;
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
@@ -19,12 +21,20 @@ public class GameScreen extends AppCompatActivity {
 
     private int sprite;
     private Player player;
-    private Timer timer = new Timer();
-    private Handler handler = new Handler();
+    TestBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initialize();
+        game();
+    }
+
+    private void initialize() {
+//        setContentView(R.layout.test);
+        binding = binding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         Intent intent = getIntent();
         String name = intent.getStringExtra(ConfigScreen.CHOSEN_NAME);
         DifficultyLevel difficulty = (DifficultyLevel)
@@ -32,23 +42,13 @@ public class GameScreen extends AppCompatActivity {
         SpriteChoice spriteString = (SpriteChoice)
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_SPRITE);
         findSprite(spriteString);
-        setContentView(R.layout.test);
         player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
-        String display = "Difficulty: " + difficulty;
+        //Setting GameLevel, hopefully this will fix crashes
+        GameLevel level = new GameLevel(getApplicationContext());
+        player.setGameLevel(level);
+    }
 
-        TextView startingPoints = findViewById(R.id.displayStartingPoints);
-        display = "Points: " + player.getScore();
-        startingPoints.setText(display);
-
-        TextView displayLives = findViewById(R.id.displayStartingLives);
-        display = "Lives: " + player.getLives();
-        displayLives.setText(display);
-
-        TextView playerName = findViewById(R.id.displayPlayerName);
-        display = "Welcome " + player.getName();
-        playerName.setText(display);
-
-        TextView highScore = findViewById(R.id.displayHighScore);
+    private void updateGame() {
         if (player.getScore() > player.getHighScore()) {
             player.setHighScore(player.getScore());
         }
@@ -60,13 +60,32 @@ public class GameScreen extends AppCompatActivity {
             player.moveUp(v);
             updateScoreText(startingPoints);
         });
+
         findViewById(R.id.moveDOWN).setOnClickListener(player::moveDown);
         findViewById(R.id.moveLEFT).setOnClickListener(player::moveLeft);
         findViewById(R.id.moveRIGHT).setOnClickListener(player::moveRight);
+    }
 
-        //Setting GameLevel, hopefully this will fix crashes
-        GameLevel level = new GameLevel(getApplicationContext());
-        player.setGameLevel(level);
+    private void drawGame() {
+        String display;
+
+        display = "Welcome " + player.getName();
+        binding.displayPlayerName.setText(display);
+
+        display = "Lives: " + player.getLives();
+        binding.displayStartingLives.setText(display);
+
+        display = "Points: " + player.getScore();
+        binding.displayStartingPoints.setText(display);
+
+        display = "High Score: " + player.getHighScore();
+        binding.displayHighScore.setText(display);
+    }
+
+    private void game() {
+        updateGame();
+        drawGame();
+        //set conditionals to move to other states underneath here.
     }
 
     private void findSprite(SpriteChoice spriteString) {
