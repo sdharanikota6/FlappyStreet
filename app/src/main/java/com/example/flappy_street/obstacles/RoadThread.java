@@ -7,7 +7,6 @@ import java.util.Timer;
 public class RoadThread extends Thread {
 
     private Context ctx;
-    private Timer timer = new Timer();
     private VehicleRow[] rows;
     boolean running;
 
@@ -18,6 +17,9 @@ public class RoadThread extends Thread {
 
     public void run() {
         running = true;
+        for (VehicleRow row : rows) {
+            row.setPositions();
+        }
         while (running) {
             for (VehicleRow row : rows) {
                 row.moveRow();
