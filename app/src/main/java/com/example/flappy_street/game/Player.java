@@ -3,7 +3,6 @@ package com.example.flappy_street.game;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.widget.AppCompatImageView;
@@ -78,7 +77,9 @@ public class Player extends AppCompatImageView {
     }
 
     public void setHighScore(int newHighScore) {
-        this.highScore = newHighScore;
+        if (newHighScore > highScore) {
+            this.highScore = newHighScore;
+        }
     }
 
     /**

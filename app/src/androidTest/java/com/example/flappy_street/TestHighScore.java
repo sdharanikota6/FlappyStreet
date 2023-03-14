@@ -9,12 +9,14 @@ import com.example.flappy_street.game.Player;
 
 import org.junit.Test;
 
-public class testHighScore {
+public class TestHighScore {
 
+    @Test
     public void highScore() {
         Player player = new Player(ApplicationProvider.getApplicationContext());
         player.init(0, "Sudeep", DifficultyLevel.EASY);
         player.win();
+        player.setHighScore(player.getScore());
         assertEquals(100, player.getHighScore());
     }
 }

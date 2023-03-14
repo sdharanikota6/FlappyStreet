@@ -3,9 +3,12 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import static org.junit.Assert.assertEquals;
+
+import com.example.flappy_street.obstacles.Truck;
+
 import org.junit.Test;
 
-public class vehicleMovesCorrectlyTest {
+public class TruckMovesCorrectlyTest {
     @Test
     public void yPosStaysTheSame() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
