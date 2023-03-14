@@ -31,7 +31,6 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void initialize() {
-//        setContentView(R.layout.test);
         binding = binding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
@@ -52,18 +51,24 @@ public class GameScreen extends AppCompatActivity {
         if (player.getScore() > player.getHighScore()) {
             player.setHighScore(player.getScore());
         }
-        display = "High Score: " + player.getHighScore();
-        highScore.setText(display);
 
         //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
         findViewById(R.id.moveUP).setOnClickListener((v) -> {
             player.moveUp(v);
-            updateScoreText(startingPoints);
+            drawGame();
         });
-
-        findViewById(R.id.moveDOWN).setOnClickListener(player::moveDown);
-        findViewById(R.id.moveLEFT).setOnClickListener(player::moveLeft);
-        findViewById(R.id.moveRIGHT).setOnClickListener(player::moveRight);
+        findViewById(R.id.moveDOWN).setOnClickListener((v) -> {
+            player.moveDown(v);
+            drawGame();
+        });
+        findViewById(R.id.moveLEFT).setOnClickListener((v) -> {
+            player.moveLeft(v);
+            drawGame();
+        });
+        findViewById(R.id.moveRIGHT).setOnClickListener((v) -> {
+            player.moveRight(v);
+            drawGame();
+        });
     }
 
     private void drawGame() {
@@ -98,10 +103,6 @@ public class GameScreen extends AppCompatActivity {
         }
     }
 
-    private void updateScoreText(TextView points) {
-        String display = "Points: " + player.getScore();
-        points.setText(display);
-    }
 
     public float getPosX() {
         return player.getX();
