@@ -1,6 +1,7 @@
 package com.example.flappy_street.obstacles;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.flappy_street.R;
 import com.example.flappy_street.levels.GameLevel;
@@ -22,8 +23,10 @@ public class Truck extends Vehicle {
             this.setXPos((this.getXPos() - 1) % GameLevel.NUM_COLUMNS);
         }
         float newPos = this.getX() - (tileSize / STEPS_PER_TILE);
-        if (newPos % rightBound > newPos) {
-            this.setX(rightBound + this.getSize());
+        if (newPos < (-getWidth())) {
+            Log.i("POSITION", String.format("Reached position %f, looping", newPos));
+            this.setX(rightBound);
+            Log.i("POSITION", "Looping! Position " + getXPos());
         } else {
             this.setX(newPos);
         }

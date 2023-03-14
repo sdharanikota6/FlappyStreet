@@ -10,7 +10,7 @@ public class Semi extends Vehicle {
 
     public Semi(Context context) {
         super(context);
-        this.setImageResource(R.drawable.truck);
+        this.setImageResource(R.drawable.semi);
         this.size = 3;
     }
 
@@ -22,7 +22,7 @@ public class Semi extends Vehicle {
         }
         float newPos = this.getX() + (tileSize / STEPS_PER_TILE);
         if (newPos % rightBound < newPos) {
-            this.setX(LEFT_BOUND - this.getSize());
+            this.setX(LEFT_BOUND - this.getWidth());
         } else {
             this.setX(newPos);
         }
