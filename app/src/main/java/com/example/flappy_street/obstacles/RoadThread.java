@@ -23,7 +23,7 @@ public class RoadThread extends Thread {
                 row.moveRow();
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(14);
             } catch (InterruptedException ie) {
                 break;
             }

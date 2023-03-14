@@ -14,7 +14,11 @@ public class Car extends Vehicle {
 
     @Override
     public void move() {
-        this.setXPos(this.getXPos() + 1);
-        this.setX((this.getX() + stepSize) % rightBound);
+        stepCount = (stepCount + 1) % STEPS_PER_TILE;
+        if (stepCount == 0) {
+            this.setXPos(this.getXPos() + 1);
+        }
+        float stepSize = this.getX() + (tileSize / STEPS_PER_TILE);
+        this.setX(stepSize % rightBound);
     }
 }

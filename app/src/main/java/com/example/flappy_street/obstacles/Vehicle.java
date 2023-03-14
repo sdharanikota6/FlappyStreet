@@ -13,9 +13,11 @@ public abstract class Vehicle extends AppCompatImageView {
     protected int xPos;
     protected int yPos;
     protected int size;
-    protected final float stepSize;
+    protected int stepCount;
+    protected final float tileSize;
     protected final float rightBound;
     protected static final float LEFT_BOUND = 0;
+    protected static final int STEPS_PER_TILE = 20;
 
     /**
      * Create a new vehicle.
@@ -25,7 +27,7 @@ public abstract class Vehicle extends AppCompatImageView {
     public Vehicle(Context context) {
         super(context);
         Point size = TileAdapter.getSize();
-        stepSize = (float) size.x / GameLevel.NUM_COLUMNS;
+        tileSize = (float) size.x / GameLevel.NUM_COLUMNS;
         rightBound = size.x;
     }
 
