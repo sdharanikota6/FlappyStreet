@@ -52,7 +52,15 @@ public class GameScreen extends AppCompatActivity {
         if (player.getScore() > player.getHighScore()) {
             player.setHighScore(player.getScore());
         }
-        findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
+        display = "High Score: " + player.getHighScore();
+        highScore.setText(display);
+
+        //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
+        findViewById(R.id.moveUP).setOnClickListener((v) -> {
+            player.moveUp(v);
+            updateScoreText(startingPoints);
+        });
+
         findViewById(R.id.moveDOWN).setOnClickListener(player::moveDown);
         findViewById(R.id.moveLEFT).setOnClickListener(player::moveLeft);
         findViewById(R.id.moveRIGHT).setOnClickListener(player::moveRight);
@@ -88,7 +96,11 @@ public class GameScreen extends AppCompatActivity {
         } else {
             sprite = R.drawable.sprite3;
         }
+    }
 
+    private void updateScoreText(TextView points) {
+        String display = "Points: " + player.getScore();
+        points.setText(display);
     }
 
     public float getPosX() {

@@ -93,4 +93,15 @@ public class GameLevel extends GridView {
             tileArray[9][i] = new SafeTile(ctx);
         }
     }
+
+    /**
+     * Sets all tiles in a row to stepped for scoring purposes.
+     *
+     * @param yPos the row to set
+     */
+    public void setRowStepped(int yPos) {
+        for (int i = 0; i < NUM_COLUMNS; i++) {
+            tileArray[yPos][i].setStepped(true);
+        }
+    }
 }

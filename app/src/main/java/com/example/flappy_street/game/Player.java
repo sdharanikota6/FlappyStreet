@@ -29,6 +29,10 @@ public class Player extends AppCompatImageView {
         super(ctx, attrs);
     }
 
+    public Player(Context ctx) {
+        super(ctx);
+    }
+
 
     public Player init(int sprite, String name, DifficultyLevel difficulty) {
         this.setImageResource(sprite);
@@ -98,6 +102,7 @@ public class Player extends AppCompatImageView {
             float newY =  (float) (getY() - yStep);
             setY(newY);
             currentLevel.getTile(yPos, xPos).step(this);
+            currentLevel.setRowStepped(yPos);
         }
         highScore++;
 
