@@ -8,7 +8,7 @@ import com.example.flappy_street.obstacles.Car;
 
 import org.junit.Test;
 
-public class CarMovementTest {
+public class MovementCarTest {
     @Test
     public void yPosStaysTheSame() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();

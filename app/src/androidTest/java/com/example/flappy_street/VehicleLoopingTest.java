@@ -11,7 +11,7 @@ import com.example.flappy_street.obstacles.Truck;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class vehicleLoopingTest {
+public class VehicleLoopingTest {
     @Test
     public void ensureVehicleRespawn() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
