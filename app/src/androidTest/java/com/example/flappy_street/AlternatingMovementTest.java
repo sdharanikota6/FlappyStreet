@@ -26,7 +26,7 @@ public class AlternatingMovementTest {
         for (int i = 0; i < 35; i++) {
             truck.move();
         }
-        for (int i = 0; i < 35; i++) {
+        for (int i = 0; i < 50; i++) {
             semi.move();
         }
         for (int i = 0; i < 25; i++) {
