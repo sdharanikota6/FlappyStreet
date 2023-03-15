@@ -3,10 +3,10 @@ package com.example.flappy_street.game;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.widget.AppCompatImageView;
+
 import com.example.flappy_street.levels.GameLevel;
 
 public class Player extends AppCompatImageView {
@@ -21,7 +21,6 @@ public class Player extends AppCompatImageView {
     private int yPos;
     private double yStep;
     private double xStep;
-
 
     public Player(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
@@ -46,10 +45,7 @@ public class Player extends AppCompatImageView {
         }
         xPos = GameLevel.NUM_COLUMNS / 2;
         yPos = GameLevel.NUM_ROWS - 1;
-
         parentFrame = (FrameLayout) this.getParent();
-        Log.i("INIT", parentFrame.toString());
-
         return this;
     }
 
@@ -74,7 +70,9 @@ public class Player extends AppCompatImageView {
     }
 
     public void setHighScore(int newHighScore) {
-        this.highScore = newHighScore;
+        if (newHighScore > highScore) {
+            this.highScore = newHighScore;
+        }
     }
 
     /**
@@ -90,58 +88,110 @@ public class Player extends AppCompatImageView {
         Log.i("VICTORY", "Player wins!");
     }
 
-    public void moveUp(View v) {
-        if (yStep == 0) {
-            yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
-            Log.i("INIT", "Step Height: " + yStep);
-        }
-        if (yPos > 0) {
-            yPos--;
-            float newY =  (float) (getY() - yStep);
-            setY(newY);
-            currentLevel.getTile(yPos, xPos).step(this);
-            currentLevel.setRowStepped(yPos);
-        }
-    }
-
-    public void moveDown(View v) {
-        if (yStep == 0) {
-            yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
-            Log.i("INIT", "Step Height: " + yStep);
-        }
-        if (yPos < GameLevel.NUM_ROWS - 1) {
-            yPos++;
-            float newY =  (float) (getY() + yStep);
-            setY(newY);
-            currentLevel.getTile(yPos, xPos).step(this);
-        }
-
-    }
-
-    public void moveLeft(View v) {
-        if (xStep == 0) {
-            xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
-            Log.i("INIT", "Step Width: " + xStep);
-        }
-        if (xPos > 0) {
-            xPos--;
-            float newX =  (float) (getX() - xStep);
-            setX(newX);
-            currentLevel.getTile(yPos, xPos).step(this);
+    /**
+     * Added checks for parentsFrame in order to complete testing of movement.
+     */
+    public void moveUp() {
+        if (parentFrame != null) {
+            if (yStep == 0) {
+                yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
+                Log.i("INIT", "Step Height: " + yStep);
+            }
+            if (yPos > 0) {
+                yPos--;
+                float newY =  (float) (getY() - yStep);
+                setY(newY);
+                currentLevel.getTile(yPos, xPos).step(this);
+                currentLevel.setRowStepped(yPos);
+            }
+        } else {
+            if (yStep == 0) {
+                yStep = 100 / (double) GameLevel.NUM_ROWS;
+                Log.i("INIT", "Step Height: " + yStep);
+            }
+            if (yPos > 0) {
+                yPos--;
+                float newY =  (float) (getY() - yStep);
+                setY(newY);
+            }
         }
     }
 
-    public void moveRight(View v) {
-        if (xStep == 0) {
-            xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
-            Log.i("INIT", "Step Width: " + xStep);
+    public void moveDown() {
+        if (parentFrame != null) {
+            if (yStep == 0) {
+                yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
+                Log.i("INIT", "Step Height: " + yStep);
+            }
+            if (yPos < GameLevel.NUM_ROWS - 1) {
+                yPos++;
+                float newY =  (float) (getY() + yStep);
+                setY(newY);
+                currentLevel.getTile(yPos, xPos).step(this);
+            }
+
+        } else {
+            if (yStep == 0) {
+                yStep = 100 / (double) GameLevel.NUM_ROWS;
+                Log.i("INIT", "Step Height: " + yStep);
+            }
+            if (yPos < GameLevel.NUM_ROWS - 1) {
+                yPos++;
+                float newY =  (float) (getY() + yStep);
+                setY(newY);
+            }
         }
-        if (xPos < GameLevel.NUM_COLUMNS - 1) {
-            xPos++;
-            float newX =  (float) (getX() + xStep);
-            setX(newX);
-            currentLevel.getTile(yPos, xPos).step(this);
+    }
+
+    public void moveLeft() {
+        if (parentFrame != null) {
+            if (xStep == 0) {
+                xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+                Log.i("INIT", "Step Width: " + xStep);
+            }
+            if (xPos > 0) {
+                xPos--;
+                float newX =  (float) (getX() - xStep);
+                setX(newX);
+                currentLevel.getTile(yPos, xPos).step(this);
+            }
+        } else {
+            if (xStep == 0) {
+                xStep = 100 / (double) GameLevel.NUM_COLUMNS;
+                Log.i("INIT", "Step Width: " + xStep);
+            }
+            if (xPos > 0) {
+                xPos--;
+                float newX =  (float) (getX() - xStep);
+                setX(newX);
+            }
         }
+    }
+
+    public void moveRight() {
+        if (parentFrame != null) {
+            if (xStep == 0) {
+                xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+                Log.i("INIT", "Step Width: " + xStep);
+            }
+            if (xPos < GameLevel.NUM_COLUMNS - 1) {
+                xPos++;
+                float newX =  (float) (getX() + xStep);
+                setX(newX);
+                currentLevel.getTile(yPos, xPos).step(this);
+            }
+        } else {
+            if (xStep == 0) {
+                xStep = 100 / (double) GameLevel.NUM_COLUMNS;
+                Log.i("INIT", "Step Width: " + xStep);
+            }
+            if (xPos < GameLevel.NUM_COLUMNS - 1) {
+                xPos++;
+                float newX =  (float) (getX() + xStep);
+                setX(newX);
+            }
+        }
+
     }
 
     /**

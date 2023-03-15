@@ -55,19 +55,19 @@ public class GameScreen extends AppCompatActivity {
 
         //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
         findViewById(R.id.moveUP).setOnClickListener((v) -> {
-            player.moveUp(v);
+            player.moveUp();
             drawGame();
         });
         findViewById(R.id.moveDOWN).setOnClickListener((v) -> {
-            player.moveDown(v);
+            player.moveDown();
             drawGame();
         });
         findViewById(R.id.moveLEFT).setOnClickListener((v) -> {
-            player.moveLeft(v);
+            player.moveLeft();
             drawGame();
         });
         findViewById(R.id.moveRIGHT).setOnClickListener((v) -> {
-            player.moveRight(v);
+            player.moveRight();
             drawGame();
         });
     }
