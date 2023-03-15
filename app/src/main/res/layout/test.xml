@@ -134,7 +134,7 @@
             android:layout_column="4"
             android:fontFamily="monospace"
             android:text="@string/lives"
-            android:textColor="#FFBB86FC"
+            android:textColor="#F43636"
             android:textColorHint="#808080"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +147,7 @@
             android:layout_column="4"
             android:fontFamily="monospace"
             android:text="@string/starting_points"
-            android:textColor="#FFBB86FC"
+            android:textColor="#FFF43636"
             android:textColorHint="#808080"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -160,7 +160,7 @@
             android:layout_column="0"
             android:fontFamily="monospace"
             android:text="@string/high_score"
-            android:textColor="#FFBB86FC"
+            android:textColor="#FFF43636"
             android:textColorHint="#808080"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
