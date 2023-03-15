@@ -11,7 +11,7 @@ import com.example.flappy_street.levels.GameLevel;
 
 import org.junit.Test;
 
-public class GameLevelTest {
+public class AAGameLevelTest {
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void ensureCorrectSize() {
