@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.flappy_street.R;
 
 public class Semi extends Vehicle {
-    private static final int STEPS_PER_TILE = 35;
+    private static final int STEPS_PER_TILE = 50;
 
     public Semi(Context context) {
         super(context);
