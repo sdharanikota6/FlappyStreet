@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import com.example.flappy_street.databinding.TestBinding;
@@ -18,11 +19,16 @@ import com.example.flappy_street.obstacles.Semi;
 import com.example.flappy_street.obstacles.Truck;
 import com.example.flappy_street.obstacles.VehicleRow;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class GameScreen extends AppCompatActivity {
 
     private int sprite;
     private Player player;
     private TestBinding binding;
+    private Timer timer = new Timer();
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +62,15 @@ public class GameScreen extends AppCompatActivity {
         //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
         findViewById(R.id.moveUP).setOnClickListener((v) -> {
             player.moveUp();
-            drawGame();
         });
         findViewById(R.id.moveDOWN).setOnClickListener((v) -> {
             player.moveDown();
-            drawGame();
         });
         findViewById(R.id.moveLEFT).setOnClickListener((v) -> {
             player.moveLeft();
-            drawGame();
         });
         findViewById(R.id.moveRIGHT).setOnClickListener((v) -> {
             player.moveRight();
-            drawGame();
         });
     }
 
@@ -90,8 +92,6 @@ public class GameScreen extends AppCompatActivity {
 
 
     private void game() {
-        updateGame();
-        drawGame();
 
         VehicleRow[] vehicles = new VehicleRow[3];
         vehicles[0] = ((VehicleRow) findViewById(R.id.carRow)).init(Car.class, 3, 8);
@@ -99,6 +99,20 @@ public class GameScreen extends AppCompatActivity {
         vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow)).init(Semi.class, 1, 6);
         RoadThread vehicleRun = new RoadThread(getApplicationContext(), vehicles);
         new Thread(vehicleRun).start();
+
+        timer.schedule((new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateGame();
+                        drawGame();
+                    }
+                });
+            }
+        }), 0, 20);
+
     }
 
     private void findSprite(SpriteChoice spriteString) {
