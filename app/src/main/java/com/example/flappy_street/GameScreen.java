@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
+import android.widget.TextView;
 
-import com.example.flappy_street.databinding.TestBinding;
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
@@ -26,9 +25,9 @@ public class GameScreen extends AppCompatActivity {
 
     private int sprite;
     private Player player;
-    private TestBinding binding;
-    private Timer timer = new Timer();
-    private Handler handler = new Handler();
+    private final Timer timer = new Timer();
+    private final Handler handler = new Handler();
+    private RoadThread vehicleRun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,7 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void initialize() {
-        binding = binding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+        setContentView(R.layout.test);
         Intent intent = getIntent();
         String name = intent.getStringExtra(ConfigScreen.CHOSEN_NAME);
         DifficultyLevel difficulty = (DifficultyLevel)
@@ -49,6 +46,15 @@ public class GameScreen extends AppCompatActivity {
                 intent.getSerializableExtra(ConfigScreen.CHOSEN_SPRITE);
         findSprite(spriteString);
         player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
+        VehicleRow[] vehicles = new VehicleRow[3];
+        vehicles[0] = ((VehicleRow)
+                findViewById(R.id.carRow)).init(Car.class, 3, 8);
+        vehicles[1] = ((VehicleRow)
+                findViewById(R.id.truckRow)).init(Truck.class, 2, 7);
+        vehicles[2] = ((VehicleRow)
+                findViewById(R.id.semiRow)).init(Semi.class, 1, 6);
+        vehicleRun = new RoadThread(getApplicationContext(), vehicles);
+        new Thread(vehicleRun).start();
         //Setting GameLevel, hopefully this will fix crashes
         GameLevel level = new GameLevel(getApplicationContext());
         player.setGameLevel(level);
@@ -58,6 +64,7 @@ public class GameScreen extends AppCompatActivity {
         if (player.getScore() > player.getHighScore()) {
             player.setHighScore(player.getScore());
         }
+
 
         //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
         findViewById(R.id.moveUP).setOnClickListener((v) -> {
@@ -76,43 +83,48 @@ public class GameScreen extends AppCompatActivity {
 
     private void drawGame() {
         String display;
+        TextView startingPoints = findViewById(R.id.displayStartingPoints);
+        TextView displayLives = findViewById(R.id.displayStartingLives);
+        TextView playerName = findViewById(R.id.displayPlayerName);
+        TextView highScore = findViewById(R.id.displayHighScore);
 
         display = "Welcome " + player.getName();
-        binding.displayPlayerName.setText(display);
+        playerName.setText(display);
 
         display = "Lives: " + player.getLives();
-        binding.displayStartingLives.setText(display);
+        displayLives.setText(display);
 
         display = "Points: " + player.getScore();
-        binding.displayStartingPoints.setText(display);
+        startingPoints.setText(display);
 
         display = "High Score: " + player.getHighScore();
-        binding.displayHighScore.setText(display);
+        highScore.setText(display);
     }
 
 
     private void game() {
-
-        VehicleRow[] vehicles = new VehicleRow[3];
-        vehicles[0] = ((VehicleRow) findViewById(R.id.carRow)).init(Car.class, 3, 8);
-        vehicles[1] = ((VehicleRow) findViewById(R.id.truckRow)).init(Truck.class, 2, 7);
-        vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow)).init(Semi.class, 1, 6);
-        RoadThread vehicleRun = new RoadThread(getApplicationContext(), vehicles);
-        new Thread(vehicleRun).start();
-
-        timer.schedule((new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateGame();
-                        drawGame();
-                    }
-                });
-            }
-        }), 0, 20);
-
+        if (player.getLives() >= 0) {
+            timer.schedule((new TimerTask() {
+                @Override
+                public void run() {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (player.getLives() > 0) {
+                                updateGame();
+                                drawGame();
+                            } else {
+                                vehicleRun.stopRows();
+                                timer.cancel();
+                                Intent intent = new Intent(getApplicationContext(),
+                                ResultActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                }
+            }), 0, 20);
+        }
     }
 
     private void findSprite(SpriteChoice spriteString) {
