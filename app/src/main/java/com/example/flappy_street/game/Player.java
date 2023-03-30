@@ -109,6 +109,10 @@ public class Player extends AppCompatImageView {
         }
         setY((float) (getY() - ((yStep)*yDis)));
         setX((float) (getX() - ((xStep)*xDis)));
+        //Reset rows to unstepped
+        for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
+            currentLevel.setRowUnstepped(i);
+        }
     }
 
     /**
