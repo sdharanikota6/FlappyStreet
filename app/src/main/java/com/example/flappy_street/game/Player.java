@@ -21,7 +21,7 @@ public class Player extends AppCompatImageView {
     private int yPos;
     private double yStep;
     private double xStep;
-    private int[] lastSafePos; // {x, y}
+    private final int[] startingPos = {GameLevel.NUM_COLUMNS / 2, GameLevel.NUM_ROWS - 1}; // {x, y}
 
     public Player(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
@@ -80,23 +80,13 @@ public class Player extends AppCompatImageView {
      * @return lives remaining after death
      */
     public int die() {
-        if (lives - 1 ==0) {
+        if (lives - 1 == 0) {
             //TODO game over process
         }
         this.setScore(0); //Reset score to 0
         //TODO die animation?
-        while (xPos > lastSafePos[0]) {
-            moveLeft();
-        }
-        while (xPos < lastSafePos[0]) {
-            moveRight();
-        }
-        while (yPos > lastSafePos[1]) {
-            moveUp();
-        }
-        while (yPos < lastSafePos[1]) {
-            moveDown();
-        }
+        //TODO go back to starting pos
+        this.resetPos();;
         return --lives;
 
     }
@@ -104,6 +94,21 @@ public class Player extends AppCompatImageView {
     public void win() {
         score += 100;
         Log.i("VICTORY", "Player wins!");
+    }
+
+    public void resetPos() {
+        int yDis = yPos - startingPos[1];
+        int xDis = xPos - startingPos[0];
+        yPos = startingPos[1];
+        xPos = startingPos[0];
+        if (yStep == 0) {
+            yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
+        }
+        if (xStep == 0) {
+            xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+        }
+        setY((float) (getY() - ((yStep)*yDis)));
+        setX((float) (getX() - ((xStep)*xDis)));
     }
 
     /**
@@ -219,13 +224,5 @@ public class Player extends AppCompatImageView {
      */
     public void setGameLevel(GameLevel gameLevel) {
         this.currentLevel = gameLevel;
-    }
-
-    public void setLastSafePos(int[] pos) {
-        this.lastSafePos = pos;
-    }
-
-    public int[] getCurrPosition() {
-        return new int[]{xPos, yPos};
     }
 }
