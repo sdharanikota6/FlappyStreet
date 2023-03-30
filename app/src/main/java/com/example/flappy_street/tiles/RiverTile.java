@@ -35,6 +35,8 @@ public class RiverTile extends GameTile {
         this.stepped = true;
         if (!covered) {
             player.die();
+        } else {
+            player.setLastSafePos(player.getCurrPosition());
         }
         return this;
     }

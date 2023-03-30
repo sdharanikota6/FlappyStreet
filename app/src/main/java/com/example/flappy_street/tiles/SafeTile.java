@@ -26,6 +26,7 @@ public class SafeTile extends GameTile {
      */
     @Override
     public GameTile step(Player stepped) {
+        stepped.setLastSafePos(stepped.getCurrPosition());
         return this;
     }
 }

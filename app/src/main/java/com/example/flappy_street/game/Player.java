@@ -21,6 +21,7 @@ public class Player extends AppCompatImageView {
     private int yPos;
     private double yStep;
     private double xStep;
+    private int[] lastSafePos; // {x, y}
 
     public Player(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
@@ -29,7 +30,6 @@ public class Player extends AppCompatImageView {
     public Player(Context ctx) {
         super(ctx);
     }
-
 
     public Player init(int sprite, String name, DifficultyLevel difficulty) {
         this.setImageResource(sprite);
@@ -80,7 +80,25 @@ public class Player extends AppCompatImageView {
      * @return lives remaining after death
      */
     public int die() {
+        if (lives - 1 ==0) {
+            //TODO game over process
+        }
+        this.setScore(0); //Reset score to 0
+        //TODO die animation?
+        while (xPos > lastSafePos[0]) {
+            moveLeft();
+        }
+        while (xPos < lastSafePos[0]) {
+            moveRight();
+        }
+        while (yPos > lastSafePos[1]) {
+            moveUp();
+        }
+        while (yPos < lastSafePos[1]) {
+            moveDown();
+        }
         return --lives;
+
     }
 
     public void win() {
@@ -201,5 +219,13 @@ public class Player extends AppCompatImageView {
      */
     public void setGameLevel(GameLevel gameLevel) {
         this.currentLevel = gameLevel;
+    }
+
+    public void setLastSafePos(int[] pos) {
+        this.lastSafePos = pos;
+    }
+
+    public int[] getCurrPosition() {
+        return new int[]{xPos, yPos};
     }
 }
