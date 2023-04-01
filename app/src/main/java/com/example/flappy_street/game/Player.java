@@ -21,6 +21,7 @@ public class Player extends AppCompatImageView {
     private int yPos;
     private double yStep;
     private double xStep;
+    private final int[] startingPos = {GameLevel.NUM_COLUMNS / 2, GameLevel.NUM_ROWS - 1}; // {x, y}
 
     public Player(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
@@ -29,7 +30,6 @@ public class Player extends AppCompatImageView {
     public Player(Context ctx) {
         super(ctx);
     }
-
 
     public Player init(int sprite, String name, DifficultyLevel difficulty) {
         this.setImageResource(sprite);
@@ -80,12 +80,39 @@ public class Player extends AppCompatImageView {
      * @return lives remaining after death
      */
     public int die() {
+        if (lives - 1 == 0) {
+            //TODO game over process
+        }
+        this.setScore(0); //Reset score to 0
+        //TODO die animation?
+        //TODO go back to starting pos
+        this.resetPos();;
         return --lives;
+
     }
 
     public void win() {
         score += 100;
         Log.i("VICTORY", "Player wins!");
+    }
+
+    public void resetPos() {
+        int yDis = yPos - startingPos[1];
+        int xDis = xPos - startingPos[0];
+        yPos = startingPos[1];
+        xPos = startingPos[0];
+        if (yStep == 0) {
+            yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
+        }
+        if (xStep == 0) {
+            xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+        }
+        setY((float) (getY() - ((yStep)*yDis)));
+        setX((float) (getX() - ((xStep)*xDis)));
+        //Reset rows to unstepped
+        for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
+            currentLevel.setRowUnstepped(i);
+        }
     }
 
     /**
