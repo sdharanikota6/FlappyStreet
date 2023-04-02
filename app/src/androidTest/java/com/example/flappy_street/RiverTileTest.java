@@ -28,6 +28,4 @@ public class RiverTileTest {
             assertEquals(before - 1, testPlayer.getLives());
         }
     }
-
-
 }

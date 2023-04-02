@@ -101,17 +101,28 @@ public class Player extends AppCompatImageView {
         int xDis = xPos - startingPos[0];
         yPos = startingPos[1];
         xPos = startingPos[0];
-        if (yStep == 0) {
-            yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
-        }
-        if (xStep == 0) {
-            xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+        if (parentFrame != null) {
+            if (yStep == 0) {
+                yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
+            }
+            if (xStep == 0) {
+                xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+            }
+        } else {
+            if (yStep == 0) {
+                yStep = 100 / (double) GameLevel.NUM_ROWS;
+            }
+            if (xStep == 0) {
+                xStep = 100 / (double) GameLevel.NUM_COLUMNS;
+            }
         }
         setY((float) (getY() - ((yStep)*yDis)));
         setX((float) (getX() - ((xStep)*xDis)));
         //Reset rows to unstepped
-        for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
-            currentLevel.setRowUnstepped(i);
+        if (currentLevel != null) {
+            for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
+                currentLevel.setRowUnstepped(i);
+            }
         }
     }
 
