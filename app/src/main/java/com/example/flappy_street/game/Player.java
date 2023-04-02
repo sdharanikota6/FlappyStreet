@@ -88,6 +88,12 @@ public class Player extends AppCompatImageView {
         Log.i("VICTORY", "Player wins!");
     }
 
+    public void gameOver() {
+        if (lives == 0) {
+            setHighScore(score);
+        }
+    }
+
     /**
      * Added checks for parentsFrame in order to complete testing of movement.
      */

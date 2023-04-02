@@ -28,6 +28,9 @@ public class GameScreen extends AppCompatActivity {
     private final Timer timer = new Timer();
     private final Handler handler = new Handler();
     private RoadThread vehicleRun;
+    private SpriteChoice spriteString;
+    private DifficultyLevel difficulty;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,18 @@ public class GameScreen extends AppCompatActivity {
     private void initialize() {
         setContentView(R.layout.test);
         Intent intent = getIntent();
-        String name = intent.getStringExtra(ConfigScreen.CHOSEN_NAME);
-        DifficultyLevel difficulty = (DifficultyLevel)
-                intent.getSerializableExtra(ConfigScreen.CHOSEN_DIFFICULTY);
-        SpriteChoice spriteString = (SpriteChoice)
-                intent.getSerializableExtra(ConfigScreen.CHOSEN_SPRITE);
+        name = intent.getStringExtra("CHOSEN_NAME");
+        difficulty = (DifficultyLevel)
+                intent.getSerializableExtra("CHOSEN_DIFFICULTY");
+        spriteString = (SpriteChoice)
+                intent.getSerializableExtra("CHOSEN_SPRITE");
         findSprite(spriteString);
+        if (name == null) {
+            name = "Test";
+        }
+        if (difficulty == null) {
+            difficulty = DifficultyLevel.EASY;
+        }
         player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
         VehicleRow[] vehicles = new VehicleRow[3];
         vehicles[0] = ((VehicleRow)
@@ -103,37 +112,45 @@ public class GameScreen extends AppCompatActivity {
 
 
     private void game() {
-        if (player.getLives() >= 0) {
-            timer.schedule((new TimerTask() {
-                @Override
-                public void run() {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (player.getLives() > 0) {
-                                updateGame();
-                                drawGame();
-                            } else {
-                                vehicleRun.stopRows();
-                                timer.cancel();
-                                Intent intent = new Intent(getApplicationContext(),
-                                ResultActivity.class);
-                                startActivity(intent);
-                            }
+        timer.schedule((new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (player.getLives() > 0) {
+                            updateGame();
+                            drawGame();
+                        } else {
+                            vehicleRun.stopRows();
+                            timer.cancel();
+                            player.gameOver();
+                            Intent intent = new Intent(getApplicationContext(),
+                                    ResultActivity.class);
+                            intent.putExtra("Score", player.getScore());
+                            intent.putExtra("HighScore", player.getHighScore());
+                            intent.putExtra("Sprite", spriteString);
+                            intent.putExtra("Name", name);
+                            intent.putExtra("Difficulty", difficulty);
+                            startActivity(intent);
                         }
-                    });
-                }
-            }), 0, 20);
-        }
+                    }
+                });
+            }
+        }), 0, 20);
     }
 
     private void findSprite(SpriteChoice spriteString) {
-        if (spriteString == SpriteChoice.SPRITE_1) {
+        if (spriteString == null) {
             sprite = R.drawable.sprite1;
-        } else if (spriteString == SpriteChoice.SPRITE_2) {
-            sprite = R.drawable.sprite2;
         } else {
-            sprite = R.drawable.sprite3;
+            if (spriteString == SpriteChoice.SPRITE_1) {
+                sprite = R.drawable.sprite1;
+            } else if (spriteString == SpriteChoice.SPRITE_2) {
+                sprite = R.drawable.sprite2;
+            } else {
+                sprite = R.drawable.sprite3;
+            }
         }
     }
 

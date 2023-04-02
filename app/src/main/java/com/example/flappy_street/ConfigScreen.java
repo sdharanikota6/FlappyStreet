@@ -15,10 +15,6 @@ import com.example.flappy_street.game.SpriteChoice;
 
 public class ConfigScreen extends AppCompatActivity {
 
-    public static final String CHOSEN_DIFFICULTY =
-            "com.example.flappy_street.chosenDifficultyFinal";
-    public static final String CHOSEN_SPRITE = "com.example.flappy_street.chosenSpriteFinal";
-    public static final String CHOSEN_NAME = "com.example.flappy_street.chosenNameFinal";
     private DifficultyLevel difficulty;
     private SpriteChoice chosenSprite;
     private Button[] difficultyButtons;
@@ -93,9 +89,9 @@ public class ConfigScreen extends AppCompatActivity {
         EditText textField = findViewById(R.id.editTextTextPersonName);
         String name = textField.getText().toString();
         Intent gameScreen = new Intent(this, GameScreen.class);
-        gameScreen.putExtra(CHOSEN_DIFFICULTY, difficulty);
-        gameScreen.putExtra(CHOSEN_SPRITE, chosenSprite);
-        gameScreen.putExtra(CHOSEN_NAME, name);
+        gameScreen.putExtra("CHOSEN_DIFFICULTY", difficulty);
+        gameScreen.putExtra("CHOSEN_SPRITE", chosenSprite);
+        gameScreen.putExtra("CHOSEN_NAME", name);
         startActivity(gameScreen);
     }
 
