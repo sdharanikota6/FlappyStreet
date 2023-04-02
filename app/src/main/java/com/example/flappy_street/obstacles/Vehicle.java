@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.tiles.TileAdapter;
 
@@ -56,11 +57,15 @@ public abstract class Vehicle extends AppCompatImageView {
 
     /**
      * Check if the car collides with a given position.
-     * @param collisionPos the position to check collision with
+     * @param player the player to check collisions with
      * @return true if the object collides, false otherwise
      */
-    public boolean collidesWith(int collisionPos) {
-        return collisionPos >= xPos && collisionPos < xPos + size;
+    public boolean collidesWith(Player player) {
+        boolean matchesX = player.getX() >= this.getX()
+                           && player.getX() < this.getX() + this.getWidth();
+        boolean matchesY = player.getY() <= this.getY()
+                           && player.getY() > this.getY() - this.getHeight();
+        return matchesX && matchesY;
     }
 
 }
