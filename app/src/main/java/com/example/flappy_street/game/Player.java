@@ -116,13 +116,15 @@ public class Player extends AppCompatImageView {
                 xStep = 100 / (double) GameLevel.NUM_COLUMNS;
             }
         }
-        setY((float) (getY() - ((yStep)*yDis)));
-        setX((float) (getX() - ((xStep)*xDis)));
+        setY((float) (getY() - ((yStep) * yDis)));
+        setX((float) (getX() - ((xStep) * xDis)));
         //Reset rows to unstepped
         if (currentLevel != null) {
             for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
                 currentLevel.setRowUnstepped(i);
             }
+        }
+    }
 
     public void gameOver() {
         if (lives == 0) {
