@@ -57,11 +57,13 @@ public class ResultActivity extends AppCompatActivity {
         game.putExtra("CHOSEN_NAME", name);
         game.putExtra("CHOSEN_SPRITE", spriteString);
         game.putExtra("CHOSEN_DIFFICULTY", difficulty);
+        game.putExtra("HighScore", highScore);
         startActivity(game);
     }
 
     private void configButton(View v) {
         Intent config = new Intent(getApplicationContext(), ConfigScreen.class);
+        config.putExtra("HighScore", highScore);
         startActivity(config);
     }
 }

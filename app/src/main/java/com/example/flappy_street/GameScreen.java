@@ -31,6 +31,7 @@ public class GameScreen extends AppCompatActivity {
     private SpriteChoice spriteString;
     private DifficultyLevel difficulty;
     private String name;
+    private int highScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class GameScreen extends AppCompatActivity {
             difficulty = DifficultyLevel.EASY;
         }
         player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
+        highScore = intent.getIntExtra("HighScore", 0);
+        player.setHighScore(highScore);
         VehicleRow[] vehicles = new VehicleRow[3];
         vehicles[0] = ((VehicleRow)
                 findViewById(R.id.carRow)).init(Car.class, 3, 8);
