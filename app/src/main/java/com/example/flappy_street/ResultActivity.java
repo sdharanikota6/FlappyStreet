@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.SpriteChoice;
-import com.google.android.material.color.utilities.Score;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -43,8 +41,12 @@ public class ResultActivity extends AppCompatActivity {
         highScoreView.setText(display);
         reset = findViewById(R.id.RestartButton);
         config = findViewById(R.id.ConfigButton);
-        reset.setOnClickListener((v) -> { resetButton();});
-        config.setOnClickListener((v) -> { configButton();});
+        reset.setOnClickListener((v) -> {
+            resetButton();
+        });
+        config.setOnClickListener((v) -> {
+            configButton();
+        });
         name = intent.getStringExtra("Name");
         difficulty = (DifficultyLevel)
                 intent.getSerializableExtra("Difficulty");

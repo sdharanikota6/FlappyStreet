@@ -169,5 +169,7 @@ public class GameScreen extends AppCompatActivity {
         return player.getY();
     }
 
-    public int getHighScore() { return player.getHighScore();}
+    public int getHighScore() {
+        return player.getHighScore();
+    }
 }
