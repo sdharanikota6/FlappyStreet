@@ -65,7 +65,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="125dp"
         android:layout_marginTop="20dp"
-        android:text="@string/restart" />
+        android:text="Exit" />
 
     <Button
         android:id="@+id/ConfigButton"

@@ -97,6 +97,7 @@ public class ConfigScreen extends AppCompatActivity {
         gameScreen.putExtra("CHOSEN_NAME", name);
         gameScreen.putExtra("HighScore", highScore);
         startActivity(gameScreen);
+        finish();
     }
 
     private void goButton(View view) {

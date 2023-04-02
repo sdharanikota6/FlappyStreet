@@ -65,7 +65,7 @@ public class GameScreen extends AppCompatActivity {
                 .init(Truck.class, 2, 7);
         vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow))
                 .init(Semi.class, 1, 6);
-        RoadThread vehicleRun = new RoadThread(getApplicationContext(), vehicles, player);
+        vehicleRun = new RoadThread(getApplicationContext(), vehicles, player);
         new Thread(vehicleRun).start();
         //Setting GameLevel, hopefully this will fix crashes
         GameLevel level = new GameLevel(getApplicationContext());
@@ -159,6 +159,7 @@ public class GameScreen extends AppCompatActivity {
         intent.putExtra("Name", name);
         intent.putExtra("Difficulty", difficulty);
         startActivity(intent);
+        finish();
     }
 
 

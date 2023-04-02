@@ -55,12 +55,8 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void resetButton() {
-        Intent game = new Intent(getApplicationContext(), GameScreen.class);
-        game.putExtra("CHOSEN_NAME", name);
-        game.putExtra("CHOSEN_SPRITE", spriteString);
-        game.putExtra("CHOSEN_DIFFICULTY", difficulty);
-        game.putExtra("HighScore", highScore);
-        startActivity(game);
+        finish();
+        System.exit(0);
     }
 
     public void configButton() {
