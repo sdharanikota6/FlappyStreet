@@ -30,7 +30,6 @@ public class GameOverTest {
                     Robolectric.buildActivity(ResultActivity.class);
             testing.setup();
             ResultActivity results = testing.get();
-            results.resetButton();
             assertEquals(test.getHighScore(), results.getHighScore());
         }
     }
