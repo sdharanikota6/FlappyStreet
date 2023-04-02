@@ -95,7 +95,7 @@ public class Player extends AppCompatImageView {
         score += 100;
         Log.i("VICTORY", "Player wins!");
     }
-
+  
     public void resetPos() {
         int yDis = yPos - startingPos[1];
         int xDis = xPos - startingPos[0];
@@ -123,6 +123,10 @@ public class Player extends AppCompatImageView {
             for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
                 currentLevel.setRowUnstepped(i);
             }
+
+    public void gameOver() {
+        if (lives == 0) {
+            setHighScore(score);
         }
     }
 
