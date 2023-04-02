@@ -74,7 +74,7 @@ public abstract class Vehicle extends AppCompatImageView {
         boolean matchesRightSideX = playerRight >= this.getX() + FUDGE_FACTOR
                 && playerRight < this.getX() + this.getWidth() - FUDGE_FACTOR;
         boolean matchesY = player.getY() >= realY
-                           && player.getY() < realY + this.getHeight(); //don't care about right side
+                           && player.getY() < realY + this.getHeight(); //don't care about bottom
         return (matchesLeftSideX || matchesRightSideX) && matchesY;
     }
 
