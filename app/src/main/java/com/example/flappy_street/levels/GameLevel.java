@@ -104,4 +104,10 @@ public class GameLevel extends GridView {
             tileArray[yPos][i].setStepped(true);
         }
     }
+
+    public void setRowUnstepped(int yPos) {
+        for (int i = 0; i < NUM_COLUMNS; i++) {
+            tileArray[yPos][i].setStepped(false);
+        }
+    }
 }

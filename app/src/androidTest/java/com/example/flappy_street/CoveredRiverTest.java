@@ -1,6 +1,7 @@
 package com.example.flappy_street;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import androidx.test.core.app.ApplicationProvider;
 
@@ -8,20 +9,19 @@ import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.tiles.RiverTile;
 
+
+import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Tests whether crossing a river correctly increments score.
- */
-public class RiverScoreTest {
+public class CoveredRiverTest {
     @Test
-    public void crossRiverIncrementsScore() {
+    public void coveredRiverDoesNotCauseDeath() {
         Player player = new Player(ApplicationProvider.getApplicationContext());
         player.init(0, "Holden", DifficultyLevel.EASY);
-        int oldScore = player.getScore();
+        int oldLives = player.getLives();
         RiverTile riverTile = new RiverTile(ApplicationProvider.getApplicationContext());
         riverTile.cover();
         riverTile.step(player);
-        assertEquals(oldScore + 5, player.getScore());
+        assertEquals(oldLives, player.getLives());
     }
 }

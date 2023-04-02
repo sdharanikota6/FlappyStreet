@@ -59,13 +59,10 @@ public class GameScreen extends AppCompatActivity {
         highScore = intent.getIntExtra("HighScore", 0);
         player.setHighScore(highScore);
         VehicleRow[] vehicles = new VehicleRow[3];
-        vehicles[0] = ((VehicleRow)
-                findViewById(R.id.carRow)).init(Car.class, 3, 8);
-        vehicles[1] = ((VehicleRow)
-                findViewById(R.id.truckRow)).init(Truck.class, 2, 7);
-        vehicles[2] = ((VehicleRow)
-                findViewById(R.id.semiRow)).init(Semi.class, 1, 6);
-        vehicleRun = new RoadThread(getApplicationContext(), vehicles);
+        vehicles[0] = ((VehicleRow) findViewById(R.id.carRow)).init(Car.class, 3, 8);
+        vehicles[1] = ((VehicleRow) findViewById(R.id.truckRow)).init(Truck.class, 2, 7);
+        vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow)).init(Semi.class, 1, 6);
+        RoadThread vehicleRun = new RoadThread(getApplicationContext(), vehicles, player);
         new Thread(vehicleRun).start();
         //Setting GameLevel, hopefully this will fix crashes
         GameLevel level = new GameLevel(getApplicationContext());
@@ -114,6 +111,7 @@ public class GameScreen extends AppCompatActivity {
 
 
     private void game() {
+
         timer.schedule((new TimerTask() {
             @Override
             public void run() {

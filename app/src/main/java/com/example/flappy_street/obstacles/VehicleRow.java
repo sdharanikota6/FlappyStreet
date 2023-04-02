@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
+import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.tiles.TileAdapter;
 
@@ -67,6 +68,21 @@ public class VehicleRow extends GridView {
         for (int i = 0; i < vehicles.length; i++) {
             vehicles[i].setXPos(i * backendSpacing);
             vehicles[i].setX(i * spacing);
+            vehicles[i].setRealY(this.getY());
+        }
+    }
+
+
+    /**
+     * Checks if a player has collided with a vehicle.
+     * @param player the player's position
+     */
+    public void checkCollision(Player player) {
+        for (Vehicle v : vehicles) {
+            if (v.collidesWith(player)) {
+                player.die();
+                return;
+            }
         }
     }
 }
