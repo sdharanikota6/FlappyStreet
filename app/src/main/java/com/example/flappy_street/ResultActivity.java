@@ -63,6 +63,7 @@ public class ResultActivity extends AppCompatActivity {
         Intent config = new Intent(getApplicationContext(), ConfigScreen.class);
         config.putExtra("HighScore", highScore);
         startActivity(config);
+        finish();
     }
 
     public int getHighScore() {
