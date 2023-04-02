@@ -68,6 +68,7 @@ public class VehicleRow extends GridView {
         for (int i = 0; i < vehicles.length; i++) {
             vehicles[i].setXPos(i * backendSpacing);
             vehicles[i].setX(i * spacing);
+            vehicles[i].setRealY(this.getY());
         }
     }
 

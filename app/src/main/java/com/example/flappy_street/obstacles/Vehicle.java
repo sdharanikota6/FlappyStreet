@@ -18,7 +18,10 @@ public abstract class Vehicle extends AppCompatImageView {
     protected int stepCount;
     protected final float tileSize;
     protected final float rightBound;
+    /** Actual Y is not stored by default, must manually find */
+    private float realY;
     protected static final float LEFT_BOUND = 0;
+    protected static final float FUDGE_FACTOR = 20;
 
     /**
      * Create a new vehicle.
@@ -41,6 +44,10 @@ public abstract class Vehicle extends AppCompatImageView {
         this.xPos = newPos;
     }
 
+    public void setRealY(float y) {
+        this.realY = y;
+    }
+
     public int getYPos() {
         return yPos;
     }
@@ -61,11 +68,13 @@ public abstract class Vehicle extends AppCompatImageView {
      * @return true if the object collides, false otherwise
      */
     public boolean collidesWith(Player player) {
-        boolean matchesX = player.getX() >= this.getX()
-                           && player.getX() < this.getX() + this.getWidth();
-        boolean matchesY = player.getY() <= this.getY()
-                           && player.getY() > this.getY() - this.getHeight();
-        return matchesX && matchesY;
+        boolean matchesLeftSideX = player.getX() >= this.getX()
+                           && player.getX() < this.getX() + this.getWidth() - FUDGE_FACTOR;
+        boolean matchesRightSideX = player.getX() + player.getWidth() >= this.getX()
+                && player.getX() + player.getWidth() < this.getX() + this.getWidth() - FUDGE_FACTOR;
+        boolean matchesY = player.getY() >= realY
+                           && player.getY() < realY + this.getHeight();
+        return (matchesLeftSideX || matchesRightSideX) && matchesY;
     }
 
 }

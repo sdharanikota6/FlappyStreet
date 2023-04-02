@@ -97,7 +97,7 @@ public class GameScreen extends AppCompatActivity {
         vehicles[0] = ((VehicleRow) findViewById(R.id.carRow)).init(Car.class, 3, 8);
         vehicles[1] = ((VehicleRow) findViewById(R.id.truckRow)).init(Truck.class, 2, 7);
         vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow)).init(Semi.class, 1, 6);
-        RoadThread vehicleRun = new RoadThread(getApplicationContext(), vehicles);
+        RoadThread vehicleRun = new RoadThread(getApplicationContext(), vehicles, player);
         new Thread(vehicleRun).start();
     }
 
