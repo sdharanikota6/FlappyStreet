@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.tiles.TileAdapter;
 
@@ -17,7 +18,10 @@ public abstract class Vehicle extends AppCompatImageView {
     protected int stepCount;
     protected final float tileSize;
     protected final float rightBound;
+    /** Actual Y is not stored by default, must manually find */
+    private float realY;
     protected static final float LEFT_BOUND = 0;
+    protected static final float FUDGE_FACTOR = 30;
 
     /**
      * Create a new vehicle.
@@ -40,6 +44,10 @@ public abstract class Vehicle extends AppCompatImageView {
         this.xPos = newPos;
     }
 
+    public void setRealY(float y) {
+        this.realY = y;
+    }
+
     public int getYPos() {
         return yPos;
     }
@@ -56,11 +64,18 @@ public abstract class Vehicle extends AppCompatImageView {
 
     /**
      * Check if the car collides with a given position.
-     * @param collisionPos the position to check collision with
+     * @param player the player to check collisions with
      * @return true if the object collides, false otherwise
      */
-    public boolean collidesWith(int collisionPos) {
-        return collisionPos >= xPos && collisionPos < xPos + size;
+    public boolean collidesWith(Player player) {
+        boolean matchesLeftSideX = player.getX() >= this.getX() + FUDGE_FACTOR
+                           && player.getX() < this.getX() + this.getWidth() - FUDGE_FACTOR;
+        float playerRight = player.getX() + player.getWidth();
+        boolean matchesRightSideX = playerRight >= this.getX() + FUDGE_FACTOR
+                && playerRight < this.getX() + this.getWidth() - FUDGE_FACTOR;
+        boolean matchesY = player.getY() >= realY
+                           && player.getY() < realY + this.getHeight(); //don't care about bottom
+        return (matchesLeftSideX || matchesRightSideX) && matchesY;
     }
 
 }
