@@ -43,8 +43,8 @@ public class ResultActivity extends AppCompatActivity {
         highScoreView.setText(display);
         reset = findViewById(R.id.RestartButton);
         config = findViewById(R.id.ConfigButton);
-        reset.setOnClickListener(this::resetButton);
-        config.setOnClickListener(this::configButton);
+        reset.setOnClickListener((v) -> { resetButton();});
+        config.setOnClickListener((v) -> { configButton();});
         name = intent.getStringExtra("Name");
         difficulty = (DifficultyLevel)
                 intent.getSerializableExtra("Difficulty");
@@ -52,7 +52,7 @@ public class ResultActivity extends AppCompatActivity {
                 intent.getSerializableExtra("Sprite");
     }
 
-    private void resetButton(View v) {
+    public void resetButton() {
         Intent game = new Intent(getApplicationContext(), GameScreen.class);
         game.putExtra("CHOSEN_NAME", name);
         game.putExtra("CHOSEN_SPRITE", spriteString);
@@ -61,9 +61,13 @@ public class ResultActivity extends AppCompatActivity {
         startActivity(game);
     }
 
-    private void configButton(View v) {
+    public void configButton() {
         Intent config = new Intent(getApplicationContext(), ConfigScreen.class);
         config.putExtra("HighScore", highScore);
         startActivity(config);
+    }
+
+    public int getHighScore() {
+        return highScore;
     }
 }

@@ -77,7 +77,6 @@ public class GameScreen extends AppCompatActivity {
             player.setHighScore(player.getScore());
         }
 
-
         //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
         findViewById(R.id.moveUP).setOnClickListener((v) -> {
             player.moveUp();
@@ -125,17 +124,7 @@ public class GameScreen extends AppCompatActivity {
                             updateGame();
                             drawGame();
                         } else {
-                            vehicleRun.stopRows();
-                            timer.cancel();
-                            player.gameOver();
-                            Intent intent = new Intent(getApplicationContext(),
-                                    ResultActivity.class);
-                            intent.putExtra("Score", player.getScore());
-                            intent.putExtra("HighScore", player.getHighScore());
-                            intent.putExtra("Sprite", spriteString);
-                            intent.putExtra("Name", name);
-                            intent.putExtra("Difficulty", difficulty);
-                            startActivity(intent);
+                            gameOver();
                         }
                     }
                 });
@@ -157,6 +146,20 @@ public class GameScreen extends AppCompatActivity {
         }
     }
 
+    public void gameOver() {
+        vehicleRun.stopRows();
+        timer.cancel();
+        player.gameOver();
+        Intent intent = new Intent(getApplicationContext(),
+                ResultActivity.class);
+        intent.putExtra("Score", player.getScore());
+        intent.putExtra("HighScore", player.getHighScore());
+        intent.putExtra("Sprite", spriteString);
+        intent.putExtra("Name", name);
+        intent.putExtra("Difficulty", difficulty);
+        startActivity(intent);
+    }
+
 
     public float getPosX() {
         return player.getX();
@@ -165,4 +168,6 @@ public class GameScreen extends AppCompatActivity {
     public float getPosY() {
         return player.getY();
     }
+
+    public int getHighScore() { return player.getHighScore();}
 }

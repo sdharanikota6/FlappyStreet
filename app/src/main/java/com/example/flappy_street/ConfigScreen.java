@@ -21,11 +21,14 @@ public class ConfigScreen extends AppCompatActivity {
     private ImageButton[] spriteButtons;
     private boolean difficultyChosen = false;
     private boolean spriteChosen = false;
+    private int highScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_config);
+        Intent intent = getIntent();
+        highScore = intent.getIntExtra("HighScore", 0);
         difficulty = DifficultyLevel.MEDIUM;
         chosenSprite = SpriteChoice.SPRITE_1;
         Button goButton = findViewById(R.id.goButton);
@@ -88,8 +91,6 @@ public class ConfigScreen extends AppCompatActivity {
     public void startGameScreen() {
         EditText textField = findViewById(R.id.editTextTextPersonName);
         String name = textField.getText().toString();
-        Intent intent = getIntent();
-        int highScore = intent.getIntExtra("HighScore", 0);
         Intent gameScreen = new Intent(this, GameScreen.class);
         gameScreen.putExtra("CHOSEN_DIFFICULTY", difficulty);
         gameScreen.putExtra("CHOSEN_SPRITE", chosenSprite);
@@ -128,4 +129,6 @@ public class ConfigScreen extends AppCompatActivity {
     private void goBack(View v) {
         this.finish();
     }
+
+    public int getHighScore() {return highScore;}
 }
