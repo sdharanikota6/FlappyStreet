@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(this::openConfig);
     }
     public void openConfig(View v) {
-
         Intent config = new Intent(this, ConfigScreen.class);
         startActivity(config);
         finish();
