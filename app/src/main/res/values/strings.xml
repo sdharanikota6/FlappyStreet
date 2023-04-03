@@ -19,4 +19,7 @@
     <string name="right">Right</string>
     <string name="up">Up</string>
     <string name="down">Down</string>
+    <string name="game_over">Game Over</string>
+    <string name="restart">Restart</string>
+    <string name="config">Config</string>
 </resources>
