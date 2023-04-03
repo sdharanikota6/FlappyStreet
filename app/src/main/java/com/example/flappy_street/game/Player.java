@@ -80,13 +80,14 @@ public class Player extends AppCompatImageView {
      * @return lives remaining after death
      */
     public int die() {
+        /*
         if (lives - 1 == 0) {
             //TODO game over process
-        }
+        } */
         this.setScore(0); //Reset score to 0
         //TODO die animation?
         //TODO go back to starting pos
-        this.resetPos();;
+        this.resetPos();
         return --lives;
 
     }
