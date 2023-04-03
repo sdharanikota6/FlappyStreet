@@ -14,7 +14,7 @@ import org.junit.Test;
 /**
  * test to see if the player's score resets to 0 once they are hit by a vehicle
  */
-public class VehicleCollisionScoreResetTest {
+public class TruckCollisionScoreResetTest {
     @Test
     public void checkScoreReset() {
         Player testplayer = new Player(ApplicationProvider.getApplicationContext());
