@@ -57,7 +57,7 @@ public class GameScreen extends AppCompatActivity {
         }
         player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
         highScore = intent.getIntExtra("HighScore", 0);
-        player.setHighScore(highScore);
+        //player.setHighScore(highScore);
         VehicleRow[] vehicles = new VehicleRow[3];
         vehicles[0] = ((VehicleRow) findViewById(R.id.carRow))
                 .init(Car.class, 3, 8);
