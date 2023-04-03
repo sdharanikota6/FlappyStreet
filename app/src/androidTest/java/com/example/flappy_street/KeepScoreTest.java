@@ -10,15 +10,14 @@ import com.example.flappy_street.tiles.RiverTile;
 
 import org.junit.Test;
 
-public class keepScoreTest {
+public class KeepScoreTest {
     @Test
     public void coveredRiverDoesNotCauseDeath() {
         Player player = new Player(ApplicationProvider.getApplicationContext());
         player.init(0, "SD", DifficultyLevel.EASY);
-        int oldScore = player.getScore();
         RiverTile riverTile = new RiverTile(ApplicationProvider.getApplicationContext());
         riverTile.cover();
         riverTile.step(player);
-        assertEquals(oldScore, player.getScore());
+        assertEquals(5, player.getScore());
     }
 }

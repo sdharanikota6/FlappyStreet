@@ -131,5 +131,8 @@ public class ConfigScreen extends AppCompatActivity {
         this.finish();
     }
 
-    public int getHighScore() {return highScore;}
+    public int getHighScore() {
+        return highScore;
+    }
+
 }
