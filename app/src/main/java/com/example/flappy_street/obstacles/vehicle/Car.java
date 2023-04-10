@@ -3,7 +3,6 @@ package com.example.flappy_street.obstacles.vehicle;
 import android.content.Context;
 
 import com.example.flappy_street.R;
-import com.example.flappy_street.obstacles.vehicle.Vehicle;
 
 public class Car extends Vehicle {
 
