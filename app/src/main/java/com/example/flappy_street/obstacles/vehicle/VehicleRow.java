@@ -7,6 +7,7 @@ import android.widget.GridView;
 
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
+import com.example.flappy_street.obstacles.RowAdapter;
 import com.example.flappy_street.tiles.TileAdapter;
 
 public class VehicleRow extends GridView {

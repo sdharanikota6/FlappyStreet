@@ -1,4 +1,4 @@
-package com.example.flappy_street.obstacles.vehicle;
+package com.example.flappy_street.obstacles;
 
 import android.content.Context;
 import android.graphics.Point;
