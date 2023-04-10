@@ -1,11 +1,14 @@
 package com.example.flappy_street.obstacles.river;
 
 import android.content.Context;
+import android.graphics.Point;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.flappy_street.R;
 import com.example.flappy_street.game.Player;
+import com.example.flappy_street.levels.GameLevel;
+import com.example.flappy_street.tiles.TileAdapter;
 
 public abstract class Platform extends AppCompatImageView {
 
@@ -13,12 +16,20 @@ public abstract class Platform extends AppCompatImageView {
     protected int xPos;
     protected int yPos;
     protected float realY;
+    protected int speed;
+    protected int stepCount;
+    protected final float tileSize;
+    protected final float rightBound;
+    protected static final float LEFT_BOUND = 0;
     private static final int FUDGE_FACTOR = 30;
 
 
 
     public Platform(Context context) {
         super(context);
+        Point size = TileAdapter.getSize();
+        tileSize = (float) size.x / GameLevel.NUM_COLUMNS;
+        rightBound = size.x;
         this.setImageResource(R.drawable.log);
     }
 
