@@ -1,4 +1,4 @@
-package com.example.flappy_street.obstacles;
+package com.example.flappy_street.obstacles.vehicle;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -7,6 +7,8 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.example.flappy_street.obstacles.vehicle.Vehicle;
 
 public class RowAdapter extends BaseAdapter {
 

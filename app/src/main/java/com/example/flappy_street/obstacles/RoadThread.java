@@ -3,6 +3,7 @@ package com.example.flappy_street.obstacles;
 import android.content.Context;
 
 import com.example.flappy_street.game.Player;
+import com.example.flappy_street.obstacles.vehicle.VehicleRow;
 
 public class RoadThread extends Thread {
 

@@ -12,11 +12,11 @@ import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.game.SpriteChoice;
-import com.example.flappy_street.obstacles.Car;
+import com.example.flappy_street.obstacles.vehicle.Car;
 import com.example.flappy_street.obstacles.RoadThread;
-import com.example.flappy_street.obstacles.Semi;
-import com.example.flappy_street.obstacles.Truck;
-import com.example.flappy_street.obstacles.VehicleRow;
+import com.example.flappy_street.obstacles.vehicle.Semi;
+import com.example.flappy_street.obstacles.vehicle.Truck;
+import com.example.flappy_street.obstacles.vehicle.VehicleRow;
 
 import java.util.Timer;
 import java.util.TimerTask;

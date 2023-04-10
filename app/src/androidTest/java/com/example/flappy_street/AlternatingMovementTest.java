@@ -3,11 +3,10 @@ package com.example.flappy_street;
 import android.content.Context;
 
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.flappy_street.obstacles.Car;
-import com.example.flappy_street.obstacles.Semi;
-import com.example.flappy_street.obstacles.Truck;
+import com.example.flappy_street.obstacles.vehicle.Car;
+import com.example.flappy_street.obstacles.vehicle.Semi;
+import com.example.flappy_street.obstacles.vehicle.Truck;
 
 import org.junit.Assert;
 import org.junit.Test;

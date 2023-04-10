@@ -8,8 +8,8 @@ import androidx.test.core.app.ApplicationProvider;
 
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
-import com.example.flappy_street.obstacles.Car;
-import com.example.flappy_street.obstacles.VehicleRow;
+import com.example.flappy_street.obstacles.vehicle.Car;
+import com.example.flappy_street.obstacles.vehicle.VehicleRow;
 
 import org.junit.Test;
 
