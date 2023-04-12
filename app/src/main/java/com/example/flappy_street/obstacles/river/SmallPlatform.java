@@ -2,6 +2,8 @@ package com.example.flappy_street.obstacles.river;
 
 import android.content.Context;
 
+import com.example.flappy_street.game.Player;
+
 public class SmallPlatform extends Platform {
 
     public SmallPlatform(Context ctx) {
@@ -25,4 +27,16 @@ public class SmallPlatform extends Platform {
         }
     }
 
+    @Override
+    public boolean collidesWith(Player player) {
+        if (super.collidesWith(player)) {
+            float newX = player.getX() + (tileSize / speed);
+            if (newX > rightBound) {
+                player.die();
+            }
+            player.setX(newX);
+            return true;
+        }
+        return false;
+    }
 }
