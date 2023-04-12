@@ -7,16 +7,15 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-
-import com.example.flappy_street.obstacles.vehicle.Vehicle;
+import android.widget.ImageView;
 
 public class RowAdapter extends BaseAdapter {
 
     private int count;
-    private Vehicle[] vehicles;
+    private ImageView[] vehicles;
     private ViewGroup.LayoutParams params;
 
-    public RowAdapter(Context context, int count, Vehicle[] vehicles, int size) {
+    public RowAdapter(Context context, int count, ImageView[] vehicles, int size) {
         this.count = count;
         this.vehicles = vehicles;
         Point screenSize = new Point(0, 0);
