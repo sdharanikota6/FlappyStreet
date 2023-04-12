@@ -101,13 +101,9 @@ public class ConfigScreen extends AppCompatActivity {
     }
 
     private void goButton(View view) {
-        boolean inValid;
         String message;
         EditText username = (EditText) findViewById(R.id.editTextTextPersonName);
-        String usernameText = username.getText() == null ? "" : username.getText().toString();
-        usernameText = usernameText.strip();
-        inValid = usernameText.isEmpty();
-        if (inValid) {
+        if (usernameInvalid(username)) {
             message = "Invalid username, please try again";
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         } else if (!difficultyChosen) {
@@ -117,10 +113,16 @@ public class ConfigScreen extends AppCompatActivity {
             message = "Please select a sprite!";
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         } else {
-            message = "Welcome " + usernameText + "!";
+            message = "Welcome " + username.getText().toString() + "!";
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             startGameScreen();
         }
+    }
+
+    private boolean usernameInvalid(EditText userInput) {
+        String usernameText = userInput.getText() == null ? "" : userInput.getText().toString();
+        usernameText = usernameText.strip();
+        return usernameText.isEmpty();
     }
 
     /**
