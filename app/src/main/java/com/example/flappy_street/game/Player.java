@@ -21,6 +21,7 @@ public class Player extends AppCompatImageView {
     private int yPos;
     private double yStep;
     private double xStep;
+    private int won;
     private final int[] startingPos = {GameLevel.NUM_COLUMNS / 2, GameLevel.NUM_ROWS - 1}; // {x, y}
 
     public Player(Context ctx, AttributeSet attrs) {
@@ -46,6 +47,7 @@ public class Player extends AppCompatImageView {
         xPos = GameLevel.NUM_COLUMNS / 2;
         yPos = GameLevel.NUM_ROWS - 1;
         parentFrame = (FrameLayout) this.getParent();
+        won = 0;
         return this;
     }
 
@@ -95,6 +97,11 @@ public class Player extends AppCompatImageView {
     public void win() {
         score += 100;
         Log.i("VICTORY", "Player wins!");
+        won = 1;
+    }
+
+    public int getWon() {
+        return won;
     }
   
     public void resetPos() {
@@ -124,12 +131,6 @@ public class Player extends AppCompatImageView {
             for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
                 currentLevel.setRowUnstepped(i);
             }
-        }
-    }
-
-    public void gameOver() {
-        if (lives == 0) {
-            setHighScore(score);
         }
     }
 

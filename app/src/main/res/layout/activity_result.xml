@@ -10,6 +10,7 @@
 
 
     <TextView
+        android:id="@+id/endScreenTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -20,7 +21,6 @@
         android:layout_marginTop="76dp"
         android:layout_marginEnd="123dp"
         android:fontFamily="monospace"
-        android:text="@string/game_over"
         android:textColor="#50C878"
         android:textSize="30sp"
         android:textStyle="bold" />
