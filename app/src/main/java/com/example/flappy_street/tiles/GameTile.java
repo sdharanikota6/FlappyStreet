@@ -44,4 +44,5 @@ public abstract class GameTile extends AppCompatImageView {
     public void setStepped(boolean stepped) {
         this.stepped = stepped;
     }
+
 }
