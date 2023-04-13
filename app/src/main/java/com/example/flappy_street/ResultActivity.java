@@ -56,7 +56,9 @@ public class ResultActivity extends AppCompatActivity {
 
     public void resetButton() {
         finish();
-        System.exit(0);
+        while (true) {
+            System.exit(0);
+        }
     }
 
     public void configButton() {

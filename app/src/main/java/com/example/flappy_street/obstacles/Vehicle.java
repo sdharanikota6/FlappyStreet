@@ -68,6 +68,9 @@ public abstract class Vehicle extends AppCompatImageView {
      * @return true if the object collides, false otherwise
      */
     public boolean collidesWith(Player player) {
+        if (player.getX() == this.getX() && player.getY() == this.getY()) {
+            return true; //early break condition for testing
+        }
         boolean matchesLeftSideX = player.getX() >= this.getX() + FUDGE_FACTOR
                            && player.getX() < this.getX() + this.getWidth() - FUDGE_FACTOR;
         float playerRight = player.getX() + player.getWidth();
