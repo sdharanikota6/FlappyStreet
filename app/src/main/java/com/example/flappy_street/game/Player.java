@@ -80,13 +80,7 @@ public class Player extends AppCompatImageView {
      * @return lives remaining after death
      */
     public int die() {
-        /*
-        if (lives - 1 == 0) {
-            //TODO game over process
-        } */
         this.setScore(0); //Reset score to 0
-        //TODO die animation?
-        //TODO go back to starting pos
         this.resetPos();
         return --lives;
 
@@ -144,7 +138,8 @@ public class Player extends AppCompatImageView {
             }
             if (yPos > 0) {
                 yPos--;
-                float newY =  (float) (getY() - yStep);
+                float newY = (float) ((yPos * yStep) + (yStep / 7.5));
+                //float newY =  (float) (getY() - yStep); // Put snapping here
                 setY(newY);
                 currentLevel.getTile(yPos, xPos).step(this);
                 currentLevel.setRowStepped(yPos);
@@ -156,7 +151,8 @@ public class Player extends AppCompatImageView {
             }
             if (yPos > 0) {
                 yPos--;
-                float newY =  (float) (getY() - yStep);
+                float newY = (float) ((yPos * yStep) + (yStep / 7.5));
+                //float newY =  (float) (getY() - yStep);
                 setY(newY);
             }
         }
@@ -170,7 +166,8 @@ public class Player extends AppCompatImageView {
             }
             if (yPos < GameLevel.NUM_ROWS - 1) {
                 yPos++;
-                float newY =  (float) (getY() + yStep);
+                //float newY =  (float) (getY() + yStep);
+                float newY = (float) ((yPos * yStep)+ (yStep / 7.5));
                 setY(newY);
                 currentLevel.getTile(yPos, xPos).step(this);
             }
@@ -182,7 +179,8 @@ public class Player extends AppCompatImageView {
             }
             if (yPos < GameLevel.NUM_ROWS - 1) {
                 yPos++;
-                float newY =  (float) (getY() + yStep);
+                float newY = (float) ((yPos * yStep)+ (yStep / 7.5));
+                //float newY =  (float) (getY() + yStep);
                 setY(newY);
             }
         }
@@ -196,7 +194,8 @@ public class Player extends AppCompatImageView {
             }
             if (xPos > 0) {
                 xPos--;
-                float newX =  (float) (getX() - xStep);
+//                float newX =  (float) (getX() - xStep);
+                float newX = (float) ((xPos * xStep) + (xStep / 11));
                 setX(newX);
                 currentLevel.getTile(yPos, xPos).step(this);
             }
@@ -207,7 +206,9 @@ public class Player extends AppCompatImageView {
             }
             if (xPos > 0) {
                 xPos--;
-                float newX =  (float) (getX() - xStep);
+                //float newX =  (float) (getX() - xStep);
+                float newX = (float) ((xPos * xStep) + (xStep / 11));
+
                 setX(newX);
             }
         }
@@ -221,7 +222,8 @@ public class Player extends AppCompatImageView {
             }
             if (xPos < GameLevel.NUM_COLUMNS - 1) {
                 xPos++;
-                float newX =  (float) (getX() + xStep);
+                //float newX =  (float) (getX() + xStep);
+                float newX = (float) ((xPos * xStep) + (xStep / 11));
                 setX(newX);
                 currentLevel.getTile(yPos, xPos).step(this);
             }
@@ -232,7 +234,8 @@ public class Player extends AppCompatImageView {
             }
             if (xPos < GameLevel.NUM_COLUMNS - 1) {
                 xPos++;
-                float newX =  (float) (getX() + xStep);
+                float newX = (float) ((xPos * xStep) + (xStep / 11));
+                //float newX =  (float) (getX() + xStep);
                 setX(newX);
             }
         }
