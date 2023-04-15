@@ -2,6 +2,7 @@ package com.example.flappy_street.obstacles.river;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.util.AttributeSet;
 import android.widget.GridView;
 
 import com.example.flappy_street.game.Player;
@@ -21,6 +22,12 @@ public class PlatformRow extends GridView {
         super(ctx);
         this.context = ctx;
         this.setNumColumns(NUM_COLUMNS);
+    }
+
+    public PlatformRow(Context ctx, AttributeSet attrs) {
+        super(ctx, attrs);
+        this.context = ctx;
+        this.setNumColumns(7);
     }
 
     public PlatformRow init(Class<? extends Platform> platformType,
@@ -67,10 +74,7 @@ public class PlatformRow extends GridView {
      */
     public void checkCollision(Player player) {
         for (Platform v : platforms) {
-            if (v.collidesWith(player)) {
-                player.die();
-                return;
-            }
+            v.collidesWith(player); //no if statement because movement handled within player
         }
     }
 }

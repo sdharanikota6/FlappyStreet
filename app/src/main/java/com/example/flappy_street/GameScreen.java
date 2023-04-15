@@ -12,6 +12,8 @@ import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.game.SpriteChoice;
+import com.example.flappy_street.obstacles.river.PlatformRow;
+import com.example.flappy_street.obstacles.river.SmallPlatform;
 import com.example.flappy_street.obstacles.vehicle.Car;
 import com.example.flappy_street.obstacles.RoadThread;
 import com.example.flappy_street.obstacles.vehicle.Semi;
@@ -65,7 +67,14 @@ public class GameScreen extends AppCompatActivity {
                 .init(Truck.class, 2, 7);
         vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow))
                 .init(Semi.class, 1, 6);
-        vehicleRun = new RoadThread(getApplicationContext(), vehicles, player);
+        PlatformRow[] plats = new PlatformRow[3];
+        plats[0] = ((PlatformRow) findViewById(R.id.smallRow1))
+                .init(SmallPlatform.class, 3, 4);
+        plats[1] = ((PlatformRow) findViewById(R.id.bigRow))
+                .init(SmallPlatform.class, 4, 3);
+        plats[2] = ((PlatformRow) findViewById(R.id.smallRow2))
+                .init(SmallPlatform.class, 3, 2);
+        vehicleRun = new RoadThread(getApplicationContext(), vehicles, plats, player);
         new Thread(vehicleRun).start();
         //Setting GameLevel, hopefully this will fix crashes
         GameLevel level = new GameLevel(getApplicationContext());

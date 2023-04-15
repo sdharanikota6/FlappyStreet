@@ -8,8 +8,8 @@ public class SmallPlatform extends Platform {
 
     public SmallPlatform(Context ctx) {
         super(ctx);
-        this.size = 1;
-        this.speed = 15;
+        this.size = 2;
+        this.speed = 30;
     }
 
     @Override
