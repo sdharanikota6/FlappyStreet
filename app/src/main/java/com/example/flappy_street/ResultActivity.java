@@ -31,14 +31,12 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
-        score = intent.getIntExtra("Score", 0);
         highScore = intent.getIntExtra("HighScore", 0);
         lives = intent.getIntExtra("Lives", 0);
         scoreView = findViewById(R.id.displayStartingPoints);
         highScoreView = findViewById(R.id.displayHighScore);
         title = findViewById(R.id.endScreenTitle);
-        String display = "Score ";
-        display += score;
+        String display = " ";
         scoreView.setText(display);
         display = "HighScore ";
         display += highScore;
