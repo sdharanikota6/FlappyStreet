@@ -42,7 +42,7 @@ public class SmallPlatform extends Platform {
     public boolean collidesWith(Player player) {
         if (super.collidesWith(player)) {
             float newX = player.getX() + (tileSize / speed);
-            if (newX > rightBound) {
+            if (newX > rightBound - player.getWidth()) {
                 player.die();
             }
             player.setX(newX);
