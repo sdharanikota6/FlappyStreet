@@ -3,15 +3,12 @@ package com.example.flappy_street.obstacles.river;
 import android.content.Context;
 import android.graphics.Point;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.GridView;
 
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.obstacles.RowAdapter;
 import com.example.flappy_street.tiles.TileAdapter;
-
-import java.util.Arrays;
 
 public class PlatformRow extends GridView {
 

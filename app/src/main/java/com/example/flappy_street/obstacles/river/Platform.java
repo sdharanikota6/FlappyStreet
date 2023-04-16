@@ -2,8 +2,6 @@ package com.example.flappy_street.obstacles.river;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.appcompat.widget.AppCompatImageView;
 

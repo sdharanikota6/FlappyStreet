@@ -1,7 +1,6 @@
 package com.example.flappy_street.obstacles.river;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.tiles.RiverTile;
