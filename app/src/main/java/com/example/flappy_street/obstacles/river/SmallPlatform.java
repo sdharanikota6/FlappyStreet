@@ -26,7 +26,7 @@ public class SmallPlatform extends Platform {
                 if (xPos + i > 6) {
                     break;
                 }
-                ((RiverTile) level.getTile(yPos, xPos + i)).cover();
+                ((RiverTile) level.getTile(yPos, xPos + i - 1)).cover(); // I don't get it
             }
         }
         float newPos = this.getX() + (tileSize / speed);

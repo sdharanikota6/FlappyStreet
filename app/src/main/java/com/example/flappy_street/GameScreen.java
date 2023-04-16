@@ -71,13 +71,13 @@ public class GameScreen extends AppCompatActivity {
                 .init(Semi.class, 1, 6);
         PlatformRow[] plats = new PlatformRow[3];
         plats[0] = ((PlatformRow) findViewById(R.id.smallRow1))
-                .init(SmallPlatform.class, 3, 4)
+                .init(SmallPlatform.class, 2, 4)
                 .setLevel(level);
         plats[1] = ((PlatformRow) findViewById(R.id.bigRow))
-                .init(SmallPlatform.class, 4, 3)
+                .init(SmallPlatform.class, 2, 3)
                 .setLevel(level);
         plats[2] = ((PlatformRow) findViewById(R.id.smallRow2))
-                .init(SmallPlatform.class, 3, 2)
+                .init(SmallPlatform.class, 2, 2)
                 .setLevel(level);
         vehicleRun = new RoadThread(getApplicationContext(), vehicles, plats, player);
         new Thread(vehicleRun).start();
