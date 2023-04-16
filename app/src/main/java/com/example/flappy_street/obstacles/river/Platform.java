@@ -31,7 +31,6 @@ public abstract class Platform extends AppCompatImageView {
         Point size = TileAdapter.getSize();
         tileSize = (float) size.x / GameLevel.NUM_COLUMNS;
         rightBound = size.x;
-        this.setImageResource(R.drawable.log);
     }
 
     public int getXPos() {

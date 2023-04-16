@@ -2,6 +2,7 @@ package com.example.flappy_street.obstacles.river;
 
 import android.content.Context;
 
+import com.example.flappy_street.R;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.tiles.RiverTile;
 
@@ -11,6 +12,7 @@ public class SmallPlatform extends Platform {
         super(ctx);
         this.size = 2;
         this.speed = 30;
+        this.setImageResource(R.drawable.short_log);
     }
 
     @Override
