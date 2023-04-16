@@ -49,8 +49,6 @@ public class RoadTile extends GameTile {
         if (hasCoin) {
             player.setScore(player.getScore() + 3);
         }
-        this.setX(-10000);
-        this.setY(-10000);
         stepped = true;
         hasCoin = false;
         return this;

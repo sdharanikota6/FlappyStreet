@@ -125,6 +125,9 @@ public class GameLevel extends GridView {
         for (int i = 0; i < NUM_COLUMNS; i++) {
             tileArray[yPos][i].setStepped(false);
         }
+    }
+
+    public void revertCoins() {
         tileArray[6][coin1] = new RoadTile(getContext(), true);
         tileArray[7][coin2] = new RoadTile(getContext(), true);
         tileArray[8][coin3] = new RoadTile(getContext(), true);

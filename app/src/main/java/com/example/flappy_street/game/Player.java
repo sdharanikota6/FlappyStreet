@@ -125,6 +125,7 @@ public class Player extends AppCompatImageView {
                 currentLevel.setRowUnstepped(i);
             }
         }
+        currentLevel.revertCoins();
     }
 
     public void gameOver() {
