@@ -43,8 +43,10 @@ public class SmallPlatform extends Platform {
             float newX = player.getX() + (tileSize / speed);
             if (newX > rightBound - player.getWidth()) {
                 player.die();
+            } else {
+                player.setX(newX);
+                player.updateXPos();
             }
-            player.setX(newX);
             return true;
         }
         return false;

@@ -76,6 +76,14 @@ public class Player extends AppCompatImageView {
     }
 
     /**
+     * Player checks its current x position and updates the backend position accordingly.
+     */
+    public void updateXPos() {
+        float x = this.getX();
+        this.xPos = (int) (x / (float) xStep);
+    }
+
+    /**
      * Removes one life from the player. Returns the player's new amount of lives.
      * @return lives remaining after death
      */

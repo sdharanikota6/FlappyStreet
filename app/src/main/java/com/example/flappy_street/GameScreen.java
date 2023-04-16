@@ -81,8 +81,8 @@ public class GameScreen extends AppCompatActivity {
                 .setLevel(level);
         vehicleRun = new RoadThread(getApplicationContext(), vehicles, plats, player);
         new Thread(vehicleRun).start();
-
-
+        player.bringToFront();
+        player.invalidate();
     }
 
     private void updateGame() {
