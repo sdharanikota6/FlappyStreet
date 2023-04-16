@@ -12,6 +12,7 @@ import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.game.SpriteChoice;
+import com.example.flappy_street.obstacles.river.BigPlatform;
 import com.example.flappy_street.obstacles.river.PlatformRow;
 import com.example.flappy_street.obstacles.river.SmallPlatform;
 import com.example.flappy_street.obstacles.vehicle.Car;
@@ -69,15 +70,18 @@ public class GameScreen extends AppCompatActivity {
                 .init(Truck.class, 2, 7);
         vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow))
                 .init(Semi.class, 1, 6);
-        PlatformRow[] plats = new PlatformRow[3];
+        PlatformRow[] plats = new PlatformRow[4];
         plats[0] = ((PlatformRow) findViewById(R.id.smallRow1))
                 .init(SmallPlatform.class, 2, 4)
                 .setLevel(level);
-        plats[1] = ((PlatformRow) findViewById(R.id.bigRow))
-                .init(SmallPlatform.class, 2, 3)
+        plats[1] = ((PlatformRow) findViewById(R.id.bigRow1))
+                .init(BigPlatform.class, 1, 3)
                 .setLevel(level);
         plats[2] = ((PlatformRow) findViewById(R.id.smallRow2))
                 .init(SmallPlatform.class, 2, 2)
+                .setLevel(level);
+        plats[3] = ((PlatformRow) findViewById(R.id.bigRow2))
+                .init(BigPlatform.class, 1, 1)
                 .setLevel(level);
         vehicleRun = new RoadThread(getApplicationContext(), vehicles, plats, player);
         new Thread(vehicleRun).start();
