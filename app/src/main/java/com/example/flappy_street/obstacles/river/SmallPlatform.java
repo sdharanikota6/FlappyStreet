@@ -1,8 +1,10 @@
 package com.example.flappy_street.obstacles.river;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.flappy_street.game.Player;
+import com.example.flappy_street.tiles.RiverTile;
 
 public class SmallPlatform extends Platform {
 
@@ -16,7 +18,16 @@ public class SmallPlatform extends Platform {
     public void move() {
         stepCount = (stepCount + 1) % speed;
         if (stepCount == 0) {
+            if (xPos < 7) {
+                ((RiverTile) level.getTile(yPos, xPos)).uncover();
+            }
             this.setXPos(this.getXPos() + 1);
+            for (int i = 0; i < size; i++) {
+                if (xPos + i > 6) {
+                    break;
+                }
+                ((RiverTile) level.getTile(yPos, xPos + i)).cover();
+            }
         }
         float newPos = this.getX() + (tileSize / speed);
         if (newPos % rightBound < newPos) {

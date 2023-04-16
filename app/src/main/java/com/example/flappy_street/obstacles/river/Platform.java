@@ -2,6 +2,8 @@ package com.example.flappy_street.obstacles.river;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -12,6 +14,7 @@ import com.example.flappy_street.tiles.TileAdapter;
 
 public abstract class Platform extends AppCompatImageView {
 
+    protected GameLevel level;
     protected int size;
     protected int xPos;
     protected int yPos;
@@ -48,9 +51,15 @@ public abstract class Platform extends AppCompatImageView {
     public int getYPos() {
         return yPos;
     }
+    public void setYPos(int yPos) {
+        this.yPos = yPos;
+    }
 
     public int getSize() {
         return size;
+    }
+    public void setGameLevel(GameLevel level) {
+        this.level = level;
     }
 
     /**

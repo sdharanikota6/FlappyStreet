@@ -3,6 +3,7 @@ package com.example.flappy_street.obstacles.river;
 import android.content.Context;
 import android.graphics.Point;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.GridView;
 
 import com.example.flappy_street.game.Player;
@@ -10,10 +11,14 @@ import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.obstacles.RowAdapter;
 import com.example.flappy_street.tiles.TileAdapter;
 
+import java.util.Arrays;
+
 public class PlatformRow extends GridView {
 
     private int backendSpacing;
     private int spacing;
+    private int yPos;
+    private GameLevel level;
     private Platform[] platforms;
     private final Context context;
     private static final int NUM_COLUMNS = 7;
@@ -50,6 +55,7 @@ public class PlatformRow extends GridView {
         spacing = (int) (spaceFloat * width);
         int height = width * yPos;
         this.setY(height);
+        this.yPos = yPos;
         return this;
     }
 
@@ -60,13 +66,21 @@ public class PlatformRow extends GridView {
     }
 
     public void setPositions() {
+        for (Platform platform : platforms) {
+            platform.setGameLevel(level);
+        }
         for (int i = 0; i < platforms.length; i++) {
             platforms[i].setXPos(i * backendSpacing);
             platforms[i].setX(i * spacing);
             platforms[i].setRealY(this.getY());
+            platforms[i].setYPos(yPos);
         }
     }
 
+    public PlatformRow setLevel(GameLevel level) {
+        this.level = level;
+        return this;
+    }
 
     /**
      * Checks if a player has collided with a platform.
