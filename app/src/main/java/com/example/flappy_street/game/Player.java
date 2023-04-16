@@ -96,34 +96,29 @@ public class Player extends AppCompatImageView {
         score += 100;
         Log.i("VICTORY", "Player wins!");
     }
-  
+
     public void resetPos() {
         int yDis = yPos - startingPos[1];
         int xDis = xPos - startingPos[0];
         yPos = startingPos[1];
         xPos = startingPos[0];
-        calculateXYStep();
-
+        calculateSteps(parentFrame);
         setY((float) (getY() - ((yStep) * yDis)));
         setX((float) (getX() - ((xStep) * xDis)));
         //Reset rows to unstepped
         if (currentLevel != null) {
-            setRowsUnstepped();
+            for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
+                currentLevel.setRowUnstepped(i);
+            }
         }
     }
-
-    public void setRowsUnstepped() {
-        for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
-            currentLevel.setRowUnstepped(i);
-        }
-    }
-    public void calculateXYStep() {
-        if (parentFrame != null) {
+    public void calculateSteps(FrameLayout pFrame) {
+        if (pFrame != null) {
             if (yStep == 0) {
-                yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
+                yStep = pFrame.getHeight() / (double) GameLevel.NUM_ROWS;
             }
             if (xStep == 0) {
-                xStep = parentFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
+                xStep = pFrame.getWidth() / (double) GameLevel.NUM_COLUMNS;
             }
         } else {
             if (yStep == 0) {
@@ -132,6 +127,12 @@ public class Player extends AppCompatImageView {
             if (xStep == 0) {
                 xStep = 100 / (double) GameLevel.NUM_COLUMNS;
             }
+        }
+    }
+
+    public void setRowsUnstepped() {
+        for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
+            currentLevel.setRowUnstepped(i);
         }
     }
 
