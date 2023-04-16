@@ -135,8 +135,10 @@ public class Player extends AppCompatImageView {
         if (yPos > 0) {
             yPos--;
             float newY = (float) ((yPos * yStep) + (yStep / 7.5));
+            float newX = (float) ((xPos * xStep) + (xStep / 11));
             //float newY =  (float) (getY() - yStep); // Put snapping here
             setY(newY);
+            setX(newX);
             if (parentFrame != null) {
                 currentLevel.getTile(yPos, xPos).step(this);
                 currentLevel.setRowStepped(yPos);
@@ -179,7 +181,9 @@ public class Player extends AppCompatImageView {
             yPos++;
             //float newY =  (float) (getY() + yStep);
             float newY = (float) ((yPos * yStep) + (yStep / 7.5));
+            float newX = (float) ((xPos * xStep) + (xStep / 11));
             setY(newY);
+            setX(newX);
             if (parentFrame != null) {
                 currentLevel.getTile(yPos, xPos).step(this);
             }
@@ -219,7 +223,9 @@ public class Player extends AppCompatImageView {
             xPos--;
 //                float newX =  (float) (getX() - xStep);
             float newX = (float) ((xPos * xStep) + (xStep / 11));
+            float newY = (float) ((yPos * yStep) + (yStep / 7.5));
             setX(newX);
+            setY(newY);
             if (parentFrame != null) {
                 currentLevel.getTile(yPos, xPos).step(this);
             }
@@ -259,7 +265,9 @@ public class Player extends AppCompatImageView {
             xPos++;
             //float newX =  (float) (getX() + xStep);
             float newX = (float) ((xPos * xStep) + (xStep / 11));
+            float newY = (float) ((yPos * yStep) + (yStep / 7.5));
             setX(newX);
+            setY(newY);
             if (parentFrame != null) {
                 currentLevel.getTile(yPos, xPos).step(this);
             }
