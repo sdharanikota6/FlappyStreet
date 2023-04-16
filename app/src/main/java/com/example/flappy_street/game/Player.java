@@ -102,6 +102,22 @@ public class Player extends AppCompatImageView {
         int xDis = xPos - startingPos[0];
         yPos = startingPos[1];
         xPos = startingPos[0];
+        calculateXYStep();
+
+        setY((float) (getY() - ((yStep) * yDis)));
+        setX((float) (getX() - ((xStep) * xDis)));
+        //Reset rows to unstepped
+        if (currentLevel != null) {
+            setRowsUnstepped();
+        }
+    }
+
+    public void setRowsUnstepped() {
+        for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
+            currentLevel.setRowUnstepped(i);
+        }
+    }
+    public void calculateXYStep() {
         if (parentFrame != null) {
             if (yStep == 0) {
                 yStep = parentFrame.getHeight() / (double) GameLevel.NUM_ROWS;
@@ -115,14 +131,6 @@ public class Player extends AppCompatImageView {
             }
             if (xStep == 0) {
                 xStep = 100 / (double) GameLevel.NUM_COLUMNS;
-            }
-        }
-        setY((float) (getY() - ((yStep) * yDis)));
-        setX((float) (getX() - ((xStep) * xDis)));
-        //Reset rows to unstepped
-        if (currentLevel != null) {
-            for (int i = 0; i < GameLevel.NUM_ROWS; i++) {
-                currentLevel.setRowUnstepped(i);
             }
         }
     }
