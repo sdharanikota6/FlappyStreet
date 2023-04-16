@@ -5,7 +5,6 @@ import android.graphics.Point;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.example.flappy_street.R;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.tiles.TileAdapter;
