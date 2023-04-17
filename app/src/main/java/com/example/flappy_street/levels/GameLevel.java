@@ -18,6 +18,10 @@ public class GameLevel extends GridView {
     private GameTile[][] tileArray;
     private String name;
 
+    private int coin1 = 2;
+    private int coin2 = 4;
+    private int coin3 = 3;
+
     /**
      * Constructor used for unit testing
      * @param context the context this view was created in
@@ -66,8 +70,10 @@ public class GameLevel extends GridView {
      * Creates the tile array used to play the game.
      */
     private void generateTileArray() {
+
         tileArray = new GameTile[NUM_ROWS][NUM_COLUMNS];
         Context ctx = getContext();
+
         //goal row
         for (int i = 0; i < tileArray[0].length; i++) {
             tileArray[0][i] = new GoalTile(ctx);
@@ -92,6 +98,9 @@ public class GameLevel extends GridView {
         for (int i = 0; i < tileArray[0].length; i++) {
             tileArray[9][i] = new SafeTile(ctx);
         }
+        tileArray[6][coin1] = new RoadTile(ctx, true);
+        tileArray[7][coin2] = new RoadTile(ctx, true);
+        tileArray[8][coin3] = new RoadTile(ctx, true);
     }
 
     /**
@@ -109,5 +118,11 @@ public class GameLevel extends GridView {
         for (int i = 0; i < NUM_COLUMNS; i++) {
             tileArray[yPos][i].setStepped(false);
         }
+    }
+
+    public void revertCoins() {
+        tileArray[6][coin1] = new RoadTile(getContext(), true);
+        tileArray[7][coin2] = new RoadTile(getContext(), true);
+        tileArray[8][coin3] = new RoadTile(getContext(), true);
     }
 }
