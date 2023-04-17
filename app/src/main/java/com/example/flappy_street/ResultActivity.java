@@ -17,10 +17,12 @@ public class ResultActivity extends AppCompatActivity {
 
     private SpriteChoice spriteString;
     private DifficultyLevel difficulty;
+    private int lives;
     private String name;
 
     private TextView scoreView;
     private TextView highScoreView;
+    private TextView title;
     private Button reset;
     private Button config;
 
@@ -29,16 +31,23 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
-        score = intent.getIntExtra("Score", 0);
         highScore = intent.getIntExtra("HighScore", 0);
+        lives = intent.getIntExtra("Lives", 0);
         scoreView = findViewById(R.id.displayStartingPoints);
         highScoreView = findViewById(R.id.displayHighScore);
-        String display = "Score ";
-        display += score;
+        title = findViewById(R.id.endScreenTitle);
+        String display = " ";
         scoreView.setText(display);
         display = "HighScore ";
         display += highScore;
         highScoreView.setText(display);
+        if (lives > 0) {
+            display = "You WIN";
+            title.setText(display);
+        } else {
+            display = "You LOSE";
+            title.setText(display);
+        }
         reset = findViewById(R.id.RestartButton);
         config = findViewById(R.id.ConfigButton);
         reset.setOnClickListener((v) -> {
@@ -52,6 +61,7 @@ public class ResultActivity extends AppCompatActivity {
                 intent.getSerializableExtra("Difficulty");
         spriteString = (SpriteChoice)
                 intent.getSerializableExtra("Sprite");
+
     }
 
     public void resetButton() {

@@ -93,7 +93,6 @@ public class GameScreen extends AppCompatActivity {
             player.setHighScore(player.getScore());
         }
 
-        //findViewById(R.id.moveUP).setOnClickListener(player::moveUp);
         findViewById(R.id.moveUP).setOnClickListener((v) -> {
             player.moveUp();
         });
@@ -137,7 +136,9 @@ public class GameScreen extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if (player.getLives() > 0) {
+                        if (player.getWon() == 1) {
+                            gameOver();
+                        } else if (player.getLives() > 0) {
                             updateGame();
                             drawGame();
                         } else {
@@ -166,14 +167,14 @@ public class GameScreen extends AppCompatActivity {
     public void gameOver() {
         vehicleRun.stopRows();
         timer.cancel();
-        player.gameOver();
+        player.setHighScore(player.getScore());
         Intent intent = new Intent(getApplicationContext(),
                 ResultActivity.class);
-        intent.putExtra("Score", player.getScore());
         intent.putExtra("HighScore", player.getHighScore());
         intent.putExtra("Sprite", spriteString);
         intent.putExtra("Name", name);
         intent.putExtra("Difficulty", difficulty);
+        intent.putExtra("Lives", player.getLives());
         startActivity(intent);
         finish();
     }
