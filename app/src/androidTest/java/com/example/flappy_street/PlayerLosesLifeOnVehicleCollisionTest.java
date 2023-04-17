@@ -8,8 +8,10 @@ import androidx.test.core.app.ApplicationProvider;
 
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
+import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.obstacles.ObstacleRow;
 import com.example.flappy_street.obstacles.vehicle.Car;
+import com.example.flappy_street.obstacles.vehicle.Vehicle;
 
 import org.junit.Test;
 
@@ -20,11 +22,17 @@ public class PlayerLosesLifeOnVehicleCollisionTest {
         Context ctx = ApplicationProvider.getApplicationContext();
         Player p = new Player(ctx);
         p.init(0, "a", DifficultyLevel.EASY);
-        ObstacleRow v = new ObstacleRow(ctx).init(Car.class, 4, 0);
-        assertEquals(p.getLives(), 5);
+        Vehicle v = new Car(ctx);
+        GameLevel level = new GameLevel(ctx);
+        p.setGameLevel(level);
+        v.setGameLevel(level);
+        v.setYPos(2);
         p.setY(v.getY());
         p.setX(v.getX());
-        v.checkCollision(p);
+        int oldLives = p.getLives();
+        while (!v.collidesWith(p)) {
+            v.move();
+        }
         assertEquals(p.getLives(), 4);
     }
 }

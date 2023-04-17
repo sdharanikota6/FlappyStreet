@@ -29,6 +29,7 @@ public abstract class Vehicle extends Obstacle {
     @Override
     public boolean collidesWith(Player player) {
         if (player.getX() == this.getX() && player.getY() == this.getY()) {
+            player.die();
             return true; //early break condition for testing
         }
         boolean matchesLeftSideX = player.getX() >= this.getX() + FUDGE_FACTOR
