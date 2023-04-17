@@ -3,7 +3,6 @@ package com.example.flappy_street.obstacles.river;
 import android.content.Context;
 
 import com.example.flappy_street.game.Player;
-import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.obstacles.Obstacle;
 
 public abstract class Platform extends Obstacle {

@@ -1,4 +1,4 @@
-package com.example.flappy_street.obstacles.river;
+package com.example.flappy_street.obstacles;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -7,8 +7,6 @@ import android.widget.GridView;
 
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
-import com.example.flappy_street.obstacles.Obstacle;
-import com.example.flappy_street.obstacles.RowAdapter;
 import com.example.flappy_street.tiles.TileAdapter;
 
 public class ObstacleRow extends GridView {
