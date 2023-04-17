@@ -11,8 +11,6 @@ import com.example.flappy_street.tiles.RoadTile;
 import com.example.flappy_street.tiles.SafeTile;
 import com.example.flappy_street.tiles.TileAdapter;
 
-import java.util.Random;
-
 public class GameLevel extends GridView {
     public static final int NUM_ROWS = 10;
     public static final int NUM_COLUMNS = 7;
@@ -20,11 +18,6 @@ public class GameLevel extends GridView {
     private GameTile[][] tileArray;
     private String name;
 
-//    private Random rand = new Random();
-//    private int coin1 = rand.nextInt(7);
-//    private int coin2 = rand.nextInt(7);
-//    private int coin3 = rand.nextInt(7);
-     //hardcoded for now bc its being weird with updating score for random pos
     private int coin1 = 2;
     private int coin2 = 4;
     private int coin3 = 3;
@@ -117,7 +110,7 @@ public class GameLevel extends GridView {
      */
     public void setRowStepped(int yPos) {
         for (int i = 0; i < NUM_COLUMNS; i++) {
-             tileArray[yPos][i].setStepped(true);
+            tileArray[yPos][i].setStepped(true);
         }
     }
 
