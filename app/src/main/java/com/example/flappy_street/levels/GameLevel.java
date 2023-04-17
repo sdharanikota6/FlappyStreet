@@ -11,12 +11,23 @@ import com.example.flappy_street.tiles.RoadTile;
 import com.example.flappy_street.tiles.SafeTile;
 import com.example.flappy_street.tiles.TileAdapter;
 
+import java.util.Random;
+
 public class GameLevel extends GridView {
     public static final int NUM_ROWS = 10;
     public static final int NUM_COLUMNS = 7;
 
     private GameTile[][] tileArray;
     private String name;
+
+//    private Random rand = new Random();
+//    private int coin1 = rand.nextInt(7);
+//    private int coin2 = rand.nextInt(7);
+//    private int coin3 = rand.nextInt(7);
+     //hardcoded for now bc its being weird with updating score for random pos
+    private int coin1 = 2;
+    private int coin2 = 4;
+    private int coin3 = 3;
 
     /**
      * Constructor used for unit testing
@@ -66,8 +77,10 @@ public class GameLevel extends GridView {
      * Creates the tile array used to play the game.
      */
     private void generateTileArray() {
+
         tileArray = new GameTile[NUM_ROWS][NUM_COLUMNS];
         Context ctx = getContext();
+
         //goal row
         for (int i = 0; i < tileArray[0].length; i++) {
             tileArray[0][i] = new GoalTile(ctx);
@@ -92,6 +105,9 @@ public class GameLevel extends GridView {
         for (int i = 0; i < tileArray[0].length; i++) {
             tileArray[9][i] = new SafeTile(ctx);
         }
+        tileArray[6][coin1] = new RoadTile(ctx, true);
+        tileArray[7][coin2] = new RoadTile(ctx, true);
+        tileArray[8][coin3] = new RoadTile(ctx, true);
     }
 
     /**
@@ -101,7 +117,7 @@ public class GameLevel extends GridView {
      */
     public void setRowStepped(int yPos) {
         for (int i = 0; i < NUM_COLUMNS; i++) {
-            tileArray[yPos][i].setStepped(true);
+             tileArray[yPos][i].setStepped(true);
         }
     }
 
@@ -109,5 +125,11 @@ public class GameLevel extends GridView {
         for (int i = 0; i < NUM_COLUMNS; i++) {
             tileArray[yPos][i].setStepped(false);
         }
+    }
+
+    public void revertCoins() {
+        tileArray[6][coin1] = new RoadTile(getContext(), true);
+        tileArray[7][coin2] = new RoadTile(getContext(), true);
+        tileArray[8][coin3] = new RoadTile(getContext(), true);
     }
 }
