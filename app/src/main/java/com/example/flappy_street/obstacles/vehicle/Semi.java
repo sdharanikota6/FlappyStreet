@@ -1,17 +1,16 @@
-package com.example.flappy_street.obstacles;
+package com.example.flappy_street.obstacles.vehicle;
 
 import android.content.Context;
 
 import com.example.flappy_street.R;
 
-public class Car extends Vehicle {
+public class Semi extends Vehicle {
+    private static final int STEPS_PER_TILE = 50;
 
-    private static final int STEPS_PER_TILE = 25;
-
-    public Car(Context context) {
+    public Semi(Context context) {
         super(context);
-        this.setImageResource(R.drawable.car);
-        this.size = 1;
+        this.setImageResource(R.drawable.semi);
+        this.size = 3;
     }
 
     @Override
@@ -22,7 +21,7 @@ public class Car extends Vehicle {
         }
         float newPos = this.getX() + (tileSize / STEPS_PER_TILE);
         if (newPos % rightBound < newPos) {
-            this.setX(-this.getWidth());
+            this.setX(LEFT_BOUND - this.getWidth());
             this.setXPos(0);
         } else {
             this.setX(newPos);

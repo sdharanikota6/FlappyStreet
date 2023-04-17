@@ -16,6 +16,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <com.example.flappy_street.obstacles.ObstacleRow
+            android:id="@+id/bigRow2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.flappy_street.obstacles.ObstacleRow
+            android:id="@+id/smallRow2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.flappy_street.obstacles.ObstacleRow
+            android:id="@+id/bigRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.flappy_street.obstacles.ObstacleRow
+            android:id="@+id/smallRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <com.example.flappy_street.obstacles.ObstacleRow
+            android:id="@+id/carRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.flappy_street.obstacles.ObstacleRow
+            android:id="@+id/truckRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.flappy_street.obstacles.ObstacleRow
+            android:id="@+id/semiRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="0dp"
@@ -34,20 +68,6 @@
                 app:srcCompat="@drawable/sprite1"/>
 
         </FrameLayout>
-        <com.example.flappy_street.obstacles.VehicleRow
-            android:id="@+id/carRow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <com.example.flappy_street.obstacles.VehicleRow
-            android:id="@+id/truckRow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <com.example.flappy_street.obstacles.VehicleRow
-            android:id="@+id/semiRow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,7 +154,7 @@
             android:layout_column="4"
             android:fontFamily="monospace"
             android:text="@string/lives"
-            android:textColor="#FFBB86FC"
+            android:textColor="#F43636"
             android:textColorHint="#808080"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +167,7 @@
             android:layout_column="4"
             android:fontFamily="monospace"
             android:text="@string/starting_points"
-            android:textColor="#FFBB86FC"
+            android:textColor="#FFF43636"
             android:textColorHint="#808080"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -160,7 +180,7 @@
             android:layout_column="0"
             android:fontFamily="monospace"
             android:text="@string/high_score"
-            android:textColor="#FFBB86FC"
+            android:textColor="#FFF43636"
             android:textColorHint="#808080"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

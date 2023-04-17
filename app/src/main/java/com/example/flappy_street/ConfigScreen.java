@@ -15,21 +15,20 @@ import com.example.flappy_street.game.SpriteChoice;
 
 public class ConfigScreen extends AppCompatActivity {
 
-    public static final String CHOSEN_DIFFICULTY =
-            "com.example.flappy_street.chosenDifficultyFinal";
-    public static final String CHOSEN_SPRITE = "com.example.flappy_street.chosenSpriteFinal";
-    public static final String CHOSEN_NAME = "com.example.flappy_street.chosenNameFinal";
     private DifficultyLevel difficulty;
     private SpriteChoice chosenSprite;
     private Button[] difficultyButtons;
     private ImageButton[] spriteButtons;
     private boolean difficultyChosen = false;
     private boolean spriteChosen = false;
+    private int highScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_config);
+        Intent intent = getIntent();
+        highScore = intent.getIntExtra("HighScore", 0);
         difficulty = DifficultyLevel.MEDIUM;
         chosenSprite = SpriteChoice.SPRITE_1;
         Button goButton = findViewById(R.id.goButton);
@@ -93,10 +92,12 @@ public class ConfigScreen extends AppCompatActivity {
         EditText textField = findViewById(R.id.editTextTextPersonName);
         String name = textField.getText().toString();
         Intent gameScreen = new Intent(this, GameScreen.class);
-        gameScreen.putExtra(CHOSEN_DIFFICULTY, difficulty);
-        gameScreen.putExtra(CHOSEN_SPRITE, chosenSprite);
-        gameScreen.putExtra(CHOSEN_NAME, name);
+        gameScreen.putExtra("CHOSEN_DIFFICULTY", difficulty);
+        gameScreen.putExtra("CHOSEN_SPRITE", chosenSprite);
+        gameScreen.putExtra("CHOSEN_NAME", name);
+        gameScreen.putExtra("HighScore", highScore);
         startActivity(gameScreen);
+        finish();
     }
 
     private void goButton(View view) {
@@ -129,4 +130,9 @@ public class ConfigScreen extends AppCompatActivity {
     private void goBack(View v) {
         this.finish();
     }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
 }

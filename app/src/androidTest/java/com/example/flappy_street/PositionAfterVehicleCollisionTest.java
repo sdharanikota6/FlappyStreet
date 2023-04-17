@@ -6,9 +6,8 @@ import androidx.test.core.app.ApplicationProvider;
 
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
-import com.example.flappy_street.obstacles.Car;
-import com.example.flappy_street.obstacles.Vehicle;
-import com.example.flappy_street.tiles.RiverTile;
+import com.example.flappy_street.obstacles.vehicle.Car;
+import com.example.flappy_street.obstacles.vehicle.Vehicle;
 
 import org.junit.Test;
 

@@ -10,18 +10,14 @@ import com.example.flappy_street.tiles.RiverTile;
 
 import org.junit.Test;
 
-/**
- * Tests whether crossing a river correctly increments score.
- */
-public class RiverScoreTest {
+public class KeepScoreTest {
     @Test
-    public void crossRiverIncrementsScore() {
+    public void coveredRiverDoesNotCauseDeath() {
         Player player = new Player(ApplicationProvider.getApplicationContext());
-        player.init(0, "Holden", DifficultyLevel.EASY);
-        int oldScore = player.getScore();
+        player.init(0, "SD", DifficultyLevel.EASY);
         RiverTile riverTile = new RiverTile(ApplicationProvider.getApplicationContext());
         riverTile.cover();
         riverTile.step(player);
-        assertEquals(oldScore + 5, player.getScore());
+        assertEquals(5, player.getScore());
     }
 }

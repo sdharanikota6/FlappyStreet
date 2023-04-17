@@ -38,6 +38,7 @@ public class RepeatStepScoreTest {
         player.init(0, "a", DifficultyLevel.EASY);
         float oldScore = player.getScore();
         RiverTile riverTile = new RiverTile(ApplicationProvider.getApplicationContext());
+        riverTile.cover();
         riverTile.step(player);
         float newScore = player.getScore();
         riverTile.step(player);

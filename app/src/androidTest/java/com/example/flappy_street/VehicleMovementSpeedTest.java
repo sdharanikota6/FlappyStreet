@@ -4,10 +4,10 @@ import static org.junit.Assert.assertNotEquals;
 
 import androidx.test.core.app.ApplicationProvider;
 
-import com.example.flappy_street.obstacles.Car;
-import com.example.flappy_street.obstacles.Semi;
-import com.example.flappy_street.obstacles.Truck;
-import com.example.flappy_street.obstacles.Vehicle;
+import com.example.flappy_street.obstacles.vehicle.Car;
+import com.example.flappy_street.obstacles.vehicle.Semi;
+import com.example.flappy_street.obstacles.vehicle.Truck;
+import com.example.flappy_street.obstacles.vehicle.Vehicle;
 
 import org.junit.Test;
 

@@ -2,34 +2,31 @@ package com.example.flappy_street.obstacles;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.tiles.TileAdapter;
 
-public abstract class Vehicle extends AppCompatImageView {
-
+public abstract class Obstacle extends AppCompatImageView {
+    protected static final float LEFT_BOUND = 0;
+    protected final float rightBound;
+    protected final float tileSize;
+    protected GameLevel level;
     protected int xPos;
     protected int yPos;
     protected int size;
-    protected int stepCount;
-    protected final float tileSize;
-    protected final float rightBound;
-    protected static final float LEFT_BOUND = 0;
-
     /**
-     * Create a new vehicle.
-     * Subclasses should add a starting x position and add an image to represent it.
-     * @param context The context this vehicle was created in
+     * Actual Y is not stored by default, must manually find
      */
-    public Vehicle(Context context) {
+    protected float realY;
+
+    public Obstacle(Context context) {
         super(context);
         Point size = TileAdapter.getSize();
         tileSize = (float) size.x / GameLevel.NUM_COLUMNS;
         rightBound = size.x;
-        Log.i("INIT", "created vehicle");
     }
 
     public int getXPos() {
@@ -40,6 +37,14 @@ public abstract class Vehicle extends AppCompatImageView {
         this.xPos = newPos;
     }
 
+    public void setRealY(float y) {
+        this.realY = y;
+    }
+
+    public void setYPos(int y) {
+        this.yPos = y;
+    }
+
     public int getYPos() {
         return yPos;
     }
@@ -48,19 +53,15 @@ public abstract class Vehicle extends AppCompatImageView {
         return size;
     }
 
+    public void setGameLevel(GameLevel level) {
+        this.level = level;
+    }
+
     /**
      * Move the vehicle in a direction. Implementation should handle backend movement,
      * specify the direction, and collision detection.
      */
     public abstract void move();
 
-    /**
-     * Check if the car collides with a given position.
-     * @param collisionPos the position to check collision with
-     * @return true if the object collides, false otherwise
-     */
-    public boolean collidesWith(int collisionPos) {
-        return collisionPos >= xPos && collisionPos < xPos + size;
-    }
-
+    public abstract boolean collidesWith(Player player);
 }

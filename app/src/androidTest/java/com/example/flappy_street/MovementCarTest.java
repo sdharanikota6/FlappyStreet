@@ -4,7 +4,7 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 import static org.junit.Assert.assertEquals;
 
-import com.example.flappy_street.obstacles.Car;
+import com.example.flappy_street.obstacles.vehicle.Car;
 
 import org.junit.Test;
 

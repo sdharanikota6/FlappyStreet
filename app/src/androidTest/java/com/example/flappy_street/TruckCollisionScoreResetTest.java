@@ -8,7 +8,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import static org.junit.Assert.assertEquals;
 import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
-import com.example.flappy_street.obstacles.Truck;
+import com.example.flappy_street.obstacles.vehicle.Truck;
 import org.junit.Test;
 
 /**
