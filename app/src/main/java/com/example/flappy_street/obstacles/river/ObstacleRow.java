@@ -7,44 +7,45 @@ import android.widget.GridView;
 
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
+import com.example.flappy_street.obstacles.Obstacle;
 import com.example.flappy_street.obstacles.RowAdapter;
 import com.example.flappy_street.tiles.TileAdapter;
 
-public class PlatformRow extends GridView {
+public class ObstacleRow extends GridView {
 
     private int backendSpacing;
     private int spacing;
     private int yPos;
     private GameLevel level;
-    private Platform[] platforms;
+    private Obstacle[] obstacles;
     private final Context context;
     private static final int NUM_COLUMNS = 7;
 
-    public PlatformRow(Context ctx) {
+    public ObstacleRow(Context ctx) {
         super(ctx);
         this.context = ctx;
         this.setNumColumns(NUM_COLUMNS);
     }
 
-    public PlatformRow(Context ctx, AttributeSet attrs) {
+    public ObstacleRow(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
         this.context = ctx;
         this.setNumColumns(7);
     }
 
-    public PlatformRow init(Class<? extends Platform> platformType,
-                           int numPlatforms,
-                           int yPos) {
-        platforms = new Platform[numPlatforms];
+    public ObstacleRow init(Class<? extends Obstacle> platformType,
+                            int numPlatforms,
+                            int yPos) {
+        obstacles = new Obstacle[numPlatforms];
         for (int i = 0; i < numPlatforms; i++) {
             try {
-                Platform v = platformType.getConstructor(Context.class).newInstance(context);
-                platforms[i] = v;
+                Obstacle v = platformType.getConstructor(Context.class).newInstance(context);
+                obstacles[i] = v;
             } catch (Exception e) {
                 throw new UnsupportedOperationException("Initialization failed");
             }
         }
-        this.setAdapter(new RowAdapter(context, numPlatforms, platforms, platforms[0].getSize()));
+        this.setAdapter(new RowAdapter(context, numPlatforms, obstacles, obstacles[0].getSize()));
         backendSpacing = (GameLevel.NUM_COLUMNS - numPlatforms) / numPlatforms;
         float spaceFloat = ((float) GameLevel.NUM_COLUMNS - numPlatforms) / numPlatforms;
         Point size = TileAdapter.getSize();
@@ -57,24 +58,24 @@ public class PlatformRow extends GridView {
     }
 
     public void moveRow() {
-        for (Platform v : platforms) {
+        for (Obstacle v : obstacles) {
             v.move();
         }
     }
 
     public void setPositions() {
-        for (Platform platform : platforms) {
+        for (Obstacle platform : obstacles) {
             platform.setGameLevel(level);
         }
-        for (int i = 0; i < platforms.length; i++) {
-            platforms[i].setXPos(i * backendSpacing);
-            platforms[i].setX(i * spacing);
-            platforms[i].setRealY(this.getY());
-            platforms[i].setYPos(yPos);
+        for (int i = 0; i < obstacles.length; i++) {
+            obstacles[i].setXPos(i * backendSpacing);
+            obstacles[i].setX(i * spacing);
+            obstacles[i].setRealY(this.getY());
+            obstacles[i].setYPos(yPos);
         }
     }
 
-    public PlatformRow setLevel(GameLevel level) {
+    public ObstacleRow setLevel(GameLevel level) {
         this.level = level;
         return this;
     }
@@ -84,7 +85,7 @@ public class PlatformRow extends GridView {
      * @param player the player's position
      */
     public void checkCollision(Player player) {
-        for (Platform v : platforms) {
+        for (Obstacle v : obstacles) {
             v.collidesWith(player); //no if statement because movement handled within player
         }
     }

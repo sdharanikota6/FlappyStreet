@@ -3,21 +3,20 @@ package com.example.flappy_street.obstacles;
 import android.content.Context;
 
 import com.example.flappy_street.game.Player;
-import com.example.flappy_street.obstacles.river.PlatformRow;
+import com.example.flappy_street.obstacles.river.ObstacleRow;
 import com.example.flappy_street.obstacles.vehicle.VehicleRow;
 
 public class RoadThread extends Thread {
 
     private Context ctx;
-    private VehicleRow[] rows;
-    private PlatformRow[] platRows;
+    private ObstacleRow[] rows;
+    //private ObstacleRow[] platRows;
     private Player player;
     private boolean running;
 
-    public RoadThread(Context ctx, VehicleRow[] rows, PlatformRow[] platRows, Player player) {
+    public RoadThread(Context ctx, ObstacleRow[] rows,  Player player) {
         this.ctx = ctx;
         this.rows = rows;
-        this.platRows = platRows;
         this.player = player;
     }
 
@@ -27,18 +26,11 @@ public class RoadThread extends Thread {
      */
     public void run() {
         running = true;
-        for (VehicleRow row : rows) {
-            row.setPositions();
-        }
-        for (PlatformRow row : platRows) {
+        for (ObstacleRow row : rows) {
             row.setPositions();
         }
         while (running) {
-            for (VehicleRow row : rows) {
-                row.moveRow();
-                row.checkCollision(player);
-            }
-            for (PlatformRow row : platRows) {
+            for (ObstacleRow row : rows) {
                 row.moveRow();
                 row.checkCollision(player);
             }

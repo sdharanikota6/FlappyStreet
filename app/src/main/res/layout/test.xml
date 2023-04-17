@@ -16,36 +16,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.example.flappy_street.obstacles.river.PlatformRow
+        <com.example.flappy_street.obstacles.river.ObstacleRow
             android:id="@+id/bigRow2"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.example.flappy_street.obstacles.river.PlatformRow
+        <com.example.flappy_street.obstacles.river.ObstacleRow
             android:id="@+id/smallRow2"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.example.flappy_street.obstacles.river.PlatformRow
+        <com.example.flappy_street.obstacles.river.ObstacleRow
             android:id="@+id/bigRow1"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.example.flappy_street.obstacles.river.PlatformRow
+        <com.example.flappy_street.obstacles.river.ObstacleRow
             android:id="@+id/smallRow1"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-        <com.example.flappy_street.obstacles.vehicle.VehicleRow
+        <com.example.flappy_street.obstacles.river.ObstacleRow
             android:id="@+id/carRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.example.flappy_street.obstacles.vehicle.VehicleRow
+        <com.example.flappy_street.obstacles.river.ObstacleRow
             android:id="@+id/truckRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.example.flappy_street.obstacles.vehicle.VehicleRow
+        <com.example.flappy_street.obstacles.river.ObstacleRow
             android:id="@+id/semiRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
