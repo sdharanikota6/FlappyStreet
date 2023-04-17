@@ -19,8 +19,6 @@ public class ConfigScreenPassedHighScoreTest {
                      Robolectric.buildActivity(GameScreen.class)) {
             controller.setup();
             GameScreen test = controller.get();
-            Button button = (Button) test.findViewById(R.id.moveUP);
-            button.performClick();
             test.gameOver();
             ActivityController<ResultActivity> testing =
                     Robolectric.buildActivity(ResultActivity.class);
