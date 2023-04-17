@@ -12,11 +12,13 @@ import com.example.flappy_street.game.DifficultyLevel;
 import com.example.flappy_street.game.Player;
 import com.example.flappy_street.levels.GameLevel;
 import com.example.flappy_street.game.SpriteChoice;
-import com.example.flappy_street.obstacles.Car;
+import com.example.flappy_street.obstacles.river.BigPlatform;
+import com.example.flappy_street.obstacles.ObstacleRow;
+import com.example.flappy_street.obstacles.river.SmallPlatform;
+import com.example.flappy_street.obstacles.vehicle.Car;
 import com.example.flappy_street.obstacles.RoadThread;
-import com.example.flappy_street.obstacles.Semi;
-import com.example.flappy_street.obstacles.Truck;
-import com.example.flappy_street.obstacles.VehicleRow;
+import com.example.flappy_street.obstacles.vehicle.Semi;
+import com.example.flappy_street.obstacles.vehicle.Truck;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -56,20 +58,34 @@ public class GameScreen extends AppCompatActivity {
             difficulty = DifficultyLevel.EASY;
         }
         player = ((Player) findViewById(R.id.player)).init(sprite, name, difficulty);
-        highScore = intent.getIntExtra("HighScore", 0);
-        //player.setHighScore(highScore);
-        VehicleRow[] vehicles = new VehicleRow[3];
-        vehicles[0] = ((VehicleRow) findViewById(R.id.carRow))
-                .init(Car.class, 3, 8);
-        vehicles[1] = ((VehicleRow) findViewById(R.id.truckRow))
-                .init(Truck.class, 2, 7);
-        vehicles[2] = ((VehicleRow) findViewById(R.id.semiRow))
-                .init(Semi.class, 1, 6);
-        vehicleRun = new RoadThread(getApplicationContext(), vehicles, player);
-        new Thread(vehicleRun).start();
-        //Setting GameLevel, hopefully this will fix crashes
         GameLevel level = new GameLevel(getApplicationContext());
         player.setGameLevel(level);
+        highScore = intent.getIntExtra("HighScore", 0);
+        //player.setHighScore(highScore);
+        ObstacleRow[] obstacles = new ObstacleRow[7];
+        obstacles[0] = ((ObstacleRow) findViewById(R.id.carRow))
+                .init(Car.class, 3, 8);
+        obstacles[1] = ((ObstacleRow) findViewById(R.id.truckRow))
+                .init(Truck.class, 2, 7);
+        obstacles[2] = ((ObstacleRow) findViewById(R.id.semiRow))
+                .init(Semi.class, 1, 6);
+        ObstacleRow[] plats = new ObstacleRow[4];
+        obstacles[3] = ((ObstacleRow) findViewById(R.id.smallRow1))
+                .init(SmallPlatform.class, 2, 4)
+                .setLevel(level);
+        obstacles[4] = ((ObstacleRow) findViewById(R.id.bigRow1))
+                .init(BigPlatform.class, 1, 3)
+                .setLevel(level);
+        obstacles[5] = ((ObstacleRow) findViewById(R.id.smallRow2))
+                .init(SmallPlatform.class, 2, 2)
+                .setLevel(level);
+        obstacles[6] = ((ObstacleRow) findViewById(R.id.bigRow2))
+                .init(BigPlatform.class, 1, 1)
+                .setLevel(level);
+        vehicleRun = new RoadThread(getApplicationContext(), obstacles, player);
+        new Thread(vehicleRun).start();
+        player.bringToFront();
+        player.invalidate();
     }
 
     private void updateGame() {
